@@ -18,8 +18,7 @@
                             <div class="section-divider mb40" id="spy1">
                                 <span>Nuevo Medico</span>
                             </div>
-                            <!-- .section-divider -->                            
-
+                           <!-- .section-divider -->                             
                             <!-- Input Icons -->
                             <div class="row">
                                 <div class="col-md-9">

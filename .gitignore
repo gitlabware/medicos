@@ -5,7 +5,7 @@
 
 # IDE and editor specific files #
 #################################
-/nbproject
+/medicos/nbproject
 .idea
 
 # OS generated files #
