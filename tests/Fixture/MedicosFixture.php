@@ -49,8 +49,8 @@ class MedicosFixture extends TestFixture
             'telefonos' => 'Lorem ipsum dolor sit amet',
             'direccion' => 'Lorem ipsum dolor sit amet',
             'ci' => 'Lorem ipsum d',
-            'created' => '2015-07-08',
-            'modified' => '2015-07-08',
+            'created' => '2015-07-11',
+            'modified' => '2015-07-11',
             'matricula' => 'Lorem ipsum dolor sit amet',
             'mail' => 'Lorem ipsum dolor sit amet',
             'especialidade_id' => 1

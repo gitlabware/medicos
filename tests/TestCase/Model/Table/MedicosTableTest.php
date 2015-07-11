@@ -17,7 +17,9 @@ class MedicosTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.medicos'
+        'app.medicos',
+        'app.especialidades',
+        'app.consultorios'
     ];
 
     /**
@@ -60,6 +62,16 @@ class MedicosTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
