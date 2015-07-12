@@ -15,7 +15,8 @@
 
   <!-- Theme CSS -->  
   <link rel="stylesheet" type="text/css" href="<?php echo $this->request->webroot; ?>css/theme.css">  
-
+  <!-- Admin Forms CSS -->
+  <link rel="stylesheet" type="text/css" href="<?php echo $this->request->webroot; ?>css/admin-forms.css">
   <!-- Favicon -->
   <link rel="shortcut icon" href="<?php echo $this->request->webroot; ?>img/favicon.ico">
 

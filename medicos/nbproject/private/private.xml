@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/medicos/src/Template/Medicos/add.ctp</file>
-            <file>file:/var/www/html/medicos/src/Controller/MedicosController.php</file>
+            <file>file:/var/www/html/medicos/src/Template/Servicios/add.ctp</file>
+            <file>file:/var/www/html/medicos/src/Template/Layout/medicos.ctp</file>
+            <file>file:/var/www/html/medicos/src/Template/Centros/add.ctp</file>
+            <file>file:/var/www/html/medicos/webroot/js/demo/demo.js</file>
+            <file>file:/var/www/html/medicos/src/Template/Centros/index.ctp</file>
+            <file>file:/var/www/html/medicos/src/Controller/CentrosController.php</file>
+            <file>file:/var/www/html/medicos/src/Template/Centros/edit.ctp</file>
         </group>
     </open-files>
 </project-private>
