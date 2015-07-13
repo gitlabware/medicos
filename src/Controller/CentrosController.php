@@ -106,4 +106,13 @@ class CentrosController extends AppController {
     return $this->redirect(['action' => 'index']);
   }
 
+  public function ajax_servicios() {
+    $this->layout = 'ajax';
+    $centro = $this->Centros->newEntity();
+    $this->loadModel('Sevicios');
+    $lservicios = $this->Sevicios->find('list',['keyField' => 'id', 'valueField' => 'nombre']);
+    debug($lservicios);exit;
+    $this->set(compact('centro','lservicios'));
+  }
+
 }

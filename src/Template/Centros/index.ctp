@@ -40,6 +40,7 @@
                                       <td><?= h($centro->telefonos) ?></td>
                                       <td><?= h($centro->direccion) ?></td>
                                       <td class="actions">
+                                          <a href="javascript:" onclick="cargarmodal('<?php echo $this->Url->build(['action' => 'ajax_servicios']);?>');">modal</a>
                                           <?= $this->Html->link(__('Edit'), ['action' => 'edit', $centro->id]) ?>
                                           <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $centro->id], ['confirm' => __('Are you sure you want to delete # {0}?', $centro->id)]) ?>
                                       </td>
