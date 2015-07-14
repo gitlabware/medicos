@@ -10,7 +10,6 @@
                     <div class="panel-heading">
                         <div class="panel-title hidden-xs">
                             <span class="glyphicon glyphicon-tasks"></span><?php echo "Consultorios de ".$medico->nombre;?></div>
-                        
                     </div>
                     <div class="panel-body pn">
                         <table class="table table-striped table-hover dataTable tabla-dato" cellspacing="0" width="100%">

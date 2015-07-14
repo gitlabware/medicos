@@ -22,7 +22,7 @@ class ConsultoriosController extends AppController {
     $medico = $medicos->find()->where(['id' => $idMedico])->first();
     //debug($medico->toArray());exit;
     $consultorios = $this->Consultorios->find('all', ['contain' => ['Medicos']])->where(['Consultorios.medico_id' => $idMedico]);
-    $this->set(compact('consultorios', 'medico'));
+    $this->set(compact('consultorios', 'medico','idMedico'));
   }
 
   /**
@@ -50,13 +50,14 @@ class ConsultoriosController extends AppController {
     if ($this->request->is('post')) {
       $consultorio = $this->Consultorios->patchEntity($consultorio, $this->request->data);
       if ($this->Consultorios->save($consultorio)) {
-        $this->Flash->success(__('The consultorio has been saved.'));
-        return $this->redirect(['action' => 'index']);
+        $this->Flash->msgbueno(__('The consultorio has been saved.'));
+        return $this->redirect(['action' => 'index',$idMedico]);
       } else {
-        $this->Flash->error(__('The consultorio could not be saved. Please, try again.'));
+        $this->Flash->msgerror(__('The consultorio could not be saved. Please, try again.'));
       }
     }
-    $medico = $this->Consultorios->Medicos->find('first', ['conditions' => ['Medicos.id' => $idMedico]]);
+    $medicos = TableRegistry::get('Medicos');
+    $medico = $medicos->find()->where(['id' => $idMedico])->first();
     $this->set(compact('consultorio', 'medico', 'idMedico'));
     $this->set('_serialize', ['consultorio']);
   }
@@ -75,13 +76,15 @@ class ConsultoriosController extends AppController {
     if ($this->request->is(['patch', 'post', 'put'])) {
       $consultorio = $this->Consultorios->patchEntity($consultorio, $this->request->data);
       if ($this->Consultorios->save($consultorio)) {
-        $this->Flash->success(__('The consultorio has been saved.'));
-        return $this->redirect(['action' => 'index']);
+        $this->Flash->msgbueno(__('The consultorio has been saved.'));
+        return $this->redirect(['action' => 'index',$idMedico]);
       } else {
-        $this->Flash->error(__('The consultorio could not be saved. Please, try again.'));
+        $this->Flash->msgerror(__('The consultorio could not be saved. Please, try again.'));
       }
     }
-    $medico = $this->Consultorios->Medicos->find('first', ['conditions' => ['Medicos.id' => $idMedico]]);
+    //debug($consultorio);exit;
+    $medicos = TableRegistry::get('Medicos');
+    $medico = $medicos->find()->where(['id' => $idMedico])->first();
     $this->set(compact('consultorio', 'medico', 'idMedico'));
     $this->set('_serialize', ['consultorio']);
   }
@@ -97,9 +100,9 @@ class ConsultoriosController extends AppController {
     $this->request->allowMethod(['post', 'delete']);
     $consultorio = $this->Consultorios->get($id);
     if ($this->Consultorios->delete($consultorio)) {
-      $this->Flash->success(__('The consultorio has been deleted.'));
+      $this->Flash->msgbueno(__('The consultorio has been deleted.'));
     } else {
-      $this->Flash->error(__('The consultorio could not be deleted. Please, try again.'));
+      $this->Flash->msgerror(__('The consultorio could not be deleted. Please, try again.'));
     }
     return $this->redirect(['action' => 'index', $idMedico]);
   }

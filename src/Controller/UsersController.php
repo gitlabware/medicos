@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -18,18 +19,22 @@ class UsersController extends AppController {
    */
   public $layout = 'medicos';
 
+  public function beforeFilter(Event $event) {
+    $this->Auth->allow(['registro']);
+  }
+
   public function index() {
     $data = $this->DataTables->find('Users', [
       'contain' => []
     ]);
-    
+
     $this->set([
       'data' => $data,
       '_serialize' => array_merge($this->viewVars['_serialize'], ['data'])
     ]);
 
-    /*$this->set('users', $this->paginate($this->Users));
-    $this->set('_serialize', ['users']);*/
+    /* $this->set('users', $this->paginate($this->Users));
+      $this->set('_serialize', ['users']); */
   }
 
   /**
@@ -57,10 +62,10 @@ class UsersController extends AppController {
     if ($this->request->is('post')) {
       $user = $this->Users->patchEntity($user, $this->request->data);
       if ($this->Users->save($user)) {
-        $this->Flash->success(__('The user has been saved.'));
+        $this->Flash->msgbueno(__('The user has been saved.'));
         return $this->redirect(['action' => 'index']);
       } else {
-        $this->Flash->error(__('The user could not be saved. Please, try again.'));
+        $this->Flash->msgerror(__('The user could not be saved. Please, try again.'));
       }
     }
     $this->set(compact('user'));
@@ -79,12 +84,15 @@ class UsersController extends AppController {
       'contain' => []
     ]);
     if ($this->request->is(['patch', 'post', 'put'])) {
+      if (!empty($this->request->data['password2'])) {
+        $this->request->data['password'] = $this->request->data['password2'];
+      }
       $user = $this->Users->patchEntity($user, $this->request->data);
       if ($this->Users->save($user)) {
-        $this->Flash->success(__('The user has been saved.'));
+        $this->Flash->msgbueno(__('The user has been saved.'));
         return $this->redirect(['action' => 'index']);
       } else {
-        $this->Flash->error(__('The user could not be saved. Please, try again.'));
+        $this->Flash->msgerror(__('The user could not be saved. Please, try again.'));
       }
     }
     $this->set(compact('user'));
@@ -102,9 +110,9 @@ class UsersController extends AppController {
     $this->request->allowMethod(['post', 'delete']);
     $user = $this->Users->get($id);
     if ($this->Users->delete($user)) {
-      $this->Flash->success(__('The user has been deleted.'));
+      $this->Flash->msgbueno(__('The user has been deleted.'));
     } else {
-      $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+      $this->Flash->msgerror(__('The user could not be deleted. Please, try again.'));
     }
     return $this->redirect(['action' => 'index']);
   }
@@ -123,6 +131,10 @@ class UsersController extends AppController {
 
   public function logout() {
     return $this->redirect($this->Auth->logout());
+  }
+
+  public function registro() {
+    $this->layout = 'registro';
   }
 
 }

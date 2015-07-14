@@ -144,7 +144,7 @@
                         <i class="fa fa-circle"></i>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown"> <img src="<?php echo $this->request->webroot; ?>img/avatars/1.jpg" alt="avatar" class="mw30 br64 mr15"> John.Smith
+                        <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown"> <img src="<?php echo $this->request->webroot; ?>img/avatars/1.jpg" alt="avatar" class="mw30 br64 mr15"> <?php echo $this->request->session()->read('Auth.User.username')?>
                             <span class="caret caret-tp hidden-xs"></span>
                         </a>
                         <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
@@ -187,8 +187,8 @@
                                     <span class="fa fa-gear"></span> Account Settings </a>
                             </li>
                             <li class="list-group-item">
-                                <a href="#" class="animated animated-short fadeInUp">
-                                    <span class="fa fa-power-off"></span> Logout </a>
+                                <a href="<?php echo $this->Url->build(['controller' => 'Users','action' => 'logout']);?>" class="animated animated-short fadeInUp">
+                                    <span class="fa fa-power-off"></span> Salir </a>
                             </li>
                         </ul>
                     </li>

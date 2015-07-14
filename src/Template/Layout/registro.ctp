@@ -30,6 +30,8 @@
     </head>
 
     <body class="external-page sb-l-c sb-r-c">
+
+
         <!-- Start: Main -->
         <div id="main" class="animated fadeIn">
 
@@ -40,15 +42,19 @@
                 <div id="canvas-wrapper">
                     <canvas id="demo-canvas"></canvas>
                 </div>
+
                 <!-- Begin: Content -->
-                <section id="content">
-                    <div class="admin-form theme-info" id="login1">
+                <section id="content" class="">
+
+                    <div class="admin-form theme-info mw700" style="margin-top: 3%;" id="login1">
+
                         <?= $this->Flash->render() ?>
-                        <!-- Login Logo -->
                         <?= $this->fetch('content') ?>
                     </div>
+
                 </section>
                 <!-- End: Content -->
+
             </section>
             <!-- End: Content-Wrapper -->
 
@@ -72,9 +78,7 @@
         <!-- Page Javascript -->
         <script type="text/javascript">
           jQuery(document).ready(function () {
-
               "use strict";
-
               // Init Theme Core      
               Core.init();
 
@@ -84,11 +88,10 @@
               // Init CanvasBG and pass target starting location
               CanvasBG.init({
                   Loc: {
-                      x: window.innerWidth / 2,
-                      y: window.innerHeight / 3.3
+                      x: window.innerWidth / 2.1,
+                      y: window.innerHeight / 4.2
                   },
               });
-
           });
         </script>
 

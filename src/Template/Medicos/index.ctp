@@ -36,6 +36,7 @@
                                       <td>
                                           <?= $this->Html->link(__('Edit'), ['action' => 'edit', $medico->id]) ?>
                                           <?= $this->Html->link(__('Consultorios'), ['controller' => 'Consultorios', 'action' => 'index', $medico->id]) ?>
+                                          <?= $this->Html->link(__('Add Consultorios'), ['controller' => 'Consultorios', 'action' => 'add', $medico->id]) ?>
                                           <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $medico->id], ['confirm' => __('Are you sure you want to delete # {0}?', $medico->id)]) ?>
                                       </td>
                                   </tr>
