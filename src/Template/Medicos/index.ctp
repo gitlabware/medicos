@@ -12,14 +12,14 @@
                             <span class="glyphicon glyphicon-tasks"></span>Medicos</div>
                     </div>
                     <div class="panel-body pn">
-                        <table class="table table-striped table-hover" id="datatable" cellspacing="0" width="100%">
+                        <table class="table table-striped table-hover tabla-dato" id="datatable" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th><?= $this->Paginator->sort('id') ?></th>
-                                    <th><?= $this->Paginator->sort('nombre') ?></th>
-                                    <th><?= $this->Paginator->sort('telefonos') ?></th>
-                                    <th><?= $this->Paginator->sort('direccion') ?></th>
-                                    <th><?= $this->Paginator->sort('ci') ?></th>
+                                    <th><?= __('id') ?></th>
+                                    <th><?= __('nombre') ?></th>
+                                    <th><?= __('telefonos') ?></th>
+                                    <th><?= __('direccion') ?></th>
+                                    <th><?= __('ci') ?></th>
                                     <th>Especialidad</th>
                                     <th class="actions"><?= __('Actions') ?></th>
                                 </tr>
@@ -34,8 +34,8 @@
                                       <td><?= h($medico->ci) ?></td>
                                       <td><?= h($medico->especialidade->nombre) ?></td>
                                       <td>
-                                          <?= $this->Html->link(__('View'), ['action' => 'view', $medico->id]) ?>
                                           <?= $this->Html->link(__('Edit'), ['action' => 'edit', $medico->id]) ?>
+                                          <?= $this->Html->link(__('Consultorios'), ['controller' => 'Consultorios', 'action' => 'index', $medico->id]) ?>
                                           <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $medico->id], ['confirm' => __('Are you sure you want to delete # {0}?', $medico->id)]) ?>
                                       </td>
                                   </tr>

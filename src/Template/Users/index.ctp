@@ -7,10 +7,10 @@
                 <div class="panel panel-visible">
                     <div class="panel-heading">
                         <div class="panel-title hidden-xs">
-                            <span class="glyphicon glyphicon-tasks"></span>Centros Medicos</div>
+                            <span class="glyphicon glyphicon-tasks"></span>Usuarios</div>
                     </div>
                     <div class="panel-body pn">
-                        <table class="table table-striped table-hover dataTable" id="datatable2" cellspacing="0" width="100%">
+                        <table class="table table-striped table-hover dataTable tabla-dato" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th><?= __('id') ?></th>
@@ -49,19 +49,21 @@
 <!--
 <script src="<?php //echo $this->request->webroot; ?>js/jquery_ui/jquery-ui.min.js"></script>
 
-<script src="<?php //echo $this->request->webroot; ?>js/vendor/plugins/datatables/media/js/jquery.dataTables.js"></script>
+<script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/datatables/media/js/jquery.dataTables.js"></script>
 
 
-<script src="<?php //echo $this->request->webroot; ?>js/vendor/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+<script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
 
 
-<script src="<?php //echo $this->request->webroot; ?>js/vendor/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
+<script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
+<?php echo $this->Html->script('DataTables.cakephp.dataTables.js');?>
 
 -->
 
 <script>
 <?php
-/*$this->DataTables->init([
+/*
+$this->DataTables->init([
   'ajax' => [
     'url' => $this->Url->build(['action' => 'index']),
   ],
@@ -70,12 +72,23 @@
   'columns' => [
     [
       'name' => 'Users.id',
-      'data' => 'id',
-      'orderable' => false
+      'data' => 'id'
     ],
     [
       'name' => 'Users.username',
       'data' => 'username'
+    ],
+    [
+      'name' => 'Users.role',
+      'data' => 'role'
+    ],
+    [
+      'name' => 'Users.created',
+      'data' => 'created'
+    ],
+    [
+      'name' => 'Users.modified',
+      'data' => 'modified'
     ]
   ]
 ])->draw('.dataTable');*/

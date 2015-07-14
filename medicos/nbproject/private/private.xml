@@ -5,19 +5,18 @@
             <url>file:/var/www/html/medicos/src/Controller/CentrosController.php</url>
             <bookmark id="1">
                 <name/>
-                <line>112</line>
+                <line>113</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/var/www/html/medicos/config/bootstrap.php</file>
+            <file>file:/var/www/html/medicos/src/Controller/AppController.php</file>
             <file>file:/var/www/html/medicos/src/Template/Layout/medicos.ctp</file>
-            <file>file:/var/www/html/medicos/src/Template/Centros/index.ctp</file>
-            <file>file:/var/www/html/medicos/src/Template/Centros/add.ctp</file>
-            <file>file:/var/www/html/medicos/src/Controller/CentrosController.php</file>
-            <file>file:/var/www/html/medicos/src/Template/Centros/edit.ctp</file>
-            <file>file:/var/www/html/medicos/src/Template/Centros/ajax_servicios.ctp</file>
+            <file>file:/var/www/html/medicos/src/Controller/UsersController.php</file>
+            <file>file:/var/www/html/medicos/src/Template/Users/index.ctp</file>
         </group>
     </open-files>
 </project-private>

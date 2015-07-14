@@ -56,7 +56,6 @@ class MedicosController extends AppController {
         $this->Flash->error(__('The medico could not be saved. Please, try again.'));
       }
     }
-
     $especialidades = TableRegistry::get('Especialidades');
     $listaesp = $especialidades->find('list',['keyField' => 'id', 'valueField' => 'nombre']);
     //debug($listaesp->toArray());EXIT;

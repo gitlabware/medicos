@@ -409,6 +409,27 @@
               // Init Demo JS    
               Demo.init();
 
+              $('.tabla-dato').dataTable({
+                  "aoColumnDefs": [{
+                          'bSortable': false,
+                          'aTargets': [-1]
+                      }],
+                  "oLanguage": {
+                      "oPaginate": {
+                          "sPrevious": "Anterior",
+                          "sNext": "Siguiente"
+                      },
+                      "sSearch": "Buscar",
+                      "sLengthMenu": "Mostrar _MENU_ registros"
+                  },
+                  "iDisplayLength": 5,
+                  "aLengthMenu": [
+                      [5, 10, 25, 50, -1],
+                      [5, 10, 25, 50, "Todos"]
+                  ],
+                  "sDom": '<"dt-panelmenu clearfix"lfr>t<"dt-panelfooter clearfix"ip>'
+              });
+
           });
 
           function cargarmodal(urll) {
@@ -440,7 +461,7 @@
 
           }
         </script>
-        
+
         <!-- END: PAGE SCRIPTS -->
         <?php echo $this->fetch('scriptjs'); ?>
     </body>
