@@ -2,17 +2,17 @@
 
 namespace App\Model\Table;
 
-use App\Model\Entity\Centro;
+use App\Model\Entity\Farmacia;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Centros Model
+ * Farmacias Model
  *
  */
-class CentrosTable extends Table {
+class FarmaciasTable extends Table {
 
   /**
    * Initialize method
@@ -21,12 +21,12 @@ class CentrosTable extends Table {
    * @return void
    */
   public function initialize(array $config) {
-    $this->table('centros');
+    $this->table('farmacias');
     $this->displayField('id');
     $this->primaryKey('id');
     $this->addBehavior('Timestamp');
     $this->belongsTo('Origens', [
-      'className' => 'Centros',
+      'className' => 'Farmacias',
       'foreignKey' => 'origenid'
     ]);
   }
@@ -55,14 +55,11 @@ class CentrosTable extends Table {
       ->notEmpty('telefonos');
 
     $validator
-      ->requirePresence('tipo', 'create')
-      ->notEmpty('tipo');
-
-    $validator
       ->add('origenid', 'valid', ['rule' => 'numeric'])
       ->allowEmpty('origenid');
 
     return $validator;
   }
+  
 
 }

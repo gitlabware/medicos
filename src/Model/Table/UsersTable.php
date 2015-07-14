@@ -1,19 +1,17 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Medico;
+use App\Model\Entity\User;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Medicos Model$medicos
+ * Users Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Especialidades
- * @property \Cake\ORM\Association\HasMany $Consultorios
  */
-class MedicosTable extends Table
+class UsersTable extends Table
 {
 
     /**
@@ -24,17 +22,10 @@ class MedicosTable extends Table
      */
     public function initialize(array $config)
     {
-        $this->table('medicos');
-        $this->displayField('nombre');
+        $this->table('users');
+        $this->displayField('id');
         $this->primaryKey('id');
         $this->addBehavior('Timestamp');
-        $this->belongsTo('Especialidades', [
-            'foreignKey' => 'especialidade_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->hasMany('Consultorios', [
-            'foreignKey' => 'medico_id'
-        ]);
     }
 
     /**
@@ -50,23 +41,16 @@ class MedicosTable extends Table
             ->allowEmpty('id', 'create');
             
         $validator
-            ->requirePresence('nombre', 'create')
-            ->notEmpty('nombre');
+            ->requirePresence('username', 'create')
+            ->notEmpty('username');
             
         $validator
-            ->allowEmpty('telefonos');
+            ->requirePresence('password', 'create')
+            ->notEmpty('password');
             
         $validator
-            ->allowEmpty('direccion');
-            
-        $validator
-            ->allowEmpty('ci');
-            
-        $validator
-            ->allowEmpty('matricula');
-            
-        $validator
-            ->allowEmpty('mail');
+            ->requirePresence('role', 'create')
+            ->notEmpty('role');
 
         return $validator;
     }
@@ -80,7 +64,8 @@ class MedicosTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['especialidade_id'], 'Especialidades'));
+        $rules->add($rules->isUnique(['username']));
         return $rules;
     }
+    
 }

@@ -4,9 +4,9 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Centro Entity.
+ * Farmacia Entity.
  */
-class Centro extends Entity
+class Farmacia extends Entity
 {
 
     /**
@@ -18,8 +18,6 @@ class Centro extends Entity
         'nombre' => true,
         'direccion' => true,
         'telefonos' => true,
-        'tipo' => true,
         'origenid' => true,
-        'centro' => true,
     ];
 }

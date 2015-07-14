@@ -6,26 +6,16 @@
             <div class="admin-form">
                 <div class="panel heading-border">
                     <div class="panel-body bg-light">
-                        <?= $this->Form->create($centro) ?>
+                        <?= $this->Form->create($farmacia) ?>
                         <div class="section-divider mb40">
-                            <span>Formulario de Centro Medico</span>
+                            <span>Formulario de Farmacia</span>
                         </div>
                         <!-- Basic Inputs -->
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="section">
                                     <label class="field">
                                         <?php echo $this->Form->text('nombre', ['placeholder' => 'Nombre del centro medico', 'class' => 'gui-input']); ?>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="section">
-                                    <label class="field">
-                                        <label class="field select">
-                                            <?php echo $this->Form->select('tipo', $tipos,['empty' => 'Seleccione el tipo']); ?>
-                                            <i class="arrow"></i>
-                                        </label>
                                     </label>
                                 </div>
                             </div>
@@ -51,7 +41,7 @@
                                 <div class="section">
                                     <label class="field">
                                         <label class="field select">
-                                            <?php echo $this->Form->select('origenid', $centros,['required'=>false,'empty' => 'Es sucursal de...']); ?>
+                                            <?php echo $this->Form->select('origenid', $farmacias,['required'=>false,'empty' => 'Es sucursal de...']); ?>
                                             <i class="arrow"></i>
                                         </label>
                                     </label>

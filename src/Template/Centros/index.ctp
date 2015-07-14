@@ -30,8 +30,8 @@
                                       <td><?= h($centro->tipo) ?></td>
                                       <td>
                                           <?php
-                                          if ($centro->centro_id != NULL) {
-                                            echo "Sucursal";
+                                          if ($centro->origenid != NULL) {
+                                            echo $centro->origen->nombre;
                                           } else {
                                             echo "Central";
                                           }

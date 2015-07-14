@@ -18,13 +18,13 @@
                             <div class="section-divider mb40" id="spy1">
                                 <span>Nuevo Medico</span>
                             </div>
-                           <!-- .section-divider -->                             
+                            <!-- .section-divider -->                             
                             <!-- Input Icons -->
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="section">
                                         <label class="field prepend-icon">
-                                            <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Nombre Completo">
+                                            <?php echo $this->Form->text('nombre', ['class' => 'gui-input', 'placeholder' => 'Nombre Completo']); ?>
                                             <label for="firstname" class="field-icon">
                                                 <i class="fa fa-user"></i>
                                             </label>
@@ -34,7 +34,7 @@
                                 <div class="col-md-3">
                                     <div class="section">
                                         <label class="field prepend-icon">
-                                            <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Matricula">
+                                            <?php echo $this->Form->text('matricula', ['class' => 'gui-input', 'placeholder' => 'Matricula']); ?>
                                             <label for="firstname" class="field-icon">
                                                 <i class="fa fa-credit-card"></i>
                                             </label>
@@ -47,7 +47,7 @@
                                 <div class="col-md-12">
                                     <div class="section">
                                         <label class="field prepend-icon">
-                                            <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Direccion">
+                                            <?php echo $this->Form->text('direccion', ['class' => 'gui-input', 'placeholder' => 'Direccion']); ?>
                                             <label for="firstname" class="field-icon">
                                                 <i class="fa fa-home"></i>
                                             </label>
@@ -60,7 +60,7 @@
                                 <div class="col-md-6">
                                     <div class="section">
                                         <label class="field prepend-icon">
-                                            <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Celular">
+                                            <?php echo $this->Form->text('telefonos', ['class' => 'gui-input', 'placeholder' => 'Telefonos']); ?>
                                             <label for="firstname" class="field-icon">
                                                 <i class="fa fa-phone-square"></i>
                                             </label>
@@ -70,7 +70,7 @@
                                 <div class="col-md-6">
                                     <div class="section">
                                         <label class="field prepend-icon">
-                                            <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="e-mail">
+                                            <?php echo $this->Form->text('mail', ['class' => 'gui-input', 'placeholder' => 'e-mail']); ?>
                                             <label for="firstname" class="field-icon">
                                                 <i class="fa fa-envelope"></i>
                                             </label>
@@ -81,13 +81,18 @@
 
                             <div class="row">
                                 <div class="form-group">                    
-                                    <div class="col-md-8">
-                                        <select class="select2-single form-control">
-                                            <option value="CA">Especialidad</option>
-                                            <option value="CA">Pediatria</option>
-                                            <option value="AL">Traumatologo</option>
-                                            <option value="WY">Oncolgo</option>
-                                        </select>
+                                    <div class="col-md-6">
+                                        <?php echo $this->Form->select('especialidade_id', $listaesp, ['empty' => 'Seleccione la especialidad', 'class' => 'select2-single form-control']); ?>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field prepend-icon">
+                                                <?php echo $this->Form->text('ci', ['class' => 'gui-input', 'placeholder' => 'C.I.']); ?>
+                                                <label for="firstname" class="field-icon">
+                                                    <i class="fa fa-phone-square"></i>
+                                                </label>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

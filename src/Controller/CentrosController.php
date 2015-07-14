@@ -20,9 +20,10 @@ class CentrosController extends AppController {
    * @return void
    */
   public function index() {
-
-    $this->set('centros', $this->paginate($this->Centros));
-    $this->set('_serialize', ['centros']);
+    $centros = $this->Centros->find('all')->contain(['Origens']);
+    /*debug($centros->toArray());
+    exit;*/
+    $this->set(compact('centros'));
   }
 
   /**
@@ -56,7 +57,7 @@ class CentrosController extends AppController {
         $this->Flash->error(__('The centro could not be saved. Please, try again.'));
       }
     }
-    $centros = $this->Centros->find('list', ['limit' => 200, 'keyField' => 'id', 'valueField' => 'nombre'])->where(['Centros.centro_id IS' => NULL]);
+    $centros = $this->Centros->find('list', ['limit' => 200, 'keyField' => 'id', 'valueField' => 'nombre'])->where(['Centros.origenid IS' => NULL]);
     $tipos = $this->tipos;
     $this->set(compact('centro', 'tipos', 'centros'));
     $this->set('_serialize', ['centro']);
@@ -82,7 +83,7 @@ class CentrosController extends AppController {
         $this->Flash->error(__('The centro could not be saved. Please, try again.'));
       }
     }
-    $centros = $this->Centros->find('list', ['limit' => 200, 'keyField' => 'id', 'valueField' => 'nombre'])->where(['Centros.centro_id IS' => NULL]);
+    $centros = $this->Centros->find('list', ['limit' => 200, 'keyField' => 'id', 'valueField' => 'nombre'])->where(['Centros.origenid IS' => NULL]);
     $tipos = $this->tipos;
     $this->set(compact('centro', 'centros', 'tipos'));
     $this->set('_serialize', ['centro']);

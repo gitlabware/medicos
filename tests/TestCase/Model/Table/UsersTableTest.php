@@ -1,14 +1,14 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\CentrosTable;
+use App\Model\Table\UsersTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\CentrosTable Test Case
+ * App\Model\Table\UsersTable Test Case
  */
-class CentrosTableTest extends TestCase
+class UsersTableTest extends TestCase
 {
 
     /**
@@ -17,7 +17,7 @@ class CentrosTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.centros'
+        'app.users'
     ];
 
     /**
@@ -28,8 +28,8 @@ class CentrosTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Centros') ? [] : ['className' => 'App\Model\Table\CentrosTable'];
-        $this->Centros = TableRegistry::get('Centros', $config);
+        $config = TableRegistry::exists('Users') ? [] : ['className' => 'App\Model\Table\UsersTable'];
+        $this->Users = TableRegistry::get('Users', $config);
     }
 
     /**
@@ -39,7 +39,7 @@ class CentrosTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Centros);
+        unset($this->Users);
 
         parent::tearDown();
     }

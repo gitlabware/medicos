@@ -13,6 +13,12 @@
         <!-- Font CSS (Via CDN) -->
         <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
         <link rel="stylesheet" type="text/css" href="<?php echo $this->request->webroot; ?>js/vendor/plugins/magnific/magnific-popup.css">
+
+        <!-- Datatables CSS -->
+        <link rel="stylesheet" type="text/css" href="<?php echo $this->request->webroot; ?>js/vendor/plugins/datatables/media/css/dataTables.bootstrap.css">
+
+        <!-- Datatables Addons CSS -->
+        <link rel="stylesheet" type="text/css" href="<?php echo $this->request->webroot; ?>js/vendor/plugins/datatables/media/css/dataTables.plugins.css">
         <!-- Theme CSS -->  
         <link rel="stylesheet" type="text/css" href="<?php echo $this->request->webroot; ?>css/theme.css">  
         <!-- Admin Forms CSS -->
@@ -280,6 +286,7 @@
                 <!-- End: Topbar -->
 
                 <!-- Begin: Content -->
+                <?= $this->Flash->render() ?>
                 <?= $this->fetch('content') ?>
                 <!-- End: Content -->
 
@@ -372,6 +379,18 @@
         <!-- jQuery -->  
         <script src="<?php echo $this->request->webroot; ?>js/jquery_ui/jquery-ui.min.js"></script>
 
+        <!-- Datatables -->
+        <script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/datatables/media/js/jquery.dataTables.js"></script>
+
+        <!-- Datatables Tabletools addon -->
+        <script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+
+        <!-- Datatables ColReorder addon -->
+        <script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
+
+        <!-- Datatables Bootstrap Modifications  -->
+        <script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
+
         <!-- Page Plugins -->
         <script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/magnific/jquery.magnific-popup.js"></script>
 
@@ -421,6 +440,7 @@
 
           }
         </script>
+        
         <!-- END: PAGE SCRIPTS -->
         <?php echo $this->fetch('scriptjs'); ?>
     </body>

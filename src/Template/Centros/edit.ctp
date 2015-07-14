@@ -51,7 +51,7 @@
                                 <div class="section">
                                     <label class="field">
                                         <label class="field select">
-                                            <?php echo $this->Form->select('centro_id', $centros,['required'=>false,'empty' => 'Es sucursal de...']); ?>
+                                            <?php echo $this->Form->select('origenid', $centros,['required'=>false,'empty' => 'Es sucursal de...']); ?>
                                             <i class="arrow"></i>
                                         </label>
                                     </label>

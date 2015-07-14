@@ -4,10 +4,10 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * CentrosFixture
+ * FarmaciasFixture
  *
  */
-class CentrosFixture extends TestFixture
+class FarmaciasFixture extends TestFixture
 {
 
     /**
@@ -21,7 +21,6 @@ class CentrosFixture extends TestFixture
         'nombre' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'direccion' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'telefonos' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
-        'tipo' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'origenid' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
@@ -46,9 +45,8 @@ class CentrosFixture extends TestFixture
             'nombre' => 'Lorem ipsum dolor sit amet',
             'direccion' => 'Lorem ipsum dolor sit amet',
             'telefonos' => 'Lorem ipsum dolor sit amet',
-            'tipo' => 'Lorem ipsum dolor sit amet',
-            'created' => '2015-07-13 22:52:52',
-            'modified' => '2015-07-13 22:52:52',
+            'created' => '2015-07-13 22:36:45',
+            'modified' => '2015-07-13 22:36:45',
             'origenid' => 1
         ],
     ];

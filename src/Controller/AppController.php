@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
@@ -12,6 +13,7 @@
  * @since     0.2.9
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -24,19 +26,29 @@ use Cake\Controller\Controller;
  *
  * @link http://book.cakephp.org/3.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller
-{
+class AppController extends Controller {
 
-    /**
-     * Initialization hook method.
-     *
-     * Use this method to add common initialization code like loading components.
-     *
-     * @return void
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->loadComponent('Flash');
-    }
+  public $helpers = [
+    'DataTables' => [
+      'className' => 'DataTables.DataTables'
+    ]
+  ];
+
+  public function initialize() {
+    parent::initialize();
+    $this->loadComponent('Flash');
+    $this->loadComponent('Auth', [
+      'loginRedirect' => [
+        'controller' => 'Articles',
+        'action' => 'index'
+      ],
+      'logoutRedirect' => [
+        'controller' => 'Pages',
+        'action' => 'display',
+        'home'
+      ]
+    ]);
+    $this->loadComponent('DataTables.DataTables');
+  }
+
 }
