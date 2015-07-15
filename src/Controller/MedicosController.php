@@ -48,6 +48,14 @@ class MedicosController extends AppController {
   public function add() {
     $medico = $this->Medicos->newEntity();
     if ($this->request->is('post')) {
+      $users = TableRegistry::get('Users');
+      $user = $users->newEntity();
+      $dato_u['username'] = $this->request->data['ci'];
+      $dato_u['password'] = $this->request->data['ci'];
+      $dato_u['role'] = 'Medico';
+      $user = $users->patchEntity($user, $dato_u);
+      $resultado = $users->save($user);
+      $this->request->data['user_id'] = $resultado->id;
       $medico = $this->Medicos->patchEntity($medico, $this->request->data);
       if ($this->Medicos->save($medico)) {
         $this->Flash->msgbueno(__('The medico has been saved.'));
@@ -108,7 +116,15 @@ class MedicosController extends AppController {
   }
 
   public function perfil() {
-    
+    $medico = $this->get_medico();
+    /*debug($medico);
+    exit;*/
+    $this->set(compact('medico'));
+  }
+  
+  public function get_medico(){
+    $idUsuario = $this->request->session()->read('Auth.User.id');
+    return $this->Medicos->find()->contain(['Especialidades'])->where(['user_id' => $idUsuario])->first();
   }
 
 }

@@ -1,3 +1,4 @@
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 <section id="content" class="animated fadeIn">
 
     <!-- Begin .page-heading -->
@@ -9,9 +10,7 @@
                 </a>
             </div>                      
             <div class="media-body va-m">
-                <h2 class="media-heading">Michael Halls
-                    <small> - Profile</small>
-                </h2>
+                <h2 class="media-heading"> <?= $medico->nombre ?></h2>
                 <p class="lead">Lorem ipsum dolor sit amet ctetur adicing elit, sed do eiusmod tempor incididunt</p>
                 <div class="media-links">
                     <ul class="list-inline list-unstyled">
@@ -67,9 +66,56 @@
                         </li>
                     </ul>
                 </div>
+
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-bordered" style="background-color: white;">
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold;">Sexo</td>
+                        <td><?= $medico->sexo; ?></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Fecha de Nacimiento</td>
+                        <td><?= $medico->fecha_nacimiento; ?></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Lugar</td>
+                        <td><?= $medico->lugar; ?></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Telefonos</td>
+                        <td><?= $medico->telefonos ?></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Direccion</td>
+                        <td><?= $medico->direccion ?></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Telefonos</td>
+                        <td><?= $medico->telefonos ?></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">C.I.</td>
+                        <td><?= $medico->ci ?></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Especialidad</td>
+                        <td><?= $medico->especialidade->nombre; ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <div id="mimapa" style="width: 90%; height: 300px;;">
+
+            </div>
+        </div>
+    </div><br>
 
     <div class="row">
         <div class="col-md-4">
@@ -266,3 +312,36 @@
     </div>
 
 </section>
+
+<script type="text/javascript">
+  var milat = -16.49;
+  var milng = -68.12;
+<?php if (!empty($medico->lat) && !empty($medico->lng)): ?>
+    milat = <?= $medico->lat ?>;
+    milng = <?= $medico->lng ?>;
+<?php endif; ?>
+  var map;
+
+  function initialize() {
+      var mapOptions = {
+          zoom: 14,
+          center: new google.maps.LatLng(milat, milng),
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          scrollwheel: false
+      };
+      map = new google.maps.Map(document.getElementById('mimapa'), mapOptions);
+
+      var pos = new google.maps.LatLng(milat, milng);
+
+      var marker = new google.maps.Marker({
+          position: pos,
+          map: map,
+          title: "Arrastrar para mover",
+          animation: google.maps.Animation.BOUNCE,
+          draggable: false
+      });
+
+      marker.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>

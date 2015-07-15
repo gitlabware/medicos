@@ -14,7 +14,7 @@
 
                 <div class="panel heading-border">
                     <div class="panel-body bg-light">
-                        <form method="post" action="" id="form-ui">
+                        <?= $this->Form->Create($medico) ?>
                             <div class="section-divider mb40" id="spy1">
                                 <span>Nuevo Medico</span>
                             </div>
@@ -97,6 +97,36 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="form-group">                    
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <?php echo $this->Form->select('sexo', ['Masculino' => 'Masculino', 'Femenino' => 'Femenino'], ['empty' => 'Seleccione el sexo', 'class' => 'select2-single form-control']); ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <?php echo $this->Form->select('sexo', ['La Paz' => 'La Paz'], ['empty' => 'Seleccione el Lugar', 'class' => 'select2-single form-control']); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field prepend-icon">
+                                                <?php echo $this->Form->text('fecha_nacimiento', ['class' => 'gui-input', 'id' => 'datepicker1', 'placeholder' => 'Fecha de Nacimiento AAAA-mm-dd']); ?>
+                                                <label for="firstname" class="field-icon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </label>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="section-divider mv40" id="spy2">
                                 <span>Ubicacion</span>                                
                             </div>
@@ -116,7 +146,6 @@
                         </form>
                     </div>
                 </div>
-
             </div>
 
         </div>
@@ -241,7 +270,8 @@
       var mapOptions = {
           zoom: 14,
           center: new google.maps.LatLng(-16.49, -68.12),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          scrollwheel: false
       };
       map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
@@ -270,6 +300,11 @@
 
 </script>
 
-<?php echo $this->Html->script('cambiaColorForm', ['block' => 'scriptjs']); ?>
+<?php
+echo $this->Html->script([
+  'cambiaColorForm',
+  'vendor/plugins/jquerymask/jquery.maskedinput.min',
+  'inicalendario'], ['block' => 'scriptjs']);
+?>
 
 <!-- END: PAGE SCRIPTS -->

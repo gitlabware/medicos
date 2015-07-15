@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Users Controller
@@ -123,6 +124,14 @@ class UsersController extends AppController {
       $user = $this->Auth->identify();
       if ($user) {
         $this->Auth->setUser($user);
+        switch ($user['role']) {
+          case 'Administrador':
+            return $this->redirect(['action' => 'index']);
+            break;
+          case 'Medico':
+            return $this->redirect(['controller' => 'Medicos','action' => 'perfil']);
+            break;
+        }
         return $this->redirect(['action' => 'index']);
       }
       $this->Flash->msgerror(__('Usuario o contrasena invalidos, intente nuevamente!'));
@@ -134,7 +143,44 @@ class UsersController extends AppController {
   }
 
   public function registro() {
-    $this->layout = 'registro';
+    $this->layout = 'login';
+    $medicos = TableRegistry::get('Medicos');
+    $medico = $medicos->newEntity();
+    if ($this->request->is('post')) {
+      $user = $this->Users->newEntity();
+      $dato_u['username'] = $this->request->data['ci'];
+      $dato_u['password'] = $this->request->data['ci'];
+      $dato_u['role'] = 'Medico';
+      $user = $this->Users->patchEntity($user, $dato_u);
+      $resultado = $this->Users->save($user);
+      //debug($resultado);exit;
+      if (!empty($resultado) && $resultado != FALSE) {
+
+        $this->request->data['user_id'] = $resultado->id;
+        $medico = $medicos->patchEntity($medico, $this->request->data);
+
+        if ($medicos->save($medico)) {
+          $this->request->data = $dato_u;
+          $user = $this->Auth->identify();
+          if ($user) {
+            $this->Auth->setUser($user);
+            $this->Flash->msgbueno(__('Se ha registrado correctamente!!'));
+            return $this->redirect(['controller' => 'Medicos', 'action' => 'perfil']);
+          } else {
+            $this->Flash->msgerror(__('No se pudo Iniciar sesion!!!'));
+          }
+        } else {
+          $this->Users->delete($user);
+          $this->Flash->msgerror(__('No se pudo registrarse intente nuevamente!!'));
+        }
+      } else {
+        $this->Flash->msgerror(__('No se pudo registrarse intente nuevamente!!'));
+      }
+    }
+
+    $especialidades = TableRegistry::get('Especialidades');
+    $listaesp = $especialidades->find('list', ['keyField' => 'id', 'valueField' => 'nombre']);
+    $this->set(compact('listaesp', 'medico'));
   }
 
 }

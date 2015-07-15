@@ -14,107 +14,138 @@
 
                 <div class="panel heading-border">
                     <div class="panel-body bg-light">
-                        <?= $this->Form->create($medico) ?>
-                        <form method="post" action="" id="form-ui">
-                            <div class="section-divider mb40" id="spy1">
-                                <span>Editar Medico</span>
-                            </div>
-                           <!-- .section-divider -->                             
-                            <!-- Input Icons -->
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="section">
-                                        <label class="field prepend-icon">
-                                            <?php echo $this->Form->text('nombre',['class' => 'gui-input','placeholder' => 'Nombre Completo']);?>
-                                            <label for="firstname" class="field-icon">
-                                                <i class="fa fa-user"></i>
-                                            </label>
+                        <?= $this->Form->Create($medico) ?>
+                        <div class="section-divider mb40" id="spy1">
+                            <span>Nuevo Medico</span>
+                        </div>
+                        <!-- .section-divider -->                             
+                        <!-- Input Icons -->
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="section">
+                                    <label class="field prepend-icon">
+                                        <?php echo $this->Form->text('nombre', ['class' => 'gui-input', 'placeholder' => 'Nombre Completo']); ?>
+                                        <label for="firstname" class="field-icon">
+                                            <i class="fa fa-user"></i>
                                         </label>
-                                    </div>
+                                    </label>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="section">
-                                        <label class="field prepend-icon">
-                                            <?php echo $this->Form->text('matricula',['class' => 'gui-input','placeholder' => 'Matricula']);?>
-                                            <label for="firstname" class="field-icon">
-                                                <i class="fa fa-credit-card"></i>
-                                            </label>
-                                        </label>
-                                    </div>
-                                </div>                             
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="section">
-                                        <label class="field prepend-icon">
-                                            <?php echo $this->Form->text('direccion',['class' => 'gui-input','placeholder' => 'Direccion']);?>
-                                            <label for="firstname" class="field-icon">
-                                                <i class="fa fa-home"></i>
-                                            </label>
+                            <div class="col-md-3">
+                                <div class="section">
+                                    <label class="field prepend-icon">
+                                        <?php echo $this->Form->text('matricula', ['class' => 'gui-input', 'placeholder' => 'Matricula']); ?>
+                                        <label for="firstname" class="field-icon">
+                                            <i class="fa fa-credit-card"></i>
                                         </label>
-                                    </div>
-                                </div>                                                        
-                            </div>
+                                    </label>
+                                </div>
+                            </div>                             
+                        </div>
 
-                            <div class="row">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="section">
+                                    <label class="field prepend-icon">
+                                        <?php echo $this->Form->text('direccion', ['class' => 'gui-input', 'placeholder' => 'Direccion']); ?>
+                                        <label for="firstname" class="field-icon">
+                                            <i class="fa fa-home"></i>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>                                                        
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="section">
+                                    <label class="field prepend-icon">
+                                        <?php echo $this->Form->text('telefonos', ['class' => 'gui-input', 'placeholder' => 'Telefonos']); ?>
+                                        <label for="firstname" class="field-icon">
+                                            <i class="fa fa-phone-square"></i>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="section">
+                                    <label class="field prepend-icon">
+                                        <?php echo $this->Form->text('mail', ['class' => 'gui-input', 'placeholder' => 'e-mail']); ?>
+                                        <label for="firstname" class="field-icon">
+                                            <i class="fa fa-envelope"></i>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>     
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">                    
+                                <div class="col-md-6">
+                                    <?php echo $this->Form->select('especialidade_id', $listaesp, ['empty' => 'Seleccione la especialidad', 'class' => 'select2-single form-control']); ?>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="section">
                                         <label class="field prepend-icon">
-                                            <?php echo $this->Form->text('telefonos',['class' => 'gui-input','placeholder' => 'Telefonos']);?>
+                                            <?php echo $this->Form->text('ci', ['class' => 'gui-input', 'placeholder' => 'C.I.']); ?>
                                             <label for="firstname" class="field-icon">
                                                 <i class="fa fa-phone-square"></i>
                                             </label>
                                         </label>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">                    
                                 <div class="col-md-6">
                                     <div class="section">
-                                        <label class="field prepend-icon">
-                                            <?php echo $this->Form->text('mail',['class' => 'gui-input','placeholder' => 'e-mail']);?>
-                                            <label for="firstname" class="field-icon">
-                                                <i class="fa fa-envelope"></i>
-                                            </label>
-                                        </label>
+                                        <?php echo $this->Form->select('sexo', ['Masculino' => 'Masculino', 'Femenino' => 'Femenino'], ['empty' => 'Seleccione el sexo', 'class' => 'select2-single form-control']); ?>
                                     </div>
-                                </div>                             
-                            </div>
-
-                            <div class="row">
-                                <div class="form-group">                    
-                                    <div class="col-md-6">
-                                        <?php echo $this->Form->select('especialidade_id', $listaesp,['empty' => 'Seleccione la especialidad','class' => 'select2-single form-control']); ?>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field prepend-icon">
-                                                <?php echo $this->Form->text('ci', ['class' => 'gui-input', 'placeholder' => 'C.I.']); ?>
-                                                <label for="firstname" class="field-icon">
-                                                    <i class="fa fa-phone-square"></i>
-                                                </label>
-                                            </label>
-                                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="section">
+                                        <?php echo $this->Form->select('sexo', ['La Paz' => 'La Paz'], ['empty' => 'Seleccione el Lugar', 'class' => 'select2-single form-control']); ?>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="section-divider mv40" id="spy2">
-                                <span>Ubicacion</span>                                
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <div class="section">
+                                        <label class="field prepend-icon">
+                                            <?php echo $this->Form->text('fecha_nacimiento', ['class' => 'gui-input', 'id' => 'datepicker1', 'placeholder' => 'Fecha de Nacimiento AAAA-mm-dd']); ?>
+                                            <label for="firstname" class="field-icon">
+                                                <i class="fa fa-calendar"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="row">    
-                                <?php echo $this->Form->hidden('lat', ['id' => 'frmlat']); ?>
-                                <?php echo $this->Form->hidden('lng', ['id' => 'frmlng']); ?>
-                                <div id="mapa" style="width: 100%; height: 400px;"></div>
-                            </div>
-                            <p>&nbsp;</p>
-                            <div class="panel-footer text-right">
-                                <button type="submit" class="button btn-primary"> Guardar Datos</button>                                
-                            </div>
-                        </form>
+                        <div class="section-divider mv40" id="spy2">
+                            <span>Ubicacion</span>                                
+                        </div>
+
+                        <div class="row">    
+                            <?php echo $this->Form->hidden('lat', ['id' => 'frmlat']); ?>
+                            <?php echo $this->Form->hidden('lng', ['id' => 'frmlng']); ?>
+                            <div id="mapa" style="width: 100%; height: 400px;"></div>
+                        </div>
+
+                        <p>&nbsp;</p>
+
+                        <div class="panel-footer text-right">
+                            <button type="submit" class="button btn-primary"> Guardar Medico</button>                                
+                        </div>                          
+
+                        <?= $this->Form->end(); ?>
                     </div>
                 </div>
-
             </div>
 
         </div>
@@ -239,7 +270,8 @@
       var mapOptions = {
           zoom: 14,
           center: new google.maps.LatLng(-16.49, -68.12),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          scrollwheel: false
       };
       map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
@@ -268,6 +300,11 @@
 
 </script>
 
-<?php echo $this->Html->script('cambiaColorForm', ['block' => 'scriptjs']); ?>
+<?php
+echo $this->Html->script([
+  'cambiaColorForm',
+  'vendor/plugins/jquerymask/jquery.maskedinput.min',
+  'inicalendario'], ['block' => 'scriptjs']);
+?>
 
 <!-- END: PAGE SCRIPTS -->

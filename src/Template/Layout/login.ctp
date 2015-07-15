@@ -30,6 +30,8 @@
     </head>
 
     <body class="external-page sb-l-c sb-r-c">
+
+
         <!-- Start: Main -->
         <div id="main" class="animated fadeIn">
 
@@ -40,15 +42,19 @@
                 <div id="canvas-wrapper">
                     <canvas id="demo-canvas"></canvas>
                 </div>
+
                 <!-- Begin: Content -->
-                <section id="content">
-                    <div class="admin-form theme-info" id="login1">
+                <section id="content" class="">
+
+                    <div class="admin-form theme-info mw700" style="margin-top: 3%;" id="login1">
+
                         <?= $this->Flash->render() ?>
-                        <!-- Login Logo -->
                         <?= $this->fetch('content') ?>
                     </div>
+
                 </section>
                 <!-- End: Content -->
+
             </section>
             <!-- End: Content-Wrapper -->
 
@@ -61,6 +67,9 @@
         <script src="<?php echo $this->request->webroot; ?>js/vendor/jquery/jquery-1.11.1.min.js"></script>
         <script src="<?php echo $this->request->webroot; ?>js/vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
 
+        <?php echo $this->fetch('addjs'); ?>
+        <script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/pnotify/pnotify.js"></script>
+
         <!-- CanvasBG Plugin(creates mousehover effect) -->
         <script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/canvasbg/canvasbg.js"></script>
 
@@ -72,9 +81,7 @@
         <!-- Page Javascript -->
         <script type="text/javascript">
           jQuery(document).ready(function () {
-
               "use strict";
-
               // Init Theme Core      
               Core.init();
 
@@ -82,12 +89,43 @@
               Demo.init();
 
               // Init CanvasBG and pass target starting location
-              CanvasBG.init({
-                  Loc: {
-                      x: window.innerWidth / 2,
-                      y: window.innerHeight / 3.3
-                  },
-              });
+              /*CanvasBG.init({
+               Loc: {
+               x: window.innerWidth / 2.1,
+               y: window.innerHeight / 4.2
+               },
+               });*/
+               
+
+              if (tipo_notif && texto_noyif) {
+                  var Stacks = {
+                      stack_bar_top: {
+                          "dir1": "down",
+                          "dir2": "right",
+                          "push": "top",
+                          "spacing1": 0,
+                          "spacing2": 0
+                      }
+                  }
+                  
+                  var noteShadow = "false";
+                  var noteStack = "stack_bar_top";
+                  var noteOpacity = "1";
+
+                  // Create new Notification
+                  new PNotify({
+                      title: tipo_notif,
+                      text: texto_noyif,
+                      shadow: noteShadow,
+                      opacity: noteOpacity,
+                      addclass: noteStack,
+                      type: noteStyle,
+                      stack: Stacks[noteStack],
+                      width: "100%",
+                      delay: 2000
+                  });
+              }
+
 
           });
         </script>
