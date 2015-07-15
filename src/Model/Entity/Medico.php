@@ -22,8 +22,8 @@ class Medico extends Entity
         'matricula' => true,
         'mail' => true,
         'especialidade_id' => true,
-        'user_id' => true,
         'especialidade' => true,
+        'user' => true,
         'consultorios' => true,
     ];
 }
