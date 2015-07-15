@@ -51,10 +51,10 @@ class CentrosController extends AppController {
     if ($this->request->is('post')) {
       $centro = $this->Centros->patchEntity($centro, $this->request->data);
       if ($this->Centros->save($centro)) {
-        $this->Flash->success(__('The centro has been saved.'));
+        $this->Flash->msgbueno(__('The centro has been saved.'));
         return $this->redirect(['action' => 'index']);
       } else {
-        $this->Flash->error(__('The centro could not be saved. Please, try again.'));
+        $this->Flash->msgerror(__('The centro could not be saved. Please, try again.'));
       }
     }
     $centros = $this->Centros->find('list', ['limit' => 200, 'keyField' => 'id', 'valueField' => 'nombre'])->where(['Centros.origenid IS' => NULL]);
@@ -77,10 +77,10 @@ class CentrosController extends AppController {
     if ($this->request->is(['patch', 'post', 'put'])) {
       $centro = $this->Centros->patchEntity($centro, $this->request->data);
       if ($this->Centros->save($centro)) {
-        $this->Flash->success(__('The centro has been saved.'));
+        $this->Flash->msgbueno(__('The centro has been saved.'));
         return $this->redirect(['action' => 'index']);
       } else {
-        $this->Flash->error(__('The centro could not be saved. Please, try again.'));
+        $this->Flash->msgerror(__('The centro could not be saved. Please, try again.'));
       }
     }
     $centros = $this->Centros->find('list', ['limit' => 200, 'keyField' => 'id', 'valueField' => 'nombre'])->where(['Centros.origenid IS' => NULL]);
@@ -100,9 +100,9 @@ class CentrosController extends AppController {
     $this->request->allowMethod(['post', 'delete']);
     $centro = $this->Centros->get($id);
     if ($this->Centros->delete($centro)) {
-      $this->Flash->success(__('The centro has been deleted.'));
+      $this->Flash->msgbueno(__('The centro has been deleted.'));
     } else {
-      $this->Flash->error(__('The centro could not be deleted. Please, try again.'));
+      $this->Flash->msgerror(__('The centro could not be deleted. Please, try again.'));
     }
     return $this->redirect(['action' => 'index']);
   }

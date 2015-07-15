@@ -50,10 +50,10 @@ class MedicosController extends AppController {
     if ($this->request->is('post')) {
       $medico = $this->Medicos->patchEntity($medico, $this->request->data);
       if ($this->Medicos->save($medico)) {
-        $this->Flash->success(__('The medico has been saved.'));
+        $this->Flash->msgbueno(__('The medico has been saved.'));
         return $this->redirect(['action' => 'index']);
       } else {
-        $this->Flash->error(__('The medico could not be saved. Please, try again.'));
+        $this->Flash->msgerror(__('The medico could not be saved. Please, try again.'));
       }
     }
     $especialidades = TableRegistry::get('Especialidades');
@@ -77,10 +77,10 @@ class MedicosController extends AppController {
     if ($this->request->is(['patch', 'post', 'put'])) {
       $medico = $this->Medicos->patchEntity($medico, $this->request->data);
       if ($this->Medicos->save($medico)) {
-        $this->Flash->success(__('The medico has been saved.'));
+        $this->Flash->msgbueno(__('The medico has been saved.'));
         return $this->redirect(['action' => 'index']);
       } else {
-        $this->Flash->error(__('The medico could not be saved. Please, try again.'));
+        $this->Flash->msgerror(__('The medico could not be saved. Please, try again.'));
       }
     }
     $especialidades = TableRegistry::get('Especialidades');
@@ -100,9 +100,9 @@ class MedicosController extends AppController {
     $this->request->allowMethod(['post', 'delete']);
     $medico = $this->Medicos->get($id);
     if ($this->Medicos->delete($medico)) {
-      $this->Flash->success(__('The medico has been deleted.'));
+      $this->Flash->msgbueno(__('The medico has been deleted.'));
     } else {
-      $this->Flash->error(__('The medico could not be deleted. Please, try again.'));
+      $this->Flash->msgerror(__('The medico could not be deleted. Please, try again.'));
     }
     return $this->redirect(['action' => 'index']);
   }
