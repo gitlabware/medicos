@@ -15,133 +15,201 @@
                 <div class="panel heading-border">
                     <div class="panel-body bg-light">
                         <?= $this->Form->Create($medico) ?>
-                            <div class="section-divider mb40" id="spy1">
-                                <span>Nuevo Medico</span>
-                            </div>
-                            <!-- .section-divider -->                             
-                            <!-- Input Icons -->
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="section">
-                                        <label class="field prepend-icon">
-                                            <?php echo $this->Form->text('nombre', ['class' => 'gui-input', 'placeholder' => 'Nombre Completo']); ?>
-                                            <label for="firstname" class="field-icon">
-                                                <i class="fa fa-user"></i>
-                                            </label>
+                        <div class="section-divider mb40" id="spy1">
+                            <span>Nuevo Medico</span>
+                        </div>
+                        <!-- .section-divider -->                             
+                        <!-- Input Icons -->
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="section">
+                                    <label class="field prepend-icon">
+                                        <?php echo $this->Form->text('Medico.nombre', ['class' => 'gui-input', 'placeholder' => 'Nombre Completo']); ?>
+                                        <label for="firstname" class="field-icon">
+                                            <i class="fa fa-user"></i>
                                         </label>
-                                    </div>
+                                    </label>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="section">
-                                        <label class="field prepend-icon">
-                                            <?php echo $this->Form->text('matricula', ['class' => 'gui-input', 'placeholder' => 'Matricula']); ?>
-                                            <label for="firstname" class="field-icon">
-                                                <i class="fa fa-credit-card"></i>
-                                            </label>
-                                        </label>
-                                    </div>
-                                </div>                             
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="section">
-                                        <label class="field prepend-icon">
-                                            <?php echo $this->Form->text('direccion', ['class' => 'gui-input', 'placeholder' => 'Direccion']); ?>
-                                            <label for="firstname" class="field-icon">
-                                                <i class="fa fa-home"></i>
-                                            </label>
+                            <div class="col-md-3">
+                                <div class="section">
+                                    <label class="field prepend-icon">
+                                        <?php echo $this->Form->text('Medico.matricula', ['class' => 'gui-input', 'placeholder' => 'Matricula']); ?>
+                                        <label for="firstname" class="field-icon">
+                                            <i class="fa fa-credit-card"></i>
                                         </label>
-                                    </div>
-                                </div>                                                        
-                            </div>
+                                    </label>
+                                </div>
+                            </div>                             
+                        </div>
 
-                            <div class="row">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="section">
+                                    <label class="field prepend-icon">
+                                        <?php echo $this->Form->text('Medico.direccion', ['class' => 'gui-input', 'placeholder' => 'Direccion']); ?>
+                                        <label for="firstname" class="field-icon">
+                                            <i class="fa fa-home"></i>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>                                                        
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="section">
+                                    <label class="field prepend-icon">
+                                        <?php echo $this->Form->text('Medico.telefonos', ['class' => 'gui-input', 'placeholder' => 'Telefonos']); ?>
+                                        <label for="firstname" class="field-icon">
+                                            <i class="fa fa-phone-square"></i>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="section">
+                                    <label class="field prepend-icon">
+                                        <?php echo $this->Form->text('Medico.mail', ['class' => 'gui-input', 'placeholder' => 'e-mail']); ?>
+                                        <label for="firstname" class="field-icon">
+                                            <i class="fa fa-envelope"></i>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>                             
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">                    
+                                <div class="col-md-6">
+                                    <?php echo $this->Form->select('Medico.especialidade_id', $listaesp, ['empty' => 'Seleccione la especialidad', 'class' => 'select2-single form-control']); ?>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="section">
                                         <label class="field prepend-icon">
-                                            <?php echo $this->Form->text('telefonos', ['class' => 'gui-input', 'placeholder' => 'Telefonos']); ?>
+                                            <?php echo $this->Form->text('Medico.ci', ['class' => 'gui-input', 'placeholder' => 'C.I.']); ?>
                                             <label for="firstname" class="field-icon">
                                                 <i class="fa fa-phone-square"></i>
                                             </label>
                                         </label>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">                    
+                                <div class="col-md-6">
+                                    <div class="section">
+                                        <?php echo $this->Form->select('Medico.sexo', ['Masculino' => 'Masculino', 'Femenino' => 'Femenino'], ['empty' => 'Seleccione el sexo', 'class' => 'select2-single form-control']); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="section">
+                                        <?php echo $this->Form->select('Medico.lugar', ['La Paz' => 'La Paz'], ['empty' => 'Seleccione el Lugar', 'class' => 'select2-single form-control']); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
                                 <div class="col-md-6">
                                     <div class="section">
                                         <label class="field prepend-icon">
-                                            <?php echo $this->Form->text('mail', ['class' => 'gui-input', 'placeholder' => 'e-mail']); ?>
+                                            <?php echo $this->Form->text('Medico.fecha_nacimiento', ['class' => 'gui-input', 'id' => 'datepicker1', 'placeholder' => 'Fecha de Nacimiento AAAA-mm-dd']); ?>
                                             <label for="firstname" class="field-icon">
-                                                <i class="fa fa-envelope"></i>
+                                                <i class="fa fa-calendar"></i>
                                             </label>
                                         </label>
                                     </div>
-                                </div>                             
+                                </div>
                             </div>
+                        </div>
 
+                        <div class="section-divider mv40" id="spy2">
+                            <span>Ubicacion</span>                                
+                        </div>
+
+                        <div class="row">    
+                            <?php echo $this->Form->hidden('Medico.lat', ['id' => 'frmlat']); ?>
+                            <?php echo $this->Form->hidden('Medico.lng', ['id' => 'frmlng']); ?>
+                            <div id="mapa" style="width: 100%; height: 400px;"></div>
+                        </div>
+                        <br>
+
+                        <!-------- SECTOR CONSULTORIO --------->
+                        <div class="section-divider mv40" id="spy2">
+                            <span><a href="javascript:">Registro de Consultorio</a></span>                                
+                        </div>
+                        <div id="nuevo_cons">
                             <div class="row">
-                                <div class="form-group">                    
-                                    <div class="col-md-6">
-                                        <?php echo $this->Form->select('especialidade_id', $listaesp, ['empty' => 'Seleccione la especialidad', 'class' => 'select2-single form-control']); ?>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field prepend-icon">
-                                                <?php echo $this->Form->text('ci', ['class' => 'gui-input', 'placeholder' => 'C.I.']); ?>
-                                                <label for="firstname" class="field-icon">
-                                                    <i class="fa fa-phone-square"></i>
-                                                </label>
-                                            </label>
-                                        </div>
+                                <div class="col-md-12">
+                                    <div class="section">
+                                        <label class="field">
+                                            <?php echo $this->Form->text('Consultorio.nombre', ['placeholder' => 'Nombre', 'class' => 'gui-input']); ?>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
-                                <div class="form-group">                    
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <?php echo $this->Form->select('sexo', ['Masculino' => 'Masculino', 'Femenino' => 'Femenino'], ['empty' => 'Seleccione el sexo', 'class' => 'select2-single form-control']); ?>
-                                        </div>
+                                <div class="col-md-6">
+                                    <div class="section">
+                                        <label class="field">
+                                            <?php echo $this->Form->text('Consultorio.direccion', ['placeholder' => 'Direccion', 'class' => 'gui-input']); ?>
+                                        </label>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <?php echo $this->Form->select('sexo', ['La Paz' => 'La Paz'], ['empty' => 'Seleccione el Lugar', 'class' => 'select2-single form-control']); ?>
-                                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="section">
+                                        <label class="field">
+                                            <?php echo $this->Form->text('Consultorio.telefonos', ['placeholder' => 'Telefonos', 'class' => 'gui-input']); ?>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field prepend-icon">
-                                                <?php echo $this->Form->text('fecha_nacimiento', ['class' => 'gui-input', 'id' => 'datepicker1', 'placeholder' => 'Fecha de Nacimiento AAAA-mm-dd']); ?>
-                                                <label for="firstname" class="field-icon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </label>
-                                            </label>
-                                        </div>
+                                <div class="col-md-6">
+                                    <div class="section">
+                                        <label class="field">
+                                            <?php echo $this->Form->text('Consultorio.horarios', ['placeholder' => 'Horarios', 'class' => 'gui-input']); ?>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="section">
+                                        <label class="field">
+                                            <?php echo $this->Form->text('Consultorio.estado', ['placeholder' => 'estado', 'class' => 'gui-input']); ?>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="section">
+                                        <label class="field">
+                                            <?php echo $this->Form->textarea('Consultorio.descripcion', ['placeholder' => 'Descripcion', 'class' => 'gui-input']); ?>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="section-divider mv40" id="spy2">
-                                <span>Ubicacion</span>                                
+                                <span>Ubicacion de Consultorio</span>                                
                             </div>
 
                             <div class="row">    
-                                <?php echo $this->Form->hidden('lat', ['id' => 'frmlat']); ?>
-                                <?php echo $this->Form->hidden('lng', ['id' => 'frmlng']); ?>
-                                <div id="mapa" style="width: 100%; height: 400px;"></div>
+                                <?php echo $this->Form->hidden('Consultorio.lat', ['id' => 'frmlat_con']); ?>
+                                <?php echo $this->Form->hidden('Consultorio.lng', ['id' => 'frmlng_con']); ?>
+                                <div id="mapaconsultorio" style="width: 100%; height: 400px; "></div>
                             </div>
+                        </div>
+                        <!------------------------------------->
 
-                            <p>&nbsp;</p>
+                        <p>&nbsp;</p>
 
-                            <div class="panel-footer text-right">
-                                <button type="submit" class="button btn-primary"> Guardar Medico</button>                                
-                            </div>                          
+                        <div class="panel-footer text-right">
+                            <button type="submit" class="button btn-primary"> Guardar Medico</button>                                
+                        </div>                          
 
                         </form>
                     </div>
@@ -152,95 +220,7 @@
     </div>
     <!-- end: .tray-center -->
 
-    <!-- begin: .tray-right -->
-    <aside class="tray tray-right tray290">
-        <h4> Admin Panels - <small>A Theme Exclusive!</small> </h4>
-        <ul class="icon-list">
-            <li>
-                <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-                <b> Author:</b> Admin Designs
-            </li>
-            <li>
-                <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-                <b> License:</b> CC - Commercial 3.0
-            </li>
-            <li>
-                <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-                <b> Info:</b>
-                <a href="http://www.themeforest.net/user/AdminDesigns"> www.admindesigns.com </a>
-            </li>
-        </ul>
-
-        <div class="tray-affix" data-spy="affix" data-offset-top="200">
-
-            <div id="skin-switcher" class="tray-bin btn-dimmer row">
-
-                <div class="col-xs-4 pln">
-                    <a class="btn btn-primary btn-gradient btn-alt btn-block item-active" data-form-skin="primary">Primary</a>
-                </div>
-                <div class="col-xs-4">
-                    <a class="btn btn-success btn-gradient btn-alt btn-block" data-form-skin="success">Success</a>
-                </div>
-                <div class="col-xs-4">
-                    <a class="btn btn-info btn-gradient btn-alt btn-block" data-form-skin="info">Info</a>
-                </div>
-                <div class="col-xs-4 pln">
-                    <a class="btn btn-warning btn-gradient btn-alt btn-block" data-form-skin="warning">Warning</a>
-                </div>
-                <div class="col-xs-4">
-                    <a class="btn btn-danger btn-gradient btn-alt btn-block" data-form-skin="danger">Danger</a>
-                </div>
-                <div class="col-xs-4">
-                    <a class="btn btn-alert btn-gradient btn-alt btn-block" data-form-skin="alert">Alert</a>
-                </div>
-                <div class="col-xs-4 pln">
-                    <a class="btn btn-system btn-gradient btn-alt btn-block" data-form-skin="system">System</a>
-                </div>
-                <div class="col-xs-4">
-                    <a class="btn btn-dark btn-gradient btn-alt btn-block" data-form-skin="dark">Dark</a>
-                </div>
-                <div class="col-xs-4">
-                    <a class="btn btn-default btn-gradient btn-alt btn-block" data-form-skin="default">Default</a>
-                </div>
-            </div>
-
-            <div id="nav-spy">
-                <ul class="nav tray-nav" data-smoothscroll="-90">
-                    <li class="active">
-                        <a href="#spy1">
-                            <span class="fa fa-edit fa-lg"></span> Form UI Elements</a>
-                    </li>
-                    <li>
-                        <a href="#spy2">
-                            <span class="fa fa-flag fa-lg"></span> Input Tooltips</a>
-                    </li>
-                    <li>
-                        <a href="#spy3">
-                            <span class="fa fa-files-o fa-lg"></span> File Uploaders</a>
-                    </li>
-                    <li>
-                        <a href="#spy4">
-                            <span class="fa fa-caret-square-o-right fa-lg"></span> Form Input Addons</a>
-                    </li>
-                    <li>
-                        <a href="#spy5">
-                            <span class="fa fa-check-square-o fa-lg"></span> Radios & Checkboxes</a>
-                    </li>
-                    <li>
-                        <a href="#spy6">
-                            <span class="fa fa-toggle-off fa-lg"></span> Input Switches</a>
-                    </li>
-                    <li>
-                        <a href="#spy7">
-                            <span class="fa fa-star-o fa-lg"></span> Review & Rating Widgets</a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
-    </aside>
-    <!-- end: .tray-right -->
+    <?= $this->element('menuder/admin')?>
 
 </section>
 
@@ -273,7 +253,7 @@
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           scrollwheel: false
       };
-      map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
+      map = new google.maps.Map(document.getElementById('mapaconsultorio'), mapOptions);
 
       var pos = new google.maps.LatLng(-16.49, -68.12);
 
@@ -297,6 +277,38 @@
       marker.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
   }
   google.maps.event.addDomListener(window, 'load', initialize);
+  var map2;
+  function initialize2() {
+      var mapOptions = {
+          zoom: 14,
+          center: new google.maps.LatLng(-16.49, -68.12),
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          scrollwheel: false
+      };
+      map2 = new google.maps.Map(document.getElementById('mapa'), mapOptions);
+
+      var pos = new google.maps.LatLng(-16.49, -68.12);
+
+      var marker2 = new google.maps.Marker({
+          position: pos,
+          map: map2,
+          title: "Arrastrar para mover",
+          animation: google.maps.Animation.BOUNCE,
+          draggable: true
+      });
+
+      function funcionArrastra2() {
+          var lat = marker2.getPosition().lat();
+          var lng = marker2.getPosition().lng();
+          //console.log(lat + '-' + lng);
+          $('#frmlat_con').val(lat);
+          $('#frmlng_con').val(lng);
+      }
+
+      google.maps.event.addListener(marker2, 'drag', funcionArrastra2);
+      marker2.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
+  }
+  google.maps.event.addDomListener(window, 'load', initialize2);
 
 </script>
 

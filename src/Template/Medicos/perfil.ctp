@@ -3,67 +3,37 @@
 
     <!-- Begin .page-heading -->
     <div class="page-heading">
+
+        <samp class="panel-controls" onclick="cargarmodal('<?= $this->Url->build(['action' => 'ajax_edit1']); ?>');">
+            <i class="fa fa-edit"></i>
+        </samp>
+
         <div class="media clearfix">
             <div class="media-left pr30">
                 <a href="#">
+                    <samp class="panel-controls">
+                        <i class="fa fa-edit"></i>
+                    </samp>
                     <img class="media-object mw150" src="<?php echo $this->request->webroot; ?>img/avatars/profile_avatar.jpg" alt="...">
                 </a>
             </div>                      
             <div class="media-body va-m">
                 <h2 class="media-heading"> <?= $medico->nombre ?></h2>
-                <p class="lead">Lorem ipsum dolor sit amet ctetur adicing elit, sed do eiusmod tempor incididunt</p>
+                <p class="lead"><?= $medico->leyenda ?></p>
                 <div class="media-links">
                     <ul class="list-inline list-unstyled">
                         <li>
-                            <a href="#" title="facebook link">
-                                <span class="fa fa-facebook-square fs35 text-primary"></span>
+                            <a href="javascript:" title="Adicionar Red Social">
+                                <span class="fa fa-plus-square fs35 text-success"></span>
                             </a>
                         </li>
-                        <li>
-                            <a href="#" title="twitter link">
-                                <span class="fa fa-twitter-square fs35 text-info"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="google plus link">
-                                <span class="fa fa-google-plus-square fs35 text-danger"></span>
-                            </a>
-                        </li>
-                        <li class="hidden">
-                            <a href="#" title="behance link">
-                                <span class="fa fa-behance-square fs35 text-primary"></span>
-                            </a>
-                        </li>
-                        <li class="hidden">
-                            <a href="#" title="pinterest link">
-                                <span class="fa fa-pinterest-square fs35 text-danger-light"></span>
-                            </a>
-                        </li>
-                        <li class="hidden">
-                            <a href="#" title="linkedin link">
-                                <span class="fa fa-linkedin-square fs35 text-info"></span>
-                            </a>
-                        </li>
-                        <li class="hidden">
-                            <a href="#" title="github link">
-                                <span class="fa fa-github-square fs35 text-dark"></span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="#" title="phone link">
-                                <span class="fa fa-phone-square fs35 text-system"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="email link">
-                                <span class="fa fa-envelope-square fs35 text-muted"></span>
-                            </a>
-                        </li>
-                        <li class="hidden">
-                            <a href="#" title="external link">
-                                <span class="fa fa-external-link-square fs35 text-muted"></span>
-                            </a>
-                        </li>
+                        <?php foreach ($sociales as $so): ?>
+                          <li>
+                              <a href="<?= $so->url ?>" title="<?= $this->sociale->nombre ?>">
+                                  <span class="fa <?= $so->sociale->icono ?> fs35 text-primary"></span>
+                              </a>
+                          </li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
 
@@ -73,47 +43,69 @@
 
     <div class="row">
         <div class="col-md-6">
-            <table class="table table-bordered" style="background-color: white;">
-                <tbody>
-                    <tr>
-                        <td style="font-weight: bold;">Sexo</td>
-                        <td><?= $medico->sexo; ?></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">Fecha de Nacimiento</td>
-                        <td><?= $medico->fecha_nacimiento; ?></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">Lugar</td>
-                        <td><?= $medico->lugar; ?></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">Telefonos</td>
-                        <td><?= $medico->telefonos ?></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">Direccion</td>
-                        <td><?= $medico->direccion ?></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">Telefonos</td>
-                        <td><?= $medico->telefonos ?></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">C.I.</td>
-                        <td><?= $medico->ci ?></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">Especialidad</td>
-                        <td><?= $medico->especialidade->nombre; ?></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="panel sort-disable mb50">
+                <div class="panel-heading">
+                    <span class="panel-title"> Informacion Basica</span>
+                    <samp class="panel-controls">
+                        <i class="fa fa-edit"></i>
+                    </samp>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered" style="background-color: white;">
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: bold;">Sexo</td>
+                                <td><?= $medico->sexo; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Fecha de Nacimiento</td>
+                                <td><?= $medico->fecha_nacimiento; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Lugar</td>
+                                <td><?= $medico->lugar; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Telefonos</td>
+                                <td><?= $medico->telefonos ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Direccion</td>
+                                <td><?= $medico->direccion ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Telefonos</td>
+                                <td><?= $medico->telefonos ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">C.I.</td>
+                                <td><?= $medico->ci ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Especialidad</td>
+                                <td><?= $medico->especialidade->nombre; ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
         <div class="col-md-6">
-            <div id="mimapa" style="width: 90%; height: 300px;;">
+            <div class="panel sort-disable mb50">
+                <div class="panel-heading">
+                    <span class="panel-title"> Ubicacion</span>
+                    <samp class="panel-controls">
+                        <i class="fa fa-edit"></i>
+                    </samp>
+                </div>
+                <div class="panel-body">
+                    <div id="mimapa" style="width: 90%; height: 300px;;">
 
+                    </div>
+                </div>
             </div>
+
         </div>
     </div><br>
 

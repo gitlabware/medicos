@@ -48,26 +48,46 @@ class MedicosController extends AppController {
   public function add() {
     $medico = $this->Medicos->newEntity();
     if ($this->request->is('post')) {
+      /* debug($this->request->data);
+        exit; */
       $users = TableRegistry::get('Users');
       $user = $users->newEntity();
-      $dato_u['username'] = $this->request->data['ci'];
-      $dato_u['password'] = $this->request->data['ci'];
+      $dato_u['username'] = $this->request->data['Medico']['ci'];
+      $dato_u['password'] = $this->request->data['Medico']['ci'];
       $dato_u['role'] = 'Medico';
       $user = $users->patchEntity($user, $dato_u);
-      $resultado = $users->save($user);
-      $this->request->data['user_id'] = $resultado->id;
-      $medico = $this->Medicos->patchEntity($medico, $this->request->data);
-      if ($this->Medicos->save($medico)) {
-        $this->Flash->msgbueno(__('The medico has been saved.'));
-        return $this->redirect(['action' => 'index']);
+      if (empty($user->errors())) {
+        $resultado = $users->save($user);
+        $this->request->data['Medico']['user_id'] = $resultado->id;
+        $medico = $this->Medicos->patchEntity($medico, $this->request->data['Medico']);
+        if (empty($medico->errors())) {
+          $res_medico = $this->Medicos->save($medico);
+          $this->request->data['Consultorio']['medico_id'] = $res_medico->id;
+          $consultorios = TableRegistry::get('Consultorios');
+          $consultorio = $consultorios->newEntity();
+          $consultorio = $consultorios->patchEntity($consultorio, $this->request->data['Consultorio']);
+          if (empty($consultorio->errors())) {
+            $consultorios->save($consultorio);
+            $this->Flash->msgbueno(__('El medico ha sido registrado correctamente!!'));
+            return $this->redirect(['action' => 'index']);
+          } else {
+            $consultorio = $consultorios->get($res_medico->id);
+            $consultorios->delete($consultorio);
+            $this->Flash->msgerror(current(current($consultorio->errors())));
+          }
+        } else {
+          $user = $users->get($resultado->id);
+          $users->delete($user);
+          $this->Flash->msgerror(current(current($medico->errors())));
+        }
       } else {
-        $this->Flash->msgerror(__('The medico could not be saved. Please, try again.'));
+        $this->Flash->msgerror(current(current($user->errors())));
       }
     }
     $especialidades = TableRegistry::get('Especialidades');
-    $listaesp = $especialidades->find('list',['keyField' => 'id', 'valueField' => 'nombre']);
+    $listaesp = $especialidades->find('list', ['keyField' => 'id', 'valueField' => 'nombre']);
     //debug($listaesp->toArray());EXIT;
-    $this->set(compact('medico','listaesp'));
+    $this->set(compact('medico', 'listaesp'));
     $this->set('_serialize', ['medico']);
   }
 
@@ -84,16 +104,20 @@ class MedicosController extends AppController {
     ]);
     if ($this->request->is(['patch', 'post', 'put'])) {
       $medico = $this->Medicos->patchEntity($medico, $this->request->data);
-      if ($this->Medicos->save($medico)) {
-        $this->Flash->msgbueno(__('The medico has been saved.'));
-        return $this->redirect(['action' => 'index']);
+      if (!empty($medico->errors())) {
+        $this->Flash->msgerror(current(current($medico->errors())));
       } else {
-        $this->Flash->msgerror(__('The medico could not be saved. Please, try again.'));
+        if ($this->Medicos->save($medico)) {
+          $this->Flash->msgbueno(__('The medico has been saved.'));
+          return $this->redirect(['action' => 'index']);
+        } else {
+          $this->Flash->msgerror(__('The medico could not be saved. Please, try again.'));
+        }
       }
     }
     $especialidades = TableRegistry::get('Especialidades');
-    $listaesp = $especialidades->find('list',['keyField' => 'id', 'valueField' => 'nombre']);
-    $this->set(compact('medico','listaesp'));
+    $listaesp = $especialidades->find('list', ['keyField' => 'id', 'valueField' => 'nombre']);
+    $this->set(compact('medico', 'listaesp'));
     $this->set('_serialize', ['medico']);
   }
 
@@ -117,14 +141,40 @@ class MedicosController extends AppController {
 
   public function perfil() {
     $medico = $this->get_medico();
-    /*debug($medico);
-    exit;*/
-    $this->set(compact('medico'));
+    /* debug($medico);
+      exit; */
+    $msociales = TableRegistry::get('Medicosociales');
+    $sociales = $msociales->find('all')->where(['medico_id' => $medico->id]);
+    $this->set(compact('medico', 'sociales'));
   }
-  
-  public function get_medico(){
+
+  public function get_medico() {
     $idUsuario = $this->request->session()->read('Auth.User.id');
     return $this->Medicos->find()->contain(['Especialidades'])->where(['user_id' => $idUsuario])->first();
+  }
+
+  public function editar_perfil() {
+    $medico = $this->get_medico();
+    $this->set(compact('medico'));
+  }
+
+  public function ajax_edit1() {
+    $this->layout = 'ajax';
+    $medico = $this->Medicos->find()->where(['Medicos.user_id' => $this->request->session()->read('Auth.User.id')])->first();
+    if ($this->request->is(['patch', 'post', 'put'])) {
+      $medico = $this->Medicos->patchEntity($medico, $this->request->data);
+      if (!empty($medico->errors())) {
+        $this->Flash->msgerror(current(current($medico->errors())));
+      } else {
+        if ($this->Medicos->save($medico)) {
+          $this->Flash->msgbueno(__('Se ha registrado correctamente los datos'));
+          return $this->redirect(['action' => 'perfil']);
+        } else {
+          $this->Flash->msgerror(__('El medico no se ha podido registrar intente nuevamente'));
+        }
+      }
+    }
+    $this->set(compact('medico'));
   }
 
 }

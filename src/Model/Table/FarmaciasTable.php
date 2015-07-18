@@ -58,8 +58,15 @@ class FarmaciasTable extends Table {
       ->add('origenid', 'valid', ['rule' => 'numeric'])
       ->allowEmpty('origenid');
 
+    $validator
+      ->requirePresence('lat', 'create')
+      ->notEmpty('lat','Seleccione el lugar en el mapa');
+
+    $validator
+      ->requirePresence('lng', 'create')
+      ->notEmpty('lng','Seleccione el lugar en el mapa');
+
     return $validator;
   }
-  
 
 }

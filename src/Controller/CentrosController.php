@@ -21,8 +21,8 @@ class CentrosController extends AppController {
    */
   public function index() {
     $centros = $this->Centros->find('all')->contain(['Origens']);
-    /*debug($centros->toArray());
-    exit;*/
+    /* debug($centros->toArray());
+      exit; */
     $this->set(compact('centros'));
   }
 
@@ -50,11 +50,15 @@ class CentrosController extends AppController {
     $centro = $this->Centros->newEntity();
     if ($this->request->is('post')) {
       $centro = $this->Centros->patchEntity($centro, $this->request->data);
-      if ($this->Centros->save($centro)) {
-        $this->Flash->msgbueno(__('The centro has been saved.'));
-        return $this->redirect(['action' => 'index']);
+      if (!empty($centro->errors())) {
+        $this->Flash->msgerror(current($centro->errors())['_empty']);
       } else {
-        $this->Flash->msgerror(__('The centro could not be saved. Please, try again.'));
+        if ($this->Centros->save($centro)) {
+          $this->Flash->msgbueno(__('The centro has been saved.'));
+          return $this->redirect(['action' => 'index']);
+        } else {
+          $this->Flash->msgerror(__('The centro could not be saved. Please, try again.'));
+        }
       }
     }
     $centros = $this->Centros->find('list', ['limit' => 200, 'keyField' => 'id', 'valueField' => 'nombre'])->where(['Centros.origenid IS' => NULL]);
@@ -111,9 +115,10 @@ class CentrosController extends AppController {
     $this->layout = 'ajax';
     $centro = $this->Centros->newEntity();
     $this->loadModel('Sevicios');
-    $lservicios = $this->Sevicios->find('list',['keyField' => 'id', 'valueField' => 'nombre']);
-    debug($lservicios);exit;
-    $this->set(compact('centro','lservicios'));
+    $lservicios = $this->Sevicios->find('list', ['keyField' => 'id', 'valueField' => 'nombre']);
+    debug($lservicios);
+    exit;
+    $this->set(compact('centro', 'lservicios'));
   }
 
 }

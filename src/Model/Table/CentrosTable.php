@@ -62,6 +62,14 @@ class CentrosTable extends Table {
       ->add('origenid', 'valid', ['rule' => 'numeric'])
       ->allowEmpty('origenid');
 
+    $validator
+      ->requirePresence('lat', 'create')
+      ->notEmpty('lat','Es necesario que seleccion el lugar en el mapa');
+
+    $validator
+      ->requirePresence('lng', 'create')
+      ->notEmpty('lng','Es necesario que seleccion el lugar en el mapa');
+
     return $validator;
   }
 

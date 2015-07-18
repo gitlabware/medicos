@@ -83,6 +83,7 @@
             </div>
         </div>
     </div>
+    <?= $this->element('menuder/admin')?>
 </section>
 <?php 
 $lat = -16.49;

@@ -84,6 +84,7 @@
             </div>
         </div>
     </div>
+    <?= $this->element('menuder/admin')?>
 </section>
 
 <script type="text/javascript">

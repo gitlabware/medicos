@@ -4,9 +4,9 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Centro Entity.
+ * Sociale Entity.
  */
-class Centro extends Entity
+class Sociale extends Entity
 {
 
     /**
@@ -16,12 +16,7 @@ class Centro extends Entity
      */
     protected $_accessible = [
         'nombre' => true,
-        'direccion' => true,
-        'telefonos' => true,
-        'tipo' => true,
-        'origenid' => true,
-        'lat' => true,
-        'lng' => true,
-        'origen' => true,
+        'icono' => true,
+        'medicosociales' => true,
     ];
 }

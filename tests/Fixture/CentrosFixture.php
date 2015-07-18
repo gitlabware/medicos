@@ -25,6 +25,8 @@ class CentrosFixture extends TestFixture
         'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'origenid' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'lat' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
+        'lng' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -47,9 +49,11 @@ class CentrosFixture extends TestFixture
             'direccion' => 'Lorem ipsum dolor sit amet',
             'telefonos' => 'Lorem ipsum dolor sit amet',
             'tipo' => 'Lorem ipsum dolor sit amet',
-            'created' => '2015-07-13 22:52:52',
-            'modified' => '2015-07-13 22:52:52',
-            'origenid' => 1
+            'created' => '2015-07-17 16:28:56',
+            'modified' => '2015-07-17 16:28:56',
+            'origenid' => 1,
+            'lat' => 'Lorem ipsum dolor sit amet',
+            'lng' => 'Lorem ipsum dolor sit amet'
         ],
     ];
 }

@@ -48,11 +48,16 @@ class FarmaciasController extends AppController {
     $farmacia = $this->Farmacias->newEntity();
     if ($this->request->is('post')) {
       $farmacia = $this->Farmacias->patchEntity($farmacia, $this->request->data);
-      if ($this->Farmacias->save($farmacia)) {
-        $this->Flash->msgbueno(__('The farmacia has been saved.'));
-        return $this->redirect(['action' => 'index']);
+      //debug($farmacia->errors());exit;
+      if (!empty($farmacia->errors())) {
+        $this->Flash->msgerror(__(current($farmacia->errors())['_empty']));
       } else {
-        $this->Flash->msgerror(__('The farmacia could not be saved. Please, try again.'));
+        if ($this->Farmacias->save($farmacia)) {
+          $this->Flash->msgbueno(__('The farmacia has been saved.'));
+          return $this->redirect(['action' => 'index']);
+        } else {
+          $this->Flash->msgerror(__('The farmacia could not be saved. Please, try again.'));
+        }
       }
     }
     $farmacias = $this->Farmacias->find('list', ['keyField' => 'id', 'valueField' => 'nombre'])->where(['Farmacias.origenid IS' => NULL]);

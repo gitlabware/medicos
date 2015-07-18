@@ -19,5 +19,8 @@ class Farmacia extends Entity
         'direccion' => true,
         'telefonos' => true,
         'origenid' => true,
+        'lat' => true,
+        'lng' => true,
+        'origen' => true,
     ];
 }

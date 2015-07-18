@@ -43,11 +43,12 @@
             </div>
         </div>
     </div>
+    <?= $this->element('menuder/admin') ?>
 </section>
 
 
 <!--
-<script src="<?php //echo $this->request->webroot; ?>js/jquery_ui/jquery-ui.min.js"></script>
+<script src="<?php //echo $this->request->webroot;  ?>js/jquery_ui/jquery-ui.min.js"></script>
 
 <script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/datatables/media/js/jquery.dataTables.js"></script>
 
@@ -56,41 +57,41 @@
 
 
 <script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
-<?php echo $this->Html->script('DataTables.cakephp.dataTables.js');?>
+<?php echo $this->Html->script('DataTables.cakephp.dataTables.js'); ?>
 
 -->
 
 <script>
 <?php
 /*
-$this->DataTables->init([
+  $this->DataTables->init([
   'ajax' => [
-    'url' => $this->Url->build(['action' => 'index']),
+  'url' => $this->Url->build(['action' => 'index']),
   ],
   'deferLoading' => $recordsTotal,
   'delay' => 600,
   'columns' => [
-    [
-      'name' => 'Users.id',
-      'data' => 'id'
-    ],
-    [
-      'name' => 'Users.username',
-      'data' => 'username'
-    ],
-    [
-      'name' => 'Users.role',
-      'data' => 'role'
-    ],
-    [
-      'name' => 'Users.created',
-      'data' => 'created'
-    ],
-    [
-      'name' => 'Users.modified',
-      'data' => 'modified'
-    ]
+  [
+  'name' => 'Users.id',
+  'data' => 'id'
+  ],
+  [
+  'name' => 'Users.username',
+  'data' => 'username'
+  ],
+  [
+  'name' => 'Users.role',
+  'data' => 'role'
+  ],
+  [
+  'name' => 'Users.created',
+  'data' => 'created'
+  ],
+  [
+  'name' => 'Users.modified',
+  'data' => 'modified'
   ]
-])->draw('.dataTable');*/
+  ]
+  ])->draw('.dataTable'); */
 ?>
 </script>
