@@ -22,16 +22,15 @@
                 <p class="lead"><?= $medico->leyenda ?></p>
                 <div class="media-links">
                     <ul class="list-inline list-unstyled">
-                        <li>
-                            <a href="javascript:" title="Adicionar Red Social">
-                                <span class="fa fa-plus-square fs35 text-success"></span>
-                            </a>
-                        </li>
-                        <?php foreach ($sociales as $so): ?>
+
+                        <?php foreach ($lsociales as $so): ?>
                           <li>
-                              <a href="<?= $so->url ?>" title="<?= $this->sociale->nombre ?>">
-                                  <span class="fa <?= $so->sociale->icono ?> fs35 text-primary"></span>
-                              </a>
+                              <a href="javascript:" title="<?= $so->nombre ?>">
+                                  <span class="<?= $so->icono ?>"></span>
+                              </a> 
+                              <samp class="panel-controls" onclick="cargarmodal('<?= $this->Url->build(['action' => 'ajax_sociales', $medico->id, $so->id]) ?>');">
+                                  <i class="fa fa-edit"></i>
+                              </samp>
                           </li>
                         <?php endforeach; ?>
                     </ul>
@@ -46,7 +45,7 @@
             <div class="panel sort-disable mb50">
                 <div class="panel-heading">
                     <span class="panel-title"> Informacion Basica</span>
-                    <samp class="panel-controls">
+                    <samp class="panel-controls" onclick="cargarmodal('<?= $this->Url->build(['action' => 'ajax_edit2']); ?>');">
                         <i class="fa fa-edit"></i>
                     </samp>
                 </div>
@@ -95,7 +94,7 @@
             <div class="panel sort-disable mb50">
                 <div class="panel-heading">
                     <span class="panel-title"> Ubicacion</span>
-                    <samp class="panel-controls">
+                    <samp class="panel-controls" onclick="cargarmodal_u('<?= $this->Url->build(['action' => 'ajax_ubicacion']); ?>');">
                         <i class="fa fa-edit"></i>
                     </samp>
                 </div>
@@ -336,4 +335,40 @@
       marker.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
   }
   google.maps.event.addDomListener(window, 'load', initialize);
+
+
+  function cargarmodal_u(urll) {
+
+      jQuery("#spin-cargando-mod").show();
+      jQuery("#divmodal").hide();
+      $.magnificPopup.open({
+          removalDelay: 500, //delay removal by X to allow out-animation,
+          items: {
+              src: '#mimodal'
+          },
+          // overflowY: 'hidden', // 
+          callbacks: {
+              beforeOpen: function (e) {
+                  this.st.mainClass = 'mfp-zoomIn';
+              }
+          },
+          midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+      });
+      jQuery("#divmodal").load(urll, function (responseText, textStatus, req) {
+          if (textStatus == "error")
+          {
+              alert("error!!!");
+          }
+          else {
+              jQuery("#spin-cargando-mod").hide(500);
+              jQuery("#divmodal").show();
+
+              google.maps.event.trigger(map_ubi, 'resize');
+              map_ubi.setCenter(new google.maps.LatLng(<?= $medico->lat ?>, <?= $medico->lng ?>));
+
+          }
+      });
+
+
+  }
 </script>

@@ -143,9 +143,9 @@ class MedicosController extends AppController {
     $medico = $this->get_medico();
     /* debug($medico);
       exit; */
-    $msociales = TableRegistry::get('Medicosociales');
-    $sociales = $msociales->find('all')->where(['medico_id' => $medico->id]);
-    $this->set(compact('medico', 'sociales'));
+    $sociales = TableRegistry::get('Sociales');
+    $lsociales = $sociales->find('all');
+    $this->set(compact('medico', 'lsociales'));
   }
 
   public function get_medico() {
@@ -175,6 +175,74 @@ class MedicosController extends AppController {
       }
     }
     $this->set(compact('medico'));
+  }
+
+  public function ajax_sociales($idMedico = null, $idSocial = null) {
+    $this->layout = 'ajax';
+    $sociales = TableRegistry::get('Sociales');
+    $social = $sociales->find()->where(['id' => $idSocial])->first();
+    $msociales = TableRegistry::get('Medicosociales');
+    $medicosociale = $msociales->find()->where(['sociale_id' => $idSocial, 'medico_id' => $idMedico])->first();
+    if (empty($medicosociale)) {
+
+      $medicosociale = $msociales->newEntity();
+    }
+    if ($this->request->is(['patch', 'post', 'put'])) {
+
+      $medicosociale = $msociales->patchEntity($medicosociale, $this->request->data);
+
+      $msociales->save($medicosociale);
+      $this->Flash->msgbueno("Se registro correctamente!!", 'msgbueno');
+      $this->redirect($this->referer());
+    }
+    $this->set(compact('social', 'medicosociale', 'idMedico'));
+  }
+
+  public function ajax_edit2() {
+    $this->layout = 'ajax';
+    $medico = $this->Medicos->find()->where(['Medicos.user_id' => $this->request->session()->read('Auth.User.id')])->first();
+    if ($this->request->is(['patch', 'post', 'put'])) {
+      $medico = $this->Medicos->patchEntity($medico, $this->request->data);
+      if (!empty($medico->errors())) {
+        $this->Flash->msgerror(current(current($medico->errors())));
+      } else {
+        if ($this->Medicos->save($medico)) {
+          $this->Flash->msgbueno(__('Se ha registrado correctamente los datos'));
+          return $this->redirect(['action' => 'perfil']);
+        } else {
+          $this->Flash->msgerror(__('El medico no se ha podido registrar intente nuevamente'));
+        }
+      }
+    }
+    $especialidades = TableRegistry::get('Especialidades');
+    $listaesp = $especialidades->find('list', ['keyField' => 'id', 'valueField' => 'nombre']);
+    $this->set(compact('medico', 'listaesp'));
+  }
+
+  public function ajax_ubicacion() {
+    $this->layout = 'ajax';
+    $medico = $this->Medicos->find()->where(['Medicos.user_id' => $this->request->session()->read('Auth.User.id')])->first();
+    if ($this->request->is(['patch', 'post', 'put'])) {
+      $medico = $this->Medicos->patchEntity($medico, $this->request->data);
+      if (!empty($medico->errors())) {
+        $this->Flash->msgerror(current(current($medico->errors())));
+      } else {
+        if ($this->Medicos->save($medico)) {
+          $this->Flash->msgbueno(__('Se ha registrado correctamente los datos'));
+          return $this->redirect(['action' => 'perfil']);
+        } else {
+          $this->Flash->msgerror(__('El medico no se ha podido registrar intente nuevamente'));
+        }
+      }
+    }
+    $this->set(compact('medico'));
+  }
+
+  public function busca_medicos() {
+    debug($this->request->data['buscador']);
+    exit;
+    $buscado = $this->request->data['buscador'];
+    $this->Medicos->find()->orWhere(['nombre LIKE' => "%" . $buscado . "%", '']);
   }
 
 }

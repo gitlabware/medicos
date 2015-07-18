@@ -15,11 +15,11 @@
         </a>
     </li>
 </ul>
-<form class="navbar-form navbar-left navbar-search" role="search">
+<?= $this->Form->create(NULL,['url' => ['controller' => 'Medicos','action' => 'busca_medicos'],'class' => 'navbar-form navbar-left navbar-search']) ?>
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search..." value="Search...">
+        <?= $this->Form->text('buscador',['placeholder' => 'Buscar...','class' => 'form-control'])?>
     </div>
-</form>
+<?= $this->Form->end() ?>
 
 <ul class="nav navbar-nav navbar-right">
     <li class="dropdown">

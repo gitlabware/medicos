@@ -324,8 +324,9 @@
           });
 
           function cargarmodal(urll) {
-
+              
               jQuery("#spin-cargando-mod").show();
+              jQuery("#divmodal").hide();
               $.magnificPopup.open({
                   removalDelay: 500, //delay removal by X to allow out-animation,
                   items: {
@@ -346,6 +347,7 @@
                   }
                   else {
                       jQuery("#spin-cargando-mod").hide(500);
+                      jQuery("#divmodal").show();
                   }
               });
 
