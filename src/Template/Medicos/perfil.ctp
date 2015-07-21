@@ -116,9 +116,13 @@
                       }
                       ?>
                       <li class="<?= $tactive ?>">
-                          <a href="#tab<?= ($key + 1) ?>" data-toggle="tab"><?= $con->nombre; ?></a>
+                          <a href="#tab<?= ($key + 1) ?>" data-toggle="tab" onclick="$('#tab<?= ($key + 1) ?>').load('<?= $this->Url->build(['controller' => 'Consultorios', 'action' => 'ajax_m_consul_t', $con->id]); ?>');"><?= $con->nombre ?></a>
                       </li>
+                      
                     <?php endforeach; ?>
+                      <samp class="panel-controls" onclick="window.location.href = '<?= $this->Url->build(['controller' => 'Consultorios','action' => 'add_cons']); ?>';">
+                        <i class="fa fa-plus-square"></i>
+                    </samp>
                 </ul>
                 <div class="tab-content p30">
                     <?php foreach ($lconsultorios as $key => $con): ?>
@@ -339,12 +343,9 @@
 </section>
 
 <script type="text/javascript">
-  var milat = -16.49;
+  /*var milat = -16.49;
   var milng = -68.12;
-<?php if (!empty($medico->lat) && !empty($medico->lng)): ?>
-    milat = <?= $medico->lat ?>;
-    milng = <?= $medico->lng ?>;
-<?php endif; ?>
+
   var map;
 
   function initialize() {
@@ -369,7 +370,7 @@
       marker.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
   }
   google.maps.event.addDomListener(window, 'load', initialize);
-
+  */
 
   function cargarmodal_u(urll) {
 
@@ -397,8 +398,8 @@
               jQuery("#spin-cargando-mod").hide(500);
               jQuery("#divmodal").show();
 
-              google.maps.event.trigger(map_ubi, 'resize');
-              map_ubi.setCenter(new google.maps.LatLng(<?= $medico->lat ?>, <?= $medico->lng ?>));
+              //google.maps.event.trigger(map_ubi, 'resize');
+              //map_ubi.setCenter(new google.maps.LatLng(, ));
 
           }
       });

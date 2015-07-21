@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+
 /**
  * Consultorios Controller
  *
@@ -12,6 +13,7 @@ use Cake\ORM\TableRegistry;
 class ConsultoriosController extends AppController {
 
   public $layout = 'medicos';
+
   /**
    * Index method
    *
@@ -22,7 +24,7 @@ class ConsultoriosController extends AppController {
     $medico = $medicos->find()->where(['id' => $idMedico])->first();
     //debug($medico->toArray());exit;
     $consultorios = $this->Consultorios->find('all', ['contain' => ['Medicos']])->where(['Consultorios.medico_id' => $idMedico]);
-    $this->set(compact('consultorios', 'medico','idMedico'));
+    $this->set(compact('consultorios', 'medico', 'idMedico'));
   }
 
   /**
@@ -51,7 +53,7 @@ class ConsultoriosController extends AppController {
       $consultorio = $this->Consultorios->patchEntity($consultorio, $this->request->data);
       if ($this->Consultorios->save($consultorio)) {
         $this->Flash->msgbueno(__('The consultorio has been saved.'));
-        return $this->redirect(['action' => 'index',$idMedico]);
+        return $this->redirect(['action' => 'index', $idMedico]);
       } else {
         $this->Flash->msgerror(__('The consultorio could not be saved. Please, try again.'));
       }
@@ -77,7 +79,7 @@ class ConsultoriosController extends AppController {
       $consultorio = $this->Consultorios->patchEntity($consultorio, $this->request->data);
       if ($this->Consultorios->save($consultorio)) {
         $this->Flash->msgbueno(__('The consultorio has been saved.'));
-        return $this->redirect(['action' => 'index',$idMedico]);
+        return $this->redirect(['action' => 'index', $idMedico]);
       } else {
         $this->Flash->msgerror(__('The consultorio could not be saved. Please, try again.'));
       }
@@ -106,12 +108,58 @@ class ConsultoriosController extends AppController {
     }
     return $this->redirect(['action' => 'index', $idMedico]);
   }
-  
-  public function ajax_m_consul_t($idConsultorio = null){
+
+  public function ajax_m_consul_t($idConsultorio = null) {
     $this->layout = 'ajax';
     $consultorio = $this->Consultorios->get($idConsultorio);
     //debug($consultorio);exit;
-    $this->set(compact('consultorio'));
+    $this->set(compact('consultorio', 'idConsultorio'));
   }
 
+  public function edit_cons($idConsultorio = null) {
+    $consultorio = $this->Consultorios->get($idConsultorio, [
+      'contain' => []
+    ]);
+    $idMedico = $this->get_medico()->id;
+    if ($this->request->is(['patch', 'post', 'put'])) {
+      
+      $consultorio = $this->Consultorios->patchEntity($consultorio, $this->request->data);
+      if ($this->Consultorios->save($consultorio)) {
+        $this->Flash->msgbueno(__('The consultorio has been saved.'));
+        return $this->redirect(['controller' => 'Medicos','action' => 'perfil']);
+      } else {
+        $this->Flash->msgerror(__('The consultorio could not be saved. Please, try again.'));
+      }
+    }
+    //debug($consultorio);exit;
+    $medicos = TableRegistry::get('Medicos');
+    $medico = $medicos->find()->where(['id' => $idMedico])->first();
+    //debug($consultorio);exit;
+    $this->set(compact('consultorio', 'medico', 'idMedico'));
+    $this->set('_serialize', ['consultorio']);
+  }
+
+  public function get_medico() {
+    $medicos = TableRegistry::get('Medicos');
+    $idUsuario = $this->request->session()->read('Auth.User.id');
+    return $medicos->find()->contain(['Especialidades'])->where(['user_id' => $idUsuario])->first();
+  }
+
+  public function add_cons() {
+    $idMedico = $this->get_medico()->id;
+    $consultorio = $this->Consultorios->newEntity();
+    if ($this->request->is('post')) {
+      $consultorio = $this->Consultorios->patchEntity($consultorio, $this->request->data);
+      if ($this->Consultorios->save($consultorio)) {
+        $this->Flash->msgbueno(__('The consultorio has been saved.'));
+        return $this->redirect(['controller' => 'Medicos','action' => 'perfil']);
+      } else {
+        $this->Flash->msgerror(__('The consultorio could not be saved. Please, try again.'));
+      }
+    }
+    $medicos = TableRegistry::get('Medicos');
+    $medico = $medicos->find()->where(['id' => $idMedico])->first();
+    $this->set(compact('consultorio', 'medico', 'idMedico'));
+    $this->set('_serialize', ['consultorio']);
+  }
 }
