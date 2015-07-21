@@ -6,7 +6,7 @@
             <div class="admin-form">
                 <div class="panel heading-border">
                     <div class="panel-body bg-light">
-                        <?= $this->Form->create($consultorio) ?>
+                        <?= $this->Form->create($consultorio, ['id' => 'form-consultorio']) ?>
                         <?php echo $this->Form->hidden('medico_id', ['value' => $idMedico]); ?>
                         <div class="section-divider mb40">
                             <span><?php echo "Formulario Consultorio - " . $medico->nombre ?></span>
@@ -38,27 +38,68 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="section">
                                     <label class="field">
-                                        <?php echo $this->Form->text('horarios', ['placeholder' => 'Horarios', 'class' => 'gui-input']); ?>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="section">
-                                    <label class="field">
-                                        <?php echo $this->Form->text('estado', ['placeholder' => 'estado', 'class' => 'gui-input']); ?>
+                                        <?php echo $this->Form->textarea('descripcion', ['placeholder' => 'Descripcion', 'class' => 'gui-textarea']); ?>
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="section">
-                                    <label class="field">
-                                        <?php echo $this->Form->textarea('descripcion', ['placeholder' => 'Descripcion', 'class' => 'gui-input']); ?>
-                                    </label>
+                                <div id="tabla-horarios">
+                                    <table class="table table-bordered" id="tabla-horarios-t">
+                                        <thead>
+                                            <tr class="primary">
+                                                <th colspan="6" class="text-center">
+                                                    <b>HORARIOS</b>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="success">
+                                                <td class="text-center">Lunes</td>
+                                                <td class="text-center">Martes</td>
+                                                <td class="text-center">Miercoles</td>
+                                                <td class="text-center">Jueves</td>
+                                                <td class="text-center">Viernes</td>
+                                                <td class="text-center">Sabado</td>
+                                            </tr>
+                                            <tr class="editablec" contenteditable="true">
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                            </tr>
+                                            <tr class="editablec" contenteditable="true">
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                            </tr>
+                                            <tr class="editablec" contenteditable="true">
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                            </tr>
+                                            <tr class="editablec" contenteditable="true">
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -77,39 +118,47 @@
                             <button type="reset" class="button"> Cancel </button>
                         </div>
                         <!-- end .form-footer section -->
+                        <?php echo $this->Form->hidden('estado', ['value' => 'Activo']); ?>
+                        <?php echo $this->Form->hidden('horarios', ['id' => 'idcampo-horarios']); ?>
                         <?= $this->Form->end() ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <?= $this->element('menuder/admin')?>
+    <?= $this->element('menuder/admin') ?>
 </section>
-<?php 
+<?php
 $lat = -16.49;
 $lng = -68.12;
 
-if(!empty($consultorio->lat)){
+if (!empty($consultorio->lat)) {
   $lat = $consultorio->lat;
 }
-if(!empty($consultorio->lng)){
+if (!empty($consultorio->lng)) {
   $lng = $consultorio->lng;
 }
 ?>
 <script type="text/javascript">
-  
+<?php if (!empty($consultorio->horarios)): ?>
+    $('#tabla-horarios').html('<?= $consultorio->horarios ?>');
+    $('#tabla-horarios-t tr').attr('contenteditable', true);
+<?php endif; ?>
+  $("#form-consultorio").submit(function (event) {
+      $('#tabla-horarios-t tr').attr('contenteditable', false);
+      $('#idcampo-horarios').val($('#tabla-horarios').html());
+  });
   var map;
-
   function initialize() {
       var mapOptions = {
           zoom: 14,
-          center: new google.maps.LatLng(<?php echo $lat;?>, <?php echo $lng;?>),
+          center: new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $lng; ?>),
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           scrollwheel: false
       };
       map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
-      var pos = new google.maps.LatLng(<?php echo $lat;?>, <?php echo $lng;?>);
+      var pos = new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $lng; ?>);
 
       var marker = new google.maps.Marker({
           position: pos,

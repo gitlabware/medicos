@@ -106,5 +106,12 @@ class ConsultoriosController extends AppController {
     }
     return $this->redirect(['action' => 'index', $idMedico]);
   }
+  
+  public function ajax_m_consul_t($idConsultorio = null){
+    $this->layout = 'ajax';
+    $consultorio = $this->Consultorios->get($idConsultorio);
+    //debug($consultorio);exit;
+    $this->set(compact('consultorio'));
+  }
 
 }

@@ -14,7 +14,7 @@
 
                 <div class="panel heading-border">
                     <div class="panel-body bg-light">
-                        <?= $this->Form->Create($medico) ?>
+                        <?= $this->Form->Create($medico, ['id' => 'form-medico']) ?>
                         <div class="section-divider mb40" id="spy1">
                             <span>Nuevo Medico</span>
                         </div>
@@ -100,8 +100,17 @@
                         <div class="row">
                             <div class="form-group">                    
                                 <div class="col-md-6">
-                                    <div class="section">
-                                        <?php echo $this->Form->select('Medico.sexo', ['Masculino' => 'Masculino', 'Femenino' => 'Femenino'], ['empty' => 'Seleccione el sexo', 'class' => 'select2-single form-control']); ?>
+                                    <div class="section text-center">
+                                        <?php
+                                        echo $this->Form->hidden('Medico.sexo');
+                                        ?>
+                                        <div class="radio-custom radio-primary mb5">
+                                            <input type="radio" id="radmasculino" name="Medico[sexo]" value="Masculino">
+                                            <label for="radmasculino">Masculino</label>
+
+                                            <input type="radio" id="radfemenino" name="Medico[sexo]" value="Femenino">
+                                            <label for="radfemenino">Femenino</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -127,27 +136,25 @@
                             </div>
                         </div>
 
-                        <div class="section-divider mv40" id="spy2">
-                            <span>Ubicacion</span>                                
-                        </div>
-
-                        <div class="row">    
-                            <?php echo $this->Form->hidden('Medico.lat', ['id' => 'frmlat']); ?>
-                            <?php echo $this->Form->hidden('Medico.lng', ['id' => 'frmlng']); ?>
-                            <div id="mapa" style="width: 100%; height: 400px;"></div>
-                        </div>
                         <br>
-
-                        <!-------- SECTOR CONSULTORIO --------->
-                        <div class="section-divider mv40" id="spy2">
-                            <span><a href="javascript:">Registro de Consultorio</a></span>                                
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn active btn-system btn-block" type="button" onclick="desplegar_cons();">Registrar consultorio</button>
+                            </div>
                         </div>
-                        <div id="nuevo_cons">
+                        <!-------- SECTOR CONSULTORIO --------->
+                        <div id="nuevo_cons" style="display: none;">
+                            <div class="section-divider mv40" id="spy2">
+                                <span><a href="javascript:">Registro de Consultorio</a></span>                                
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="section">
-                                        <label class="field">
-                                            <?php echo $this->Form->text('Consultorio.nombre', ['placeholder' => 'Nombre', 'class' => 'gui-input']); ?>
+                                        <label class="field prepend-icon">
+                                            <?php echo $this->Form->text('Consultorio.nombre', ['placeholder' => 'Nombre', 'class' => 'gui-input', 'required' => false]); ?>
+                                            <label for="firstname" class="field-icon">
+                                                <i class="fa fa-home"></i>
+                                            </label>
                                         </label>
                                     </div>
                                 </div>
@@ -155,31 +162,21 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="section">
-                                        <label class="field">
-                                            <?php echo $this->Form->text('Consultorio.direccion', ['placeholder' => 'Direccion', 'class' => 'gui-input']); ?>
+                                        <label class="field prepend-icon">
+                                            <?php echo $this->Form->text('Consultorio.direccion', ['placeholder' => 'Direccion', 'class' => 'gui-input', 'required' => false]); ?>
+                                            <label for="firstname" class="field-icon">
+                                                <i class="fa fa-home"></i>
+                                            </label>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="section">
-                                        <label class="field">
-                                            <?php echo $this->Form->text('Consultorio.telefonos', ['placeholder' => 'Telefonos', 'class' => 'gui-input']); ?>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="section">
-                                        <label class="field">
-                                            <?php echo $this->Form->text('Consultorio.horarios', ['placeholder' => 'Horarios', 'class' => 'gui-input']); ?>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="section">
-                                        <label class="field">
-                                            <?php echo $this->Form->text('Consultorio.estado', ['placeholder' => 'estado', 'class' => 'gui-input']); ?>
+                                        <label class="field prepend-icon">
+                                            <?php echo $this->Form->text('Consultorio.telefonos', ['placeholder' => 'Telefonos', 'class' => 'gui-input', 'required' => false]); ?>
+                                            <label for="firstname" class="field-icon">
+                                                <i class="fa fa-phone"></i>
+                                            </label>
                                         </label>
                                     </div>
                                 </div>
@@ -187,9 +184,69 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="section">
-                                        <label class="field">
-                                            <?php echo $this->Form->textarea('Consultorio.descripcion', ['placeholder' => 'Descripcion', 'class' => 'gui-input']); ?>
+                                        <label class="field prepend-icon">
+                                            <?php echo $this->Form->textarea('Consultorio.descripcion', ['placeholder' => 'Descripcion', 'class' => 'gui-textarea', 'required' => false]); ?>
+                                            <label for="firstname" class="field-icon">
+                                                <i class="fa fa-edit"></i>
+                                            </label>
                                         </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="tabla-horarios">
+                                        <table class="table table-bordered" id="tabla-horarios-t">
+                                            <thead>
+                                                <tr class="primary">
+                                                    <th colspan="6" class="text-center">
+                                                        <b>HORARIOS</b>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="success">
+                                                    <td class="text-center">Lunes</td>
+                                                    <td class="text-center">Martes</td>
+                                                    <td class="text-center">Miercoles</td>
+                                                    <td class="text-center">Jueves</td>
+                                                    <td class="text-center">Viernes</td>
+                                                    <td class="text-center">Sabado</td>
+                                                </tr>
+                                                <tr class="editablec" contenteditable="true">
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                </tr>
+                                                <tr class="editablec" contenteditable="true">
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                </tr>
+                                                <tr class="editablec" contenteditable="true">
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                </tr>
+                                                <tr class="editablec" contenteditable="true">
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                    <td class="text-center">HORA</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -209,8 +266,10 @@
 
                         <div class="panel-footer text-right">
                             <button type="submit" class="button btn-primary"> Guardar Medico</button>                                
-                        </div>                          
-
+                        </div>            
+                        <?php echo $this->Form->hidden('Consultorio.estado', ['value' => 'Activo']); ?>
+                        <?php echo $this->Form->hidden('Consultorio.confirmacion', ['id' => 'idconfirmacion']); ?>
+                        <?php echo $this->Form->hidden('Consultorio.horarios', ['id' => 'idcampo-horarios']); ?>
                         </form>
                     </div>
                 </div>
@@ -220,7 +279,7 @@
     </div>
     <!-- end: .tray-center -->
 
-    <?= $this->element('menuder/admin')?>
+    <?= $this->element('menuder/admin') ?>
 
 </section>
 
@@ -277,39 +336,24 @@
       marker.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
   }
   google.maps.event.addDomListener(window, 'load', initialize);
-  var map2;
-  function initialize2() {
-      var mapOptions = {
-          zoom: 14,
-          center: new google.maps.LatLng(-16.49, -68.12),
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          scrollwheel: false
-      };
-      map2 = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
-      var pos = new google.maps.LatLng(-16.49, -68.12);
-
-      var marker2 = new google.maps.Marker({
-          position: pos,
-          map: map2,
-          title: "Arrastrar para mover",
-          animation: google.maps.Animation.BOUNCE,
-          draggable: true
-      });
-
-      function funcionArrastra2() {
-          var lat = marker2.getPosition().lat();
-          var lng = marker2.getPosition().lng();
-          //console.log(lat + '-' + lng);
-          $('#frmlat_con').val(lat);
-          $('#frmlng_con').val(lng);
+  function desplegar_cons() {
+      if ($('#idconfirmacion').val() == 1) {
+          $('#nuevo_cons').hide(400);
+          $('#idconfirmacion').val(0);
+      } else {
+          $('#idconfirmacion').val(1);
+          $('#nuevo_cons').show(400, function () {
+              google.maps.event.trigger(map, 'resize');
+              map.setCenter(new google.maps.LatLng(-16.49, -68.12));
+          });
       }
-
-      google.maps.event.addListener(marker2, 'drag', funcionArrastra2);
-      marker2.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
   }
-  google.maps.event.addDomListener(window, 'load', initialize2);
 
+  $("#form-medico").submit(function (event) {
+      $('#tabla-horarios-t tr').attr('contenteditable', false);
+      $('#idcampo-horarios').val($('#tabla-horarios').html());
+  });
 </script>
 
 <?php

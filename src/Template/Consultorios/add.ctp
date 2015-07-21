@@ -38,27 +38,68 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="section">
                                     <label class="field">
-                                        <?php echo $this->Form->text('horarios', ['placeholder' => 'Horarios', 'class' => 'gui-input']); ?>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="section">
-                                    <label class="field">
-                                        <?php echo $this->Form->text('estado', ['placeholder' => 'estado', 'class' => 'gui-input']); ?>
+                                        <?php echo $this->Form->textarea('descripcion', ['placeholder' => 'Descripcion', 'class' => 'gui-textarea']); ?>
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="section">
-                                    <label class="field">
-                                        <?php echo $this->Form->textarea('descripcion', ['placeholder' => 'Descripcion', 'class' => 'gui-input']); ?>
-                                    </label>
+                                <div id="tabla-horarios">
+                                    <table class="table table-bordered" id="tabla-horarios-t">
+                                        <thead>
+                                            <tr class="primary">
+                                                <th colspan="6" class="text-center">
+                                                    <b>HORARIOS</b>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="success">
+                                                <td class="text-center">Lunes</td>
+                                                <td class="text-center">Martes</td>
+                                                <td class="text-center">Miercoles</td>
+                                                <td class="text-center">Jueves</td>
+                                                <td class="text-center">Viernes</td>
+                                                <td class="text-center">Sabado</td>
+                                            </tr>
+                                            <tr class="editablec" contenteditable="true">
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                            </tr>
+                                            <tr class="editablec" contenteditable="true">
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                            </tr>
+                                            <tr class="editablec" contenteditable="true">
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                            </tr>
+                                            <tr class="editablec" contenteditable="true">
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">HORA</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -78,16 +119,23 @@
                             <button type="reset" class="button"> Cancel </button>
                         </div>
                         <!-- end .form-footer section -->
+                        <?php echo $this->Form->hidden('estado', ['value' => 'Activo']); ?>
+                        <?php echo $this->Form->hidden('horarios', ['id' => 'idcampo-horarios']); ?>
                         <?= $this->Form->end() ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <?= $this->element('menuder/admin')?>
+    <?= $this->element('menuder/admin') ?>
 </section>
 
 <script type="text/javascript">
+  $("#form-consultorio").submit(function (event) {
+      $('#tabla-horarios-t tr').attr('contenteditable', false);
+      $('#idcampo-horarios').val($('#tabla-horarios').html());
+  });
+
   var map;
 
   function initialize() {

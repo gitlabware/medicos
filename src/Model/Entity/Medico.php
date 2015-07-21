@@ -29,8 +29,6 @@ class Medico extends Entity {
     'especialidade' => true,
     'user' => true,
     'consultorios' => true,
-    'lat' => true,
-    'lng' => true,
     'leyenda' => true,
   ];
 

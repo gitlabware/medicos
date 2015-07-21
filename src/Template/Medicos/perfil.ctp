@@ -41,7 +41,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="panel sort-disable mb50">
                 <div class="panel-heading">
                     <span class="panel-title"> Informacion Basica</span>
@@ -90,7 +90,7 @@
             </div>
 
         </div>
-        <div class="col-md-6">
+        <!--<div class="col-md-8">
             <div class="panel sort-disable mb50">
                 <div class="panel-heading">
                     <span class="panel-title"> Ubicacion</span>
@@ -104,7 +104,41 @@
                     </div>
                 </div>
             </div>
+        -->
+        <div class="col-md-8">
+            <div class="tab-block">
+                <ul class="nav nav-tabs">
+                    <?php foreach ($lconsultorios as $key => $con): ?>
+                      <?php
+                      $tactive = '';
+                      if ($key == 0) {
+                        $tactive = 'active';
+                      }
+                      ?>
+                      <li class="<?= $tactive ?>">
+                          <a href="#tab<?= ($key + 1) ?>" data-toggle="tab"><?= $con->nombre; ?></a>
+                      </li>
+                    <?php endforeach; ?>
+                </ul>
+                <div class="tab-content p30">
+                    <?php foreach ($lconsultorios as $key => $con): ?>
+                      <?php
+                      $tactive = '';
+                      if ($key == 0) {
+                        $tactive = 'active';
+                      }
+                      ?>
+                      <div id="tab<?= ($key + 1) ?>" class="tab-pane <?= $tactive ?>">
 
+                      </div>
+                      <script>
+  <?php if ($key == 0): ?>
+                          $('#tab<?= ($key + 1) ?>').load('<?= $this->Url->build(['controller' => 'Consultorios', 'action' => 'ajax_m_consul_t', $con->id]); ?>');
+  <?php endif; ?>
+                      </script>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
     </div><br>
 

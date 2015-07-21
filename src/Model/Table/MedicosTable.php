@@ -85,14 +85,6 @@ class MedicosTable extends Table {
       ->notEmpty('fecha_nacimiento');
 
     $validator
-      ->requirePresence('lat', 'create')
-      ->notEmpty('lat', 'Seleccione el lugar en el mapa');
-
-    $validator
-      ->requirePresence('lng', 'create')
-      ->notEmpty('lng', 'Seleccione el lugar en el mapa');
-
-    $validator
       ->allowEmpty('leyenda');
 
     return $validator;

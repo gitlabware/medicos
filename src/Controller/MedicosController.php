@@ -48,7 +48,7 @@ class MedicosController extends AppController {
   public function add() {
     $medico = $this->Medicos->newEntity();
     if ($this->request->is('post')) {
-      /* debug($this->request->data);
+      /*debug($this->request->data);
         exit; */
       $users = TableRegistry::get('Users');
       $user = $users->newEntity();
@@ -62,18 +62,23 @@ class MedicosController extends AppController {
         $medico = $this->Medicos->patchEntity($medico, $this->request->data['Medico']);
         if (empty($medico->errors())) {
           $res_medico = $this->Medicos->save($medico);
-          $this->request->data['Consultorio']['medico_id'] = $res_medico->id;
-          $consultorios = TableRegistry::get('Consultorios');
-          $consultorio = $consultorios->newEntity();
-          $consultorio = $consultorios->patchEntity($consultorio, $this->request->data['Consultorio']);
-          if (empty($consultorio->errors())) {
-            $consultorios->save($consultorio);
+          if ($this->request->data['Consultorio']['confirmacion'] == 1) {
+            $this->request->data['Consultorio']['medico_id'] = $res_medico->id;
+            $consultorios = TableRegistry::get('Consultorios');
+            $consultorio = $consultorios->newEntity();
+            $consultorio = $consultorios->patchEntity($consultorio, $this->request->data['Consultorio']);
+            if (empty($consultorio->errors())) {
+              $consultorios->save($consultorio);
+              $this->Flash->msgbueno(__('El medico ha sido registrado correctamente!!'));
+              return $this->redirect(['action' => 'index']);
+            } else {
+              $consultorio = $consultorios->get($res_medico->id);
+              $consultorios->delete($consultorio);
+              $this->Flash->msgerror(current(current($consultorio->errors())));
+            }
+          } else {
             $this->Flash->msgbueno(__('El medico ha sido registrado correctamente!!'));
             return $this->redirect(['action' => 'index']);
-          } else {
-            $consultorio = $consultorios->get($res_medico->id);
-            $consultorios->delete($consultorio);
-            $this->Flash->msgerror(current(current($consultorio->errors())));
           }
         } else {
           $user = $users->get($resultado->id);
@@ -145,7 +150,10 @@ class MedicosController extends AppController {
       exit; */
     $sociales = TableRegistry::get('Sociales');
     $lsociales = $sociales->find('all');
-    $this->set(compact('medico', 'lsociales'));
+    $consultorios = TableRegistry::get('Consultorios');
+    $lconsultorios = $consultorios->find()->select(['id','nombre'])->where(['medico_id' => $medico->id]);
+    //debug($lconsultorios->toArray());exit;
+    $this->set(compact('medico', 'lsociales','lconsultorios'));
   }
 
   public function get_medico() {
@@ -239,10 +247,12 @@ class MedicosController extends AppController {
   }
 
   public function busca_medicos() {
-    debug($this->request->data['buscador']);
-    exit;
+    /* debug($this->request->data['buscador']);
+      exit; */
     $buscado = $this->request->data['buscador'];
-    $this->Medicos->find()->orWhere(['nombre LIKE' => "%" . $buscado . "%", '']);
+    $resultados = $this->Medicos->find('all')->Where(['nombre LIKE' => "%" . $buscado . "%"]);
+    debug($resultados);
+    exit;
   }
 
 }
