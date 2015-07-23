@@ -24464,9 +24464,9 @@ body.timeline-page .panel-clone {
   z-index: 999;
   overflow: visible !important;
   position: fixed;
-  top: 120px;
-  right: -230px;
-  width: 230px;
+  top: 200px;
+  right: -310px;
+  width: 310px;
   -webkit-transition: right 0.1s ease-in-out;
   -moz-transition: right 0.1s ease-in-out;
   transition: right 0.1s ease-in-out;
@@ -24478,11 +24478,13 @@ body.timeline-page .panel-clone {
   cursor: pointer;
   margin-right: 30px;
   border: 1px solid #DDD;
-  width: 274px;
+  width: 354px;
   height: 47px;
   line-height: 42px;
   right: 44px;
   font-size: 14px;
+  background-color: #37bc9b;
+  color: #cef1e8;
 }
 #skin-toolbox .panel-heading .panel-title {
   padding-left: 40px;

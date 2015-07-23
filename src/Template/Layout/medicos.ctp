@@ -37,7 +37,7 @@
     </head>
 
     <body class="error-page sb-l-o sb-r-c">
-
+        <?php echo $this->element('barra/chat') ?>
         <!-- Start: Main -->
         <div id="main">
 
@@ -49,8 +49,8 @@
                     </a>
                     <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
                 </div>
-                
-                <?= $this->element('menu/admin')?>
+
+                <?= $this->element('menu/admin') ?>
 
             </header>
             <!-- End: Header -->
@@ -143,8 +143,8 @@
                 </header>
                 <!-- End: Topbar -->
                 <script>
-                var tipo_notif = null;
-                var texto_noyif = null;
+                  var tipo_notif = null;
+                  var texto_noyif = null;
                 </script>
                 <!-- Begin: Content -->
                 <?= $this->Flash->render() ?>
@@ -239,7 +239,7 @@
 
         <!-- jQuery -->  
         <script src="<?php echo $this->request->webroot; ?>js/jquery_ui/jquery-ui.min.js"></script>
-        
+
         <script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/pnotify/pnotify.js"></script>
 
         <!-- Datatables -->
@@ -262,97 +262,141 @@
         <script src="<?php echo $this->request->webroot; ?>js/demo/demo.js"></script>
         <script src="<?php echo $this->request->webroot; ?>js/main.js"></script>
         <script type="text/javascript">
-          jQuery(document).ready(function () {
+                  jQuery(document).ready(function () {
 
-              "use strict";
+                      "use strict";
 
-              // Init Theme Core    
-              Core.init();
+                      // Init Theme Core    
+                      Core.init();
 
-              // Init Demo JS    
-              Demo.init();
+                      // Init Demo JS    
+                      Demo.init();
 
-              if (tipo_notif && texto_noyif) {
-                  var Stacks = {
-                      stack_bar_top: {
-                          "dir1": "down",
-                          "dir2": "right",
-                          "push": "top",
-                          "spacing1": 0,
-                          "spacing2": 0
+                      if (tipo_notif && texto_noyif) {
+                          var Stacks = {
+                              stack_bar_top: {
+                                  "dir1": "down",
+                                  "dir2": "right",
+                                  "push": "top",
+                                  "spacing1": 0,
+                                  "spacing2": 0
+                              }
+                          }
+                          var noteShadow = "false";
+                          var noteStack = "stack_bar_top";
+                          var noteOpacity = "1";
+
+                          // Create new Notification
+                          new PNotify({
+                              title: tipo_notif,
+                              text: texto_noyif,
+                              shadow: noteShadow,
+                              opacity: noteOpacity,
+                              addclass: noteStack,
+                              type: noteStyle,
+                              stack: Stacks[noteStack],
+                              width: "100%",
+                              delay: 2000
+                          });
                       }
-                  }
-                  var noteShadow = "false";
-                  var noteStack = "stack_bar_top";
-                  var noteOpacity = "1";
 
-                  // Create new Notification
-                  new PNotify({
-                      title: tipo_notif,
-                      text: texto_noyif,
-                      shadow: noteShadow,
-                      opacity: noteOpacity,
-                      addclass: noteStack,
-                      type: noteStyle,
-                      stack: Stacks[noteStack],
-                      width: "100%",
-                      delay: 2000
+                      $('.tabla-dato').dataTable({
+                          "aoColumnDefs": [{
+                                  'bSortable': false,
+                                  'aTargets': [-1]
+                              }],
+                          "oLanguage": {
+                              "oPaginate": {
+                                  "sPrevious": "Anterior",
+                                  "sNext": "Siguiente"
+                              },
+                              "sSearch": "Buscar",
+                              "sLengthMenu": "Mostrar _MENU_ registros"
+                          },
+                          "iDisplayLength": 5,
+                          "aLengthMenu": [
+                              [5, 10, 25, 50, -1],
+                              [5, 10, 25, 50, "Todos"]
+                          ],
+                          "sDom": '<"dt-panelmenu clearfix"lfr>t<"dt-panelfooter clearfix"ip>'
+                      });
+
                   });
-              }
 
-              $('.tabla-dato').dataTable({
-                  "aoColumnDefs": [{
-                          'bSortable': false,
-                          'aTargets': [-1]
-                      }],
-                  "oLanguage": {
-                      "oPaginate": {
-                          "sPrevious": "Anterior",
-                          "sNext": "Siguiente"
-                      },
-                      "sSearch": "Buscar",
-                      "sLengthMenu": "Mostrar _MENU_ registros"
-                  },
-                  "iDisplayLength": 5,
-                  "aLengthMenu": [
-                      [5, 10, 25, 50, -1],
-                      [5, 10, 25, 50, "Todos"]
-                  ],
-                  "sDom": '<"dt-panelmenu clearfix"lfr>t<"dt-panelfooter clearfix"ip>'
-              });
+                  function cargarmodal(urll) {
 
-          });
+                      jQuery("#spin-cargando-mod").show();
+                      jQuery("#divmodal").hide();
+                      $.magnificPopup.open({
+                          removalDelay: 500, //delay removal by X to allow out-animation,
+                          items: {
+                              src: '#mimodal'
+                          },
+                          // overflowY: 'hidden', // 
+                          callbacks: {
+                              beforeOpen: function (e) {
+                                  this.st.mainClass = 'mfp-zoomIn';
+                              }
+                          },
+                          midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+                      });
+                      jQuery("#divmodal").load(urll, function (responseText, textStatus, req) {
+                          if (textStatus == "error")
+                          {
+                              alert("error!!!");
+                          }
+                          else {
+                              jQuery("#spin-cargando-mod").hide(500);
+                              jQuery("#divmodal").show();
+                          }
+                      });
 
-          function cargarmodal(urll) {
-              
-              jQuery("#spin-cargando-mod").show();
-              jQuery("#divmodal").hide();
-              $.magnificPopup.open({
-                  removalDelay: 500, //delay removal by X to allow out-animation,
-                  items: {
-                      src: '#mimodal'
-                  },
-                  // overflowY: 'hidden', // 
-                  callbacks: {
-                      beforeOpen: function (e) {
-                          this.st.mainClass = 'mfp-zoomIn';
+
+                  }
+
+
+                  if ($('#skin-toolbox').length) {
+                      $('#skin-toolbox .panel-heading').on('click', function () {
+                          $('#skin-toolbox').toggleClass('toolbox-open');
+                      });
+                      // Disable text selection
+                      $('#skin-toolbox .panel-heading').disableSelection();
+
+                      // Cache component elements
+                      var Body = $('body');
+                      var Breadcrumbs = $('#topbar');
+                      var Sidebar = $('#sidebar_left');
+                      var Header = $('.navbar');
+                      var Branding = Header.children('.navbar-branding');
+
+                      // Possible Component Skins
+                      var headerSkins = "bg-primary bg-success bg-info bg-warning bg-danger bg-alert bg-system bg-dark";
+                      var sidebarSkins = "sidebar-light light dark";
+
+                      // Theme Settings
+                      var settingsObj = {
+                          // 'headerTone': true,
+                          'headerSkin': '',
+                          'sidebarSkin': 'sidebar-default',
+                          'headerState': 'navbar-fixed-top',
+                          'sidebarState': 'affix',
+                          'sidebarAlign': '',
+                          'breadcrumbState': 'relative',
+                          'breadcrumbHidden': 'visible',
+                      };
+
+                      // Local Storage Theme Key
+                      var themeKey = 'admin-settings1';
+
+                      // Local Storage Theme Get
+                      var themeGet = localStorage.getItem(themeKey);
+
+                      // Set new key if one doesn't exist
+                      if (themeGet === null) {
+                          localStorage.setItem(themeKey, JSON.stringify(settingsObj));
+                          themeGet = localStorage.getItem(themeKey);
                       }
-                  },
-                  midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
-              });
-              jQuery("#divmodal").load(urll, function (responseText, textStatus, req) {
-                  if (textStatus == "error")
-                  {
-                      alert("error!!!");
                   }
-                  else {
-                      jQuery("#spin-cargando-mod").hide(500);
-                      jQuery("#divmodal").show();
-                  }
-              });
-
-
-          }
         </script>
 
         <!-- END: PAGE SCRIPTS -->

@@ -6,7 +6,7 @@
             <div class="admin-form">
                 <div class="panel heading-border">
                     <div class="panel-body bg-light">
-                        <?= $this->Form->create($consultorio) ?>
+                        <?= $this->Form->create($consultorio,['id' => 'form-consultorio']) ?>
                         <?php echo $this->Form->hidden('medico_id', ['value' => $idMedico]); ?>
                         <div class="section-divider mb40">
                             <span><?php echo "Formulario Consultorio - " . $medico->nombre ?></span>

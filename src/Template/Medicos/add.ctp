@@ -353,6 +353,7 @@
   $("#form-medico").submit(function (event) {
       $('#tabla-horarios-t tr').attr('contenteditable', false);
       $('#idcampo-horarios').val($('#tabla-horarios').html());
+      
   });
 </script>
 

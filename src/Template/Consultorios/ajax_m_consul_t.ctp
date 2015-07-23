@@ -1,3 +1,4 @@
+
 <div class="row">
     <samp class="panel-controls" onclick="window.location.href = '<?= $this->Url->build(['action' => 'edit_cons', $idConsultorio]); ?>';">
         <i class="fa fa-edit"></i>
@@ -36,57 +37,7 @@
     </div>
     <div class="col-md-7">
         <div id="tabla-horarios">
-            <table class="table table-bordered" id="tabla-horarios-t">
-                <thead>
-                    <tr class="primary">
-                        <th colspan="6" class="text-center">
-                            <b>HORARIOS</b>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="success">
-                        <td class="text-center">Lunes</td>
-                        <td class="text-center">Martes</td>
-                        <td class="text-center">Miercoles</td>
-                        <td class="text-center">Jueves</td>
-                        <td class="text-center">Viernes</td>
-                        <td class="text-center">Sabado</td>
-                    </tr>
-                    <tr class="editablec" contenteditable="false">
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                    </tr>
-                    <tr class="editablec" contenteditable="false">
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                    </tr>
-                    <tr class="editablec" contenteditable="false">
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                    </tr>
-                    <tr class="editablec" contenteditable="false">
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                        <td class="text-center">HORA</td>
-                    </tr>
-                </tbody>
-            </table>
+            <?= $consultorio->horarios ?>
         </div>
     </div>
 </div>
@@ -107,28 +58,30 @@ if (!empty($consultorio->lng)) {
     //$('#tabla-horarios').html('<?php// echo $consultorio->horarios ?>');
 <?php endif; ?>
 
-  var map ;
-  function initialize() {
-      var mapOptions = {
+  var <?php echo 'map'.$consultorio->id?> ;
+  function <?php echo 'initialize'.$consultorio->id?>() {
+      var <?php echo 'mapOptions'.$consultorio->id?> = {
           zoom: 14,
           center: new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $lng; ?>),
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           scrollwheel: false
       };
-      map = new google.maps.Map(document.getElementById('mapa-m<?php echo $consultorio->id ?>'), mapOptions);
+      <?php echo 'map'.$consultorio->id?> = new google.maps.Map(document.getElementById('mapa-m<?php echo $consultorio->id ?>'), <?php echo 'mapOptions'.$consultorio->id?>);
 
-      var pos = new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $lng; ?>);
+      var <?php echo 'pos'.$consultorio->id?> = new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $lng; ?>);
 
-      var marker = new google.maps.Marker({
-          position: pos,
-          map: map,
+      var <?php echo 'marker'.$consultorio->id?> = new google.maps.Marker({
+          position: <?php echo 'pos'.$consultorio->id?>,
+          map: <?php echo 'map'.$consultorio->id?>,
           title: "Arrastrar para mover",
           animation: google.maps.Animation.BOUNCE,
           draggable: false
       });
 
-      marker.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
+      <?php echo 'marker'.$consultorio->id?>.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
   }
-  google.maps.event.addDomListener(window, 'load', initialize);
+  
+  //google.maps.event.addDomListener(window, 'load', <?php //echo 'initialize'.$consultorio->id?>);
+  carga_mapa_a(<?php echo 'initialize'.$consultorio->id?>);
 
 </script>

@@ -178,7 +178,7 @@ var Demo = function() {
   // DEMO FUNCTIONS - primarily trash
   var runDemoSettings = function() {
 
-    if ($('#skin-toolbox').length) {
+    /*if ($('#skin-toolbox').length) {
 
       // Toggles Theme Settings Tray
       $('#skin-toolbox .panel-heading').on('click', function() {
@@ -496,7 +496,7 @@ var Demo = function() {
 
       });
 
-    }
+    }*/
   }
 
   var runFullscreenDemo = function() {

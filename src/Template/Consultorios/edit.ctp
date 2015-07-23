@@ -49,57 +49,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div id="tabla-horarios">
-                                    <table class="table table-bordered" id="tabla-horarios-t">
-                                        <thead>
-                                            <tr class="primary">
-                                                <th colspan="6" class="text-center">
-                                                    <b>HORARIOS</b>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="success">
-                                                <td class="text-center">Lunes</td>
-                                                <td class="text-center">Martes</td>
-                                                <td class="text-center">Miercoles</td>
-                                                <td class="text-center">Jueves</td>
-                                                <td class="text-center">Viernes</td>
-                                                <td class="text-center">Sabado</td>
-                                            </tr>
-                                            <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                            </tr>
-                                            <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                            </tr>
-                                            <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                            </tr>
-                                            <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <?= $consultorio->horarios ?>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +91,8 @@ if (!empty($consultorio->lng)) {
 ?>
 <script type="text/javascript">
 <?php if (!empty($consultorio->horarios)): ?>
-    $('#tabla-horarios').html('<?= $consultorio->horarios ?>');
+    //$('#tabla-horarios').html('<?php //echo $consultorio->horarios  ?>');
+    //$('#tabla-horarios').html('<table class="table table-bordered" id="tabla-horarios-t"></table>');
     $('#tabla-horarios-t tr').attr('contenteditable', true);
 <?php endif; ?>
   $("#form-consultorio").submit(function (event) {
