@@ -86,6 +86,8 @@ class MedicosTable extends Table {
 
     $validator
       ->allowEmpty('leyenda');
+    $validator
+      ->allowEmpty('url');
 
     return $validator;
   }

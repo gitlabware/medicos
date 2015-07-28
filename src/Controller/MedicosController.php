@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Utility\Text;
 
 /**
  * Medicos Controller
@@ -48,7 +49,7 @@ class MedicosController extends AppController {
   public function add() {
     $medico = $this->Medicos->newEntity();
     if ($this->request->is('post')) {
-      /*debug($this->request->data);
+      /* debug($this->request->data);
         exit; */
       $users = TableRegistry::get('Users');
       $user = $users->newEntity();
@@ -146,14 +147,14 @@ class MedicosController extends AppController {
 
   public function perfil() {
     $medico = $this->get_medico();
-    /* debug($medico);
+    /*debug($medico);
       exit; */
     $sociales = TableRegistry::get('Sociales');
     $lsociales = $sociales->find('all');
     $consultorios = TableRegistry::get('Consultorios');
-    $lconsultorios = $consultorios->find()->select(['id','nombre'])->where(['medico_id' => $medico->id]);
+    $lconsultorios = $consultorios->find()->select(['id', 'nombre'])->where(['medico_id' => $medico->id]);
     //debug($lconsultorios->toArray());exit;
-    $this->set(compact('medico', 'lsociales','lconsultorios'));
+    $this->set(compact('medico', 'lsociales', 'lconsultorios'));
   }
 
   public function get_medico() {
@@ -253,6 +254,54 @@ class MedicosController extends AppController {
     $resultados = $this->Medicos->find('all')->Where(['nombre LIKE' => "%" . $buscado . "%"]);
     debug($resultados);
     exit;
+  }
+
+  public function ajax_imagen_p($idMedico = null) {
+    $this->layout = 'ajax';
+
+    $medico = $this->Medicos->get($idMedico);
+    if ($this->request->is(['patch', 'post', 'put'])) {
+      /*debug($this->request->data);
+      exit;*/
+      $medico = $this->Medicos->patchEntity($medico, $this->request->data);
+      if (!empty($medico->errors())) {
+        $this->Flash->msgerror(current(current($medico->errors())));
+      } else {
+        if ($this->Medicos->save($medico)) {
+          $this->Flash->msgbueno(__('Se ha registrado correctamente la imagen'));
+          return $this->redirect(['action' => 'perfil']);
+        } else {
+          $this->Flash->msgerror(__('Ocurrio un error no se pudo cambiar la imagen de perfil'));
+        }
+      }
+    }
+    $this->set(compact('medico'));
+  }
+
+  public function ajax_carga_i() {
+
+    /*debug($this->request->data['imagen_aux']);
+    exit;*/
+    $this->layout = 'ajax';
+    $archivo = $this->request->data['imagen_aux'];
+    if ($archivo['error'] === UPLOAD_ERR_OK) {
+      if ($archivo['type'] == 'image/jpeg') {
+        $nombre = Text::uuid();
+        if (move_uploaded_file($archivo['tmp_name'], WWW_ROOT . 'perfiles' . DS . $nombre . '.jpg')) {
+          $nombre_imagen = $nombre . '.jpg';
+        }
+      } else {
+        $error = "La imagen debe de ser formato jpeg o jpg";
+      }
+    }else{
+      $error = "Ocurrio un error intente nuevamente";
+    }
+    $this->set(compact('nombre_imagen','error'));
+    /*$this->autoRender = false;
+        $this->response->type('json');
+
+        $json = json_encode(array('message'=>'GET request not allowed!'));
+        $this->response->body($json); */
   }
 
 }

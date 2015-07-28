@@ -2,6 +2,7 @@
 /config/app.php
 /tmp/*
 /logs/*
+/webroot/perfiles/*
 
 # IDE and editor specific files #
 #################################

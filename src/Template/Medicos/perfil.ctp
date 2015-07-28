@@ -11,10 +11,14 @@
         <div class="media clearfix">
             <div class="media-left pr30">
                 <a href="#">
-                    <samp class="panel-controls">
+                    <samp class="panel-controls" onclick="cargarmodal('<?= $this->Url->build(['action' => 'ajax_imagen_p', $medico->id]); ?>');">
                         <i class="fa fa-edit"></i>
                     </samp>
-                    <img class="media-object mw150" src="<?php echo $this->request->webroot; ?>img/avatars/profile_avatar.jpg" alt="...">
+                    <?php if (empty($medico->url)): ?>
+                      <img class="media-object mw150" src="<?php echo $this->request->webroot; ?>img/iconos/doctor-icono.jpg" alt="..." height="230" width="210">
+                    <?php else: ?>
+                      <img class="media-object mw150" src="<?php echo $this->request->webroot; ?>/perfiles/<?= $medico->url; ?>" alt="..." height="230" width="210">
+                    <?php endif; ?>
                 </a>
             </div>                      
             <div class="media-body va-m">
@@ -118,9 +122,9 @@
                       <li class="<?= $tactive ?>">
                           <a href="#tab<?= ($key + 1) ?>" data-toggle="tab" onclick="$('#tab<?= ($key + 1) ?>').load('<?= $this->Url->build(['controller' => 'Consultorios', 'action' => 'ajax_m_consul_t', $con->id]); ?>');"><?= $con->nombre ?></a>
                       </li>
-                      
+
                     <?php endforeach; ?>
-                      <samp class="panel-controls" onclick="window.location.href = '<?= $this->Url->build(['controller' => 'Consultorios','action' => 'add_cons']); ?>';">
+                    <samp class="panel-controls" onclick="window.location.href = '<?= $this->Url->build(['controller' => 'Consultorios', 'action' => 'add_cons']); ?>';">
                         <i class="fa fa-plus-square"></i>
                     </samp>
                 </ul>
@@ -340,93 +344,93 @@
         </div>
     </div>
     <!-- Chat Widget -->
-              <div class="col-md-6">
-                <div class="panel panel-widget chat-widget">
-                  <div class="panel-heading">
-                    <span class="panel-icon">
-                      <i class="fa fa-pencil"></i>
-                    </span>
-                    <span class="panel-title"> Chat Widget</span>
-                  </div>
-                  <div class="panel-body bg-light dark panel-scroller scroller-sm pn">
-                    <div class="media">
-                      <div class="media-left">
-                      </div>
-                      <div class="media-body">
+    <div class="col-md-6">
+        <div class="panel panel-widget chat-widget">
+            <div class="panel-heading">
+                <span class="panel-icon">
+                    <i class="fa fa-pencil"></i>
+                </span>
+                <span class="panel-title"> Chat Widget</span>
+            </div>
+            <div class="panel-body bg-light dark panel-scroller scroller-sm pn">
+                <div class="media">
+                    <div class="media-left">
+                    </div>
+                    <div class="media-body">
                         <span class="media-status"></span>
                         <h5 class="media-heading">Courtney Faught
-                          <small> - 12:30am</small>
+                            <small> - 12:30am</small>
                         </h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                      </div>
                     </div>
-                    <div class="media">
-                      <div class="media-body">
+                </div>
+                <div class="media">
+                    <div class="media-body">
                         <span class="media-status offline"></span>
                         <h5 class="media-heading">Joe Gibbons
-                          <small> - 12:30am</small>
+                            <small> - 12:30am</small>
                         </h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                      </div>
-                      
                     </div>
-                    <div class="media">
-                        <div class="media-left">
-                      </div>
-                      <div class="media-body">
-                        <span class="media-status online"></span>
-                        <h5 class="media-heading">Courtney Faught
-                          <small> - 12:30am</small>
-                        </h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel-footer">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Enter your message here...">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default btn-gradient" type="button">Enviar mensage</button>
-                      </span>
-                    </div>
-                    <!-- /input-group -->
-                  </div>
-
 
                 </div>
-              </div>
+                <div class="media">
+                    <div class="media-left">
+                    </div>
+                    <div class="media-body">
+                        <span class="media-status online"></span>
+                        <h5 class="media-heading">Courtney Faught
+                            <small> - 12:30am</small>
+                        </h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter your message here...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-gradient" type="button">Enviar mensage</button>
+                    </span>
+                </div>
+                <!-- /input-group -->
+            </div>
+
+
+        </div>
+    </div>
 
 </section>
 
 <script type="text/javascript">
   /*var milat = -16.49;
-  var milng = -68.12;
+   var milng = -68.12;
+   
+   var map;
+   
+   function initialize() {
+   var mapOptions = {
+   zoom: 14,
+   center: new google.maps.LatLng(milat, milng),
+   mapTypeId: google.maps.MapTypeId.ROADMAP,
+   scrollwheel: false
+   };
+   map = new google.maps.Map(document.getElementById('mimapa'), mapOptions);
+   
+   var pos = new google.maps.LatLng(milat, milng);
+   
+   var marker = new google.maps.Marker({
+   position: pos,
+   map: map,
+   title: "Arrastrar para mover",
+   animation: google.maps.Animation.BOUNCE,
+   draggable: false
+   });
+   
+   marker.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
+   }
+   google.maps.event.addDomListener(window, 'load', initialize);
+   */
 
-  var map;
-
-  function initialize() {
-      var mapOptions = {
-          zoom: 14,
-          center: new google.maps.LatLng(milat, milng),
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          scrollwheel: false
-      };
-      map = new google.maps.Map(document.getElementById('mimapa'), mapOptions);
-
-      var pos = new google.maps.LatLng(milat, milng);
-
-      var marker = new google.maps.Marker({
-          position: pos,
-          map: map,
-          title: "Arrastrar para mover",
-          animation: google.maps.Animation.BOUNCE,
-          draggable: false
-      });
-
-      marker.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
-  }
-  google.maps.event.addDomListener(window, 'load', initialize);
-  */
-
-  function carga_mapa_a(nombreini){
-    google.maps.event.addDomListener(window, 'load', nombreini());
+  function carga_mapa_a(nombreini) {
+      google.maps.event.addDomListener(window, 'load', nombreini());
   }
   function cargarmodal_u(urll) {
 

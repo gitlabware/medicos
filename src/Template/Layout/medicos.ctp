@@ -49,14 +49,20 @@
                     </a>
                     <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
                 </div>
-
+                
                 <?= $this->element('menu/admin') ?>
 
             </header>
             <!-- End: Header -->
 
             <!-- Start: Sidebar -->
-            <?php echo $this->element('sidebar/admin'); ?>
+            <?php 
+            if($this->request->session()->read('Auth.User.role') == 'Administrador'){
+              echo $this->element('sidebar/admin');
+            }elseif($this->request->session()->read('Auth.User.role') == 'Medico'){
+              echo $this->element('sidebar/medico');
+            }
+            ?>
 
             <!-- Start: Content-Wrapper -->
             <section id="content_wrapper">

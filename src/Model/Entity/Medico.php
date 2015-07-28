@@ -30,6 +30,7 @@ class Medico extends Entity {
     'user' => true,
     'consultorios' => true,
     'leyenda' => true,
+    'url' => true,
   ];
 
   protected function _getFechaNacimiento($fecha) {
