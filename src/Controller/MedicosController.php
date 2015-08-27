@@ -193,13 +193,10 @@ class MedicosController extends AppController {
     $msociales = TableRegistry::get('Medicosociales');
     $medicosociale = $msociales->find()->where(['sociale_id' => $idSocial, 'medico_id' => $idMedico])->first();
     if (empty($medicosociale)) {
-
       $medicosociale = $msociales->newEntity();
     }
     if ($this->request->is(['patch', 'post', 'put'])) {
-
       $medicosociale = $msociales->patchEntity($medicosociale, $this->request->data);
-
       $msociales->save($medicosociale);
       $this->Flash->msgbueno("Se registro correctamente!!", 'msgbueno');
       $this->redirect($this->referer());

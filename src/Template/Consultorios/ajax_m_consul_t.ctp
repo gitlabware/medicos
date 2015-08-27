@@ -54,10 +54,6 @@ if (!empty($consultorio->lng)) {
 ?>
 <script type="text/javascript">
 
-<?php if (!empty($consultorio->horarios)): ?>
-    //$('#tabla-horarios').html('<?php// echo $consultorio->horarios ?>');
-<?php endif; ?>
-
   var <?php echo 'map'.$consultorio->id?> ;
   function <?php echo 'initialize'.$consultorio->id?>() {
       var <?php echo 'mapOptions'.$consultorio->id?> = {

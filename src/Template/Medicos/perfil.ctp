@@ -343,59 +343,7 @@
             </div>
         </div>
     </div>
-    <!-- Chat Widget -->
-    <div class="col-md-6">
-        <div class="panel panel-widget chat-widget">
-            <div class="panel-heading">
-                <span class="panel-icon">
-                    <i class="fa fa-pencil"></i>
-                </span>
-                <span class="panel-title"> Chat Widget</span>
-            </div>
-            <div class="panel-body bg-light dark panel-scroller scroller-sm pn">
-                <div class="media">
-                    <div class="media-left">
-                    </div>
-                    <div class="media-body">
-                        <span class="media-status"></span>
-                        <h5 class="media-heading">Courtney Faught
-                            <small> - 12:30am</small>
-                        </h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="media-body">
-                        <span class="media-status offline"></span>
-                        <h5 class="media-heading">Joe Gibbons
-                            <small> - 12:30am</small>
-                        </h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                    </div>
-
-                </div>
-                <div class="media">
-                    <div class="media-left">
-                    </div>
-                    <div class="media-body">
-                        <span class="media-status online"></span>
-                        <h5 class="media-heading">Courtney Faught
-                            <small> - 12:30am</small>
-                        </h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Enter your message here...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default btn-gradient" type="button">Enviar mensage</button>
-                    </span>
-                </div>
-                <!-- /input-group -->
-            </div>
-
-
-        </div>
-    </div>
+   
 
 </section>
 

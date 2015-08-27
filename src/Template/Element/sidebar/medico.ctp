@@ -74,21 +74,10 @@
         <ul class="nav sidebar-menu">
             <li class="sidebar-label pt20">Menu</li>
             <li>
-                <a href="javascript:" class="accordion-toggle">
-                    <span class="fa fa-users"></span>
-                    <span class="sidebar-title">Usuarios</span>
-                    <span class="caret"></span>
+                <a href="<?= $this->Url->build(['controller' => 'Medicos','action' => 'perfil']);?>">
+                    <span class="fa fa-user"></span>
+                    <span class="sidebar-title">Mi Perfil</span>
                 </a>
-                <ul class="nav sub-nav">
-                    <li>
-                        <a href="<?php echo $this->Url->build(['controller' => 'Users', 'action' => 'index']) ?>">
-                             Listado de Usuarios</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo $this->Url->build(['controller' => 'Users', 'action' => 'add']) ?>">
-                             Nuevo Usuario</a>
-                    </li>
-                </ul>
             </li>
         </ul>
         <!-- End: Sidebar Menu -->
