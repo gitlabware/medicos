@@ -108,6 +108,16 @@ class ConsultoriosController extends AppController {
     }
     return $this->redirect(['action' => 'index', $idMedico]);
   }
+  
+  public function elimina($id = null) {
+    $consultorio = $this->Consultorios->get($id);
+    if ($this->Consultorios->delete($consultorio)) {
+      $this->Flash->msgbueno(__('El consultorio se ha eliminado correctamente!!!'));
+    } else {
+      $this->Flash->msgerror(__('El Consultorio podria no haberse eliminado!!!'));
+    }
+    return $this->redirect($this->referer());
+  }
 
   public function ajax_m_consul_t($idConsultorio = null) {
     $this->layout = 'ajax';

@@ -156,6 +156,17 @@ class MedicosController extends AppController {
     //debug($lconsultorios->toArray());exit;
     $this->set(compact('medico', 'lsociales', 'lconsultorios'));
   }
+  public function vperfil($idMedico = NULL) {
+    $medico = $this->Medicos->get($idMedico);
+    /*debug($medico);
+      exit; */
+    $sociales = TableRegistry::get('Sociales');
+    $lsociales = $sociales->find('all');
+    $consultorios = TableRegistry::get('Consultorios');
+    $lconsultorios = $consultorios->find()->select(['id', 'nombre'])->where(['medico_id' => $medico->id]);
+    //debug($lconsultorios->toArray());exit;
+    $this->set(compact('medico', 'lsociales', 'lconsultorios'));
+  }
 
   public function get_medico() {
     $idUsuario = $this->request->session()->read('Auth.User.id');
@@ -299,6 +310,10 @@ class MedicosController extends AppController {
 
         $json = json_encode(array('message'=>'GET request not allowed!'));
         $this->response->body($json); */
+  }
+  
+  public function buscador(){
+    
   }
 
 }

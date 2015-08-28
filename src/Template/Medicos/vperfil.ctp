@@ -3,23 +3,10 @@
 
     <!-- Begin .page-heading -->
     <div class="page-heading">
-        <div class="widget-menu pull-right mr10">
-            <div class="btn-group">
-                <button type="button" class="btn btn-xs btn-success" title="Editar" onclick="cargarmodal('<?= $this->Url->build(['action' => 'ajax_edit1']); ?>');">
-                    <span class="glyphicon glyphicon-edit fs11 mr5"></span>
-                </button>
-            </div>
-        </div>
+
         <div class="media clearfix">
             <div class="media-left pr30">
                 <a href="#">
-                    <div class="widget-menu pull-right mr10">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-xs btn-success" title="Editar" onclick="cargarmodal('<?= $this->Url->build(['action' => 'ajax_imagen_p', $medico->id]); ?>');">
-                                <span class="glyphicon glyphicon-edit fs11 mr5"></span>
-                            </button>
-                        </div>
-                    </div>
                     <?php if (empty($medico->url)): ?>
                       <img class="media-object mw150" src="<?php echo $this->request->webroot; ?>img/iconos/doctor-icono.jpg" alt="..." height="230" width="210">
                     <?php else: ?>
@@ -38,13 +25,7 @@
                               <a href="javascript:" title="<?= $so->nombre ?>">
                                   <span class="<?= $so->icono ?>"></span>
                               </a> 
-                              <div class="widget-menu pull-right mr10">
-                                  <div class="btn-group">
-                                      <button type="button" class="btn btn-xs btn-success" title="Editar" onclick="cargarmodal('<?= $this->Url->build(['action' => 'ajax_sociales', $medico->id, $so->id]) ?>');">
-                                          <span class="glyphicon glyphicon-edit fs11 mr5"></span>
-                                      </button>
-                                  </div>
-                              </div>
+
                           </li>
                         <?php endforeach; ?>
                     </ul>
@@ -59,13 +40,7 @@
             <div class="panel sort-disable mb50">
                 <div class="panel-heading">
                     <span class="panel-title"> Informacion Basica</span>
-                    <div class="widget-menu pull-right mr10">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-xs btn-success" onclick="cargarmodal('<?= $this->Url->build(['action' => 'ajax_edit2']); ?>');">
-                                <span class="glyphicon glyphicon-edit fs11 mr5"></span>Editar
-                            </button>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="panel-body">
                     <table class="table table-bordered" style="background-color: white;">
@@ -138,13 +113,7 @@
                       </li>
 
                     <?php endforeach; ?>
-                    <div class="widget-menu pull-right mr10">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-xs btn-success"  onclick="window.location.href = '<?= $this->Url->build(['controller' => 'Consultorios', 'action' => 'add_cons']); ?>';">
-                                <span class="glyphicon glyphicon-plus fs11 mr5"></span>Add
-                            </button>
-                        </div>
-                    </div>
+
                 </ul>
                 <div class="tab-content p30">
                     <?php foreach ($lconsultorios as $key => $con): ?>

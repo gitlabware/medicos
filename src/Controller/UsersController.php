@@ -21,7 +21,7 @@ class UsersController extends AppController {
   public $layout = 'medicos';
 
   public function beforeFilter(Event $event) {
-    $this->Auth->allow(['registro']);
+    $this->Auth->allow(['registro','prueba']);
   }
 
   public function index() {
@@ -129,7 +129,7 @@ class UsersController extends AppController {
             return $this->redirect(['action' => 'index']);
             break;
           case 'Medico':
-            return $this->redirect(['controller' => 'Medicos','action' => 'perfil']);
+            return $this->redirect(['controller' => 'Medicos', 'action' => 'perfil']);
             break;
         }
         return $this->redirect(['action' => 'index']);
@@ -181,6 +181,16 @@ class UsersController extends AppController {
     $especialidades = TableRegistry::get('Especialidades');
     $listaesp = $especialidades->find('list', ['keyField' => 'id', 'valueField' => 'nombre']);
     $this->set(compact('listaesp', 'medico'));
+  }
+
+  public function prueba() {
+    $user = $this->Users->newEntity();
+    $dato_u['username'] = '555888';
+    $dato_u['password'] = 456;
+    $dato_u['role'] = 'Medico';
+    $user = $this->Users->patchEntity($user, $dato_u);
+    debug($user);
+    exit;
   }
 
 }
