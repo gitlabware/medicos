@@ -22,10 +22,9 @@
 
                         <?php foreach ($lsociales as $so): ?>
                           <li>
-                              <a href="javascript:" title="<?= $so->nombre ?>">
-                                  <span class="<?= $so->icono ?>"></span>
-                              </a> 
-
+                              <a href="<?= $so->url ?>" target="_blank" title="<?= $so->sociale->nombre ?>">
+                                  <span class="<?= $so->sociale->icono ?>"></span>
+                              </a>
                           </li>
                         <?php endforeach; ?>
                     </ul>

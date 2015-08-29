@@ -53,10 +53,10 @@ class FarmaciasController extends AppController {
         $this->Flash->msgerror(__(current($farmacia->errors())['_empty']));
       } else {
         if ($this->Farmacias->save($farmacia)) {
-          $this->Flash->msgbueno(__('The farmacia has been saved.'));
+          $this->Flash->msgbueno(__('Se ha registrado correctamente!!'));
           return $this->redirect(['action' => 'index']);
         } else {
-          $this->Flash->msgerror(__('The farmacia could not be saved. Please, try again.'));
+          $this->Flash->msgerror(__('No se ha podido registrar intente nuevamente!!'));
         }
       }
     }
@@ -79,10 +79,10 @@ class FarmaciasController extends AppController {
     if ($this->request->is(['patch', 'post', 'put'])) {
       $farmacia = $this->Farmacias->patchEntity($farmacia, $this->request->data);
       if ($this->Farmacias->save($farmacia)) {
-        $this->Flash->msgbueno(__('The farmacia has been saved.'));
+        $this->Flash->msgbueno(__('Se ha registrado correctamente!!'));
         return $this->redirect(['action' => 'index']);
       } else {
-        $this->Flash->msgerror(__('The farmacia could not be saved. Please, try again.'));
+        $this->Flash->msgerror(__('No se ha podido registrar intente nuevamente'));
       }
     }
     $farmacias = $this->Farmacias->find('list', ['keyField' => 'id', 'valueField' => 'nombre'])->where(['Farmacias.origenid IS' => NULL]);
@@ -101,9 +101,9 @@ class FarmaciasController extends AppController {
     $this->request->allowMethod(['post', 'delete']);
     $farmacia = $this->Farmacias->get($id);
     if ($this->Farmacias->delete($farmacia)) {
-      $this->Flash->msgbueno(__('The farmacia has been deleted.'));
+      $this->Flash->msgbueno(__('Se ha eliminado correctamente!!'));
     } else {
-      $this->Flash->msgerror(__('The farmacia could not be deleted. Please, try again.'));
+      $this->Flash->msgerror(__('Podria no haberse eliminado intente nuevamente!!'));
     }
     return $this->redirect(['action' => 'index']);
   }

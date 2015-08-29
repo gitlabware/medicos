@@ -114,10 +114,10 @@ class MedicosController extends AppController {
         $this->Flash->msgerror(current(current($medico->errors())));
       } else {
         if ($this->Medicos->save($medico)) {
-          $this->Flash->msgbueno(__('The medico has been saved.'));
+          $this->Flash->msgbueno(__('Se registro correctamente!!'));
           return $this->redirect(['action' => 'index']);
         } else {
-          $this->Flash->msgerror(__('The medico could not be saved. Please, try again.'));
+          $this->Flash->msgerror(__('No se pudo registrar intente nuevamente!!'));
         }
       }
     }
@@ -138,16 +138,16 @@ class MedicosController extends AppController {
     $this->request->allowMethod(['post', 'delete']);
     $medico = $this->Medicos->get($id);
     if ($this->Medicos->delete($medico)) {
-      $this->Flash->msgbueno(__('The medico has been deleted.'));
+      $this->Flash->msgbueno(__('Se elimino correctamente!!'));
     } else {
-      $this->Flash->msgerror(__('The medico could not be deleted. Please, try again.'));
+      $this->Flash->msgerror(__('No se pudo eliminar intente nuevamente!!'));
     }
     return $this->redirect(['action' => 'index']);
   }
 
   public function perfil() {
     $medico = $this->get_medico();
-    /*debug($medico);
+    /* debug($medico);
       exit; */
     $sociales = TableRegistry::get('Sociales');
     $lsociales = $sociales->find('all');
@@ -156,12 +156,12 @@ class MedicosController extends AppController {
     //debug($lconsultorios->toArray());exit;
     $this->set(compact('medico', 'lsociales', 'lconsultorios'));
   }
+
   public function vperfil($idMedico = NULL) {
-    $medico = $this->Medicos->get($idMedico);
-    /*debug($medico);
-      exit; */
-    $sociales = TableRegistry::get('Sociales');
-    $lsociales = $sociales->find('all');
+    
+    $medico = $this->Medicos->find()->contain(['Especialidades'])->where(['Medicos.id' => $idMedico])->first();
+    $sociales = TableRegistry::get('Medicosociales');
+    $lsociales = $sociales->find()->contain(['Sociales'])->where(['medico_id' => $idMedico]);
     $consultorios = TableRegistry::get('Consultorios');
     $lconsultorios = $consultorios->find()->select(['id', 'nombre'])->where(['medico_id' => $medico->id]);
     //debug($lconsultorios->toArray());exit;
@@ -269,8 +269,8 @@ class MedicosController extends AppController {
 
     $medico = $this->Medicos->get($idMedico);
     if ($this->request->is(['patch', 'post', 'put'])) {
-      /*debug($this->request->data);
-      exit;*/
+      /* debug($this->request->data);
+        exit; */
       $medico = $this->Medicos->patchEntity($medico, $this->request->data);
       if (!empty($medico->errors())) {
         $this->Flash->msgerror(current(current($medico->errors())));
@@ -288,8 +288,8 @@ class MedicosController extends AppController {
 
   public function ajax_carga_i() {
 
-    /*debug($this->request->data['imagen_aux']);
-    exit;*/
+    /* debug($this->request->data['imagen_aux']);
+      exit; */
     $this->layout = 'ajax';
     $archivo = $this->request->data['imagen_aux'];
     if ($archivo['error'] === UPLOAD_ERR_OK) {
@@ -301,19 +301,33 @@ class MedicosController extends AppController {
       } else {
         $error = "La imagen debe de ser formato jpeg o jpg";
       }
-    }else{
+    } else {
       $error = "Ocurrio un error intente nuevamente";
     }
-    $this->set(compact('nombre_imagen','error'));
-    /*$this->autoRender = false;
-        $this->response->type('json');
+    $this->set(compact('nombre_imagen', 'error'));
+    /* $this->autoRender = false;
+      $this->response->type('json');
 
-        $json = json_encode(array('message'=>'GET request not allowed!'));
-        $this->response->body($json); */
+      $json = json_encode(array('message'=>'GET request not allowed!'));
+      $this->response->body($json); */
   }
-  
-  public function buscador(){
-    
+
+  public function buscador() {
+    $medicos = $this->Medicos->find()->contain(['Especialidades'])->toArray();
+    //debug($medicos);exit;
+    $this->set(compact('medicos'));
+  }
+
+  public function ajax_b_medicos() {
+    $this->layout = 'ajax';
+    $dato = $this->request->data['dato'];
+    $medicos = $this->Medicos->find()
+      ->contain(['Especialidades'])
+      ->where([
+        'Medicos.nombre LIKE' => "%".$dato."%"
+      ])
+      ->toArray();
+    $this->set(compact('medicos'));
   }
 
 }

@@ -34,10 +34,10 @@
                                       <td><?= h($medico->ci) ?></td>
                                       <td><?= h($medico->especialidade->nombre) ?></td>
                                       <td>
-                                          <?= $this->Html->link(__('Edit'), ['action' => 'edit', $medico->id]) ?>
-                                          <?= $this->Html->link(__('Consultorios'), ['controller' => 'Consultorios', 'action' => 'index', $medico->id]) ?>
-                                          <?= $this->Html->link(__('Add Consultorios'), ['controller' => 'Consultorios', 'action' => 'add', $medico->id]) ?>
-                                          <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $medico->id], ['confirm' => __('Are you sure you want to delete # {0}?', $medico->id)]) ?>
+                                          <?= $this->Html->link('<i class="fa fa-edit"></i>', ['action' => 'edit', $medico->id],['class' => 'btn btn-info','escape' => false,'title' => 'Editar']) ?>
+                                          <?= $this->Html->link('<i class="fa fa-home"></i>', ['controller' => 'Consultorios', 'action' => 'index', $medico->id],['class' => 'btn btn-alert','escape' => false,'title' => 'Consultorios']) ?>
+                                          <?= $this->Html->link('<i class="fa fa-plus"></i>', ['controller' => 'Consultorios', 'action' => 'add', $medico->id],['class' => 'btn btn-success','escape' => false,'title' => 'Adicionar consultorio']) ?>
+                                          <?= $this->Form->postLink('<i class="fa fa-trash"></i>', ['action' => 'delete', $medico->id], ['confirm' => __('Esta seguro de eliminar ele medico # {0}?', $medico->id),'class' => 'btn btn-danger','escape' => false,'title' => 'Eliminar']) ?>
                                       </td>
                                   </tr>
 

@@ -54,10 +54,10 @@ class CentrosController extends AppController {
         $this->Flash->msgerror(current($centro->errors())['_empty']);
       } else {
         if ($this->Centros->save($centro)) {
-          $this->Flash->msgbueno(__('The centro has been saved.'));
+          $this->Flash->msgbueno(__('Se ha registrado correctamente!!'));
           return $this->redirect(['action' => 'index']);
         } else {
-          $this->Flash->msgerror(__('The centro could not be saved. Please, try again.'));
+          $this->Flash->msgerror(__('No se ha podido registrar intente nuevamente!!'));
         }
       }
     }
@@ -81,10 +81,10 @@ class CentrosController extends AppController {
     if ($this->request->is(['patch', 'post', 'put'])) {
       $centro = $this->Centros->patchEntity($centro, $this->request->data);
       if ($this->Centros->save($centro)) {
-        $this->Flash->msgbueno(__('The centro has been saved.'));
+        $this->Flash->msgbueno(__('Se registrado correctamente!!'));
         return $this->redirect(['action' => 'index']);
       } else {
-        $this->Flash->msgerror(__('The centro could not be saved. Please, try again.'));
+        $this->Flash->msgerror(__('No se ha podido registrar intente nuevamente!!'));
       }
     }
     $centros = $this->Centros->find('list', ['limit' => 200, 'keyField' => 'id', 'valueField' => 'nombre'])->where(['Centros.origenid IS' => NULL]);
@@ -104,9 +104,9 @@ class CentrosController extends AppController {
     $this->request->allowMethod(['post', 'delete']);
     $centro = $this->Centros->get($id);
     if ($this->Centros->delete($centro)) {
-      $this->Flash->msgbueno(__('The centro has been deleted.'));
+      $this->Flash->msgbueno(__('Se elimino correctamente!!'));
     } else {
-      $this->Flash->msgerror(__('The centro could not be deleted. Please, try again.'));
+      $this->Flash->msgerror(__('No se ha podido eliminar intente nuevamente'));
     }
     return $this->redirect(['action' => 'index']);
   }

@@ -27,6 +27,12 @@
                     <span class="sidebar-title">Mi Perfil</span>
                 </a>
             </li>
+            <li>
+                <a href="<?= $this->Url->build(['controller' => 'Medicos','action' => 'buscador']);?>">
+                    <span class="fa fa-stethoscope"></span>
+                    <span class="sidebar-title">Medicos</span>
+                </a>
+            </li>
         </ul>
         <!-- End: Sidebar Menu -->
 

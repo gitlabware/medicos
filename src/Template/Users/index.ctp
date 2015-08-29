@@ -30,9 +30,8 @@
                                       <td><?= h($user->created) ?></td>
                                       <td><?= h($user->modified) ?></td>
                                       <td>
-                                          <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
-                                          <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                                          <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                                          <?= $this->Html->link('<i class="fa fa-edit"></i>', ['action' => 'edit', $user->id],['class' => 'btn btn-info','escape' => false,'title' => 'Editar']) ?>
+                                          <?= $this->Form->postLink('<i class="fa fa-trash"></i>', ['action' => 'delete', $user->id], ['confirm' => __('Esta seguro de eliminar al usuario # {0}?', $user->id),'class' => 'btn btn-danger','escape' => false,'title' => 'Eliminar']) ?>
                                       </td>
                                   </tr>
                                 <?php endforeach; ?>

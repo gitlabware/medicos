@@ -63,10 +63,10 @@ class UsersController extends AppController {
     if ($this->request->is('post')) {
       $user = $this->Users->patchEntity($user, $this->request->data);
       if ($this->Users->save($user)) {
-        $this->Flash->msgbueno(__('The user has been saved.'));
+        $this->Flash->msgbueno(__('Se registro correctamente!!'));
         return $this->redirect(['action' => 'index']);
       } else {
-        $this->Flash->msgerror(__('The user could not be saved. Please, try again.'));
+        $this->Flash->msgerror(__('No se pudo registrar intente nuevamente'));
       }
     }
     $this->set(compact('user'));
@@ -90,10 +90,10 @@ class UsersController extends AppController {
       }
       $user = $this->Users->patchEntity($user, $this->request->data);
       if ($this->Users->save($user)) {
-        $this->Flash->msgbueno(__('The user has been saved.'));
+        $this->Flash->msgbueno(__('Se registro correctamente!!'));
         return $this->redirect(['action' => 'index']);
       } else {
-        $this->Flash->msgerror(__('The user could not be saved. Please, try again.'));
+        $this->Flash->msgerror(__('No se pudo registrar intente nuevamente'));
       }
     }
     $this->set(compact('user'));
@@ -111,9 +111,9 @@ class UsersController extends AppController {
     $this->request->allowMethod(['post', 'delete']);
     $user = $this->Users->get($id);
     if ($this->Users->delete($user)) {
-      $this->Flash->msgbueno(__('The user has been deleted.'));
+      $this->Flash->msgbueno(__('El usuario se elimino correctamente!!'));
     } else {
-      $this->Flash->msgerror(__('The user could not be deleted. Please, try again.'));
+      $this->Flash->msgerror(__('El usuario podira no haberse eliminado!!!'));
     }
     return $this->redirect(['action' => 'index']);
   }
@@ -149,7 +149,7 @@ class UsersController extends AppController {
     if ($this->request->is('post')) {
       $user = $this->Users->newEntity();
       $dato_u['username'] = $this->request->data['ci'];
-      $dato_u['password'] = $this->request->data['ci'];
+      $dato_u['password'] = $this->request->data['password'];
       $dato_u['role'] = 'Medico';
       $user = $this->Users->patchEntity($user, $dato_u);
       $resultado = $this->Users->save($user);
