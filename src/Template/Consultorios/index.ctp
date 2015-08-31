@@ -26,7 +26,7 @@
                                 <?php foreach ($consultorios as $consultorio): ?>
                                   <tr>
                                       <td><?= $this->Number->format($consultorio->id) ?></td>
-                                      <td><?= h($consultorio->nombre) ?></td>
+                                      <td><?= h($consultorio->nombress) ?></td>
                                       <td><?= h($consultorio->direccion) ?></td>
                                       <td><?= h($consultorio->telefonos) ?></td>
                                       <td class="actions">

@@ -12,9 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/medicos/src/Controller/MedicosController.php</file>
-            <file>file:/var/www/html/medicos/src/Template/Medicos/vperfil.ctp</file>
-            <file>file:/var/www/html/medicos/src/Template/Medicos/buscador.ctp</file>
+            <file>file:/var/www/html/medicos/src/Template/Centros/edit.ctp</file>
+            <file>file:/var/www/html/medicos/src/Controller/EspecialidadesController.php</file>
+            <file>file:/var/www/html/medicos/src/Controller/CentrosController.php</file>
+            <file>file:/var/www/html/medicos/src/Template/Consultorios/add_cons.ctp</file>
+            <file>file:/var/www/html/medicos/src/Template/Element/sidebar/admin.ctp</file>
+            <file>file:/var/www/html/medicos/src/Controller/UsersController.php</file>
+            <file>file:/var/www/html/medicos/src/Template/Especialidades/edit.ctp</file>
         </group>
     </open-files>
 </project-private>

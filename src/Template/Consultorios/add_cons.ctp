@@ -16,7 +16,7 @@
                             <div class="col-md-12">
                                 <div class="section">
                                     <label class="field">
-                                        <?php echo $this->Form->text('nombre', ['placeholder' => 'Nombre', 'class' => 'gui-input']); ?>
+                                        <?php echo $this->Form->text('nombre', ['placeholder' => 'Nombre Consultorio', 'class' => 'gui-input']); ?>
                                     </label>
                                 </div>
                             </div>

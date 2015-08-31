@@ -6,23 +6,23 @@
             <div class="admin-form">
                 <div class="panel heading-border">
                     <div class="panel-body bg-light">
-                        <?= $this->Form->create($user) ?>
+                        <?= $this->Form->create($especialidad) ?>
                         <div class="section-divider mb40">
-                            <span>Formulario de Usuario</span>
+                            <span>Formulario de Especialidad</span>
                         </div>
                         <!-- Basic Inputs -->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="section">
                                     <label class="field">
-                                        <?php echo $this->Form->text('username', ['placeholder' => 'Usuario', 'class' => 'gui-input']); ?>
+                                        <?php echo $this->Form->text('nombre', ['placeholder' => 'Nombre de la Especialidad', 'class' => 'gui-input']); ?>
                                     </label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="section">
                                     <label class="field">
-                                        <?php echo $this->Form->password('password', ['placeholder' => 'Contrasena', 'class' => 'gui-input']); ?>
+                                        <?php echo $this->Form->text('estado', ['placeholder' => 'estado', 'class' => 'gui-input']); ?>
                                     </label>
                                 </div>
                             </div>
@@ -32,7 +32,7 @@
                                 <div class="section">
                                     <label class="field">
                                         <label class="field select">
-                                            <?php echo $this->Form->select('role', ['Administrador' => 'Administrador','Medico' => 'Medico'], ['empty' => 'Seleccione el Rol']); ?>
+                                             <?php echo $this->Form->text('descripcion', ['placeholder' => 'descripcion', 'class' => 'gui-input']); ?>
                                             <i class="arrow"></i>
                                         </label>
                                     </label>

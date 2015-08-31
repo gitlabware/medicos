@@ -7,31 +7,30 @@
                 <div class="panel panel-visible">
                     <div class="panel-heading">
                         <div class="panel-title hidden-xs">
-                            <span class="glyphicon glyphicon-tasks"></span>Usuarios</div>
+                            <span class="glyphicon glyphicon-tasks"></span>Especialidades</div>
                     </div>
                     <div class="panel-body pn">
                         <table class="table table-striped table-hover dataTable tabla-dato" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th><?= __('id') ?></th>
-                                    <th><?= __('username') ?></th>
-                                    <th><?= __('role') ?></th>
-                                    <th><?= __('created') ?></th>
-                                    <th><?= __('modified') ?></th>
+                                    <th><?= __('nombre') ?></th>
+                                    <th><?= __('descripcion') ?></th>
+                                    
                                     <th><?= __('Actions') ?></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($data as $user): ?>
+                                <?php foreach ($data as $especialidad): ?>
                                   <tr>
-                                      <td><?= $this->Number->format($user->id) ?></td>
-                                      <td><?= h($user->username) ?></td>
-                                      <td><?= h($user->role) ?></td>
-                                      <td><?= h($user->created) ?></td>
-                                      <td><?= h($user->modified) ?></td>
+                                      <td><?= $this->Number->format($especialidad->id) ?></td>
+                                      <td><?= h($especialidad->nombre) ?></td>
+                                      <td><?= h($especialidad->descripcion) ?></td>
+                                   
+                                      
                                       <td>
-                                          <?= $this->Html->link('<i class="fa fa-edit"></i>', ['action' => 'edit', $user->id],['class' => 'btn btn-info','escape' => false,'title' => 'Editar']) ?>
-                                          <?= $this->Form->postLink('<i class="fa fa-trash"></i>', ['action' => 'delete', $user->id], ['confirm' => __('Esta seguro de eliminar al usuario # {0}?', $user->id),'class' => 'btn btn-danger','escape' => false,'title' => 'Eliminar']) ?>
+                                          <?= $this->Html->link('<i class="fa fa-edit"></i>', ['action' => 'edit', $especialidad->id],['class' => 'btn btn-info','escape' => false,'title' => 'Editar']) ?>
+                                          <?= $this->Form->postLink('<i class="fa fa-trash"></i>', ['action' => 'delete', $especialidad->id], ['confirm' => __('Esta seguro de eliminar la especialidad # {0}?', $especialidad->id),'class' => 'btn btn-danger','escape' => false,'title' => 'Eliminar']) ?>
                                       </td>
                                   </tr>
                                 <?php endforeach; ?>

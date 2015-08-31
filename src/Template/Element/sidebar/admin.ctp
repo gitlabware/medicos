@@ -74,6 +74,24 @@
                     </li>
                 </ul>
             </li>
+            
+            <li>
+                <a href="javascript:" class="accordion-toggle">
+                    <span class="fa fa-h-square"></span>
+                    <span class="sidebar-title">Especialidades</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="nav sub-nav">
+                    <li>
+                        <a href="<?php echo $this->Url->build(['controller' => 'Especialidades', 'action' => 'index']) ?>">
+                            Listado de Especialidades</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $this->Url->build(['controller' => 'Especialidades', 'action' => 'add']) ?>">
+                            Nueva Especialidad</a>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
         <!-- End: Sidebar Menu -->
