@@ -21,33 +21,37 @@
 </div>
 <br>
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-12">
         <table class="table table-bordered">
             <tbody>
                 <tr>
                     <td style="font-weight: bold;">Nombre</td>
                     <td><?= $consultorio->nombre ?></td>
-                </tr>
-                <tr>
+                    
                     <td style="font-weight: bold;">Direccion</td>
                     <td><?= $consultorio->direccion ?></td>
                 </tr>
+               
                 <tr>
                     <td style="font-weight: bold;">Telefono</td>
                     <td><?= $consultorio->telefonos ?></td>
-                </tr>
-                <tr>
+                    
                     <td style="font-weight: bold;">Descripcion</td>
                     <td><?= $consultorio->descripcion ?></td>
                 </tr>
+                <tr>
+                    
+                </tr>
             </tbody>
         </table>
-    </div>
-    <div class="col-md-7">
-        <div id="tabla-horarios">
+        
+         <div id="tabla-horarios">
             <?= $consultorio->horarios ?>
         </div>
     </div>
+    <!--<div class="col-md-7">
+       
+    </div>-->
 </div>
 <?php
 $lat = -16.49;

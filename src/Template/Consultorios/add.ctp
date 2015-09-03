@@ -4,7 +4,7 @@
     <div class="tray tray-center">
         <div class="mw1000 center-block">
             <div class="admin-form">
-                <div class="panel heading-border">
+                <div class="panel heading-border panel-primary">
                     <div class="panel-body bg-light">
                         <?= $this->Form->create($consultorio,['id' => 'form-consultorio']) ?>
                         <?php echo $this->Form->hidden('medico_id', ['value' => $idMedico]); ?>
@@ -67,36 +67,36 @@
                                                 <td class="text-center">Sabado</td>
                                             </tr>
                                             <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">&nbsp;  </td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center"> &nbsp; </td>
+                                                <td class="text-center"> &nbsp; </td>
+                                                <td class="text-center"> &nbsp; </td>
                                             </tr>
                                             <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
+                                                <td class="text-center"> &nbsp; </td>
+                                                <td class="text-center"> &nbsp; </td>
+                                                <td class="text-center"> &nbsp; </td>
+                                                <td class="text-center">&nbsp;  </td>
+                                                <td class="text-center"> &nbsp; </td>
+                                                <td class="text-center"> &nbsp; </td>
                                             </tr>
                                             <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">&nbsp;  </td>
+                                                <td class="text-center">&nbsp;  </td>
+                                                <td class="text-center">&nbsp;  </td>
+                                                <td class="text-center">&nbsp;  </td>
+                                                <td class="text-center">&nbsp;  </td>
+                                                <td class="text-center"> &nbsp; </td>
                                             </tr>
                                             <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">&nbsp;  </td>
+                                                <td class="text-center">&nbsp;  </td>
+                                                <td class="text-center">&nbsp;  </td>
+                                                <td class="text-center">&nbsp;  </td>
+                                                <td class="text-center"> &nbsp; </td>
+                                                <td class="text-center">&nbsp;  </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -127,8 +127,10 @@
             </div>
         </div>
     </div>
-    <?= $this->element('menuder/admin') ?>
+  
 </section>
+
+
 
 <script type="text/javascript">
   $("#form-consultorio").submit(function (event) {
@@ -171,3 +173,9 @@
   google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
+
+<?php
+echo $this->Html->script([
+  'cambiaColorForm',
+    ]);
+?>

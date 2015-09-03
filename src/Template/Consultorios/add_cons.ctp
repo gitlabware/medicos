@@ -67,36 +67,36 @@
                                                 <td class="text-center">Sabado</td>
                                             </tr>
                                             <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
                                             </tr>
                                             <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
                                             </tr>
                                             <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
                                             </tr>
                                             <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
-                                                <td class="text-center">HORA</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -127,7 +127,7 @@
             </div>
         </div>
     </div>
-    <?= $this->element('menuder/admin') ?>
+   
 </section>
 
 <script type="text/javascript">
@@ -171,3 +171,8 @@
   google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
+<?php
+echo $this->Html->script([
+  'cambiaColorForm',
+    ]);
+?>

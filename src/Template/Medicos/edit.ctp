@@ -152,7 +152,7 @@
     <!-- end: .tray-center -->
 
     <!-- begin: .tray-right -->
-    <?= $this->element('menuder/admin')?>
+    
 
 </section>
 

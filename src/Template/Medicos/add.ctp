@@ -12,7 +12,7 @@
             <!-- Begin: Admin Form -->
             <div class="admin-form">
 
-                <div class="panel heading-border">
+                <div class="panel heading-border panel-primary">
                     <div class="panel-body bg-light">
                         <?= $this->Form->Create($medico, ['id' => 'form-medico']) ?>
                         <div class="section-divider mb40" id="spy1">
@@ -279,7 +279,7 @@
     </div>
     <!-- end: .tray-center -->
 
-    <?= $this->element('menuder/admin') ?>
+    
 
 </section>
 

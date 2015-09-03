@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <?= $this->element('menuder/admin') ?>
+    
 </section>
 
 

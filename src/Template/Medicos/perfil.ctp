@@ -141,7 +141,7 @@
                     <div class="widget-menu pull-right mr10">
                         <div class="btn-group">
                             <button type="button" class="btn btn-xs btn-success"  onclick="window.location.href = '<?= $this->Url->build(['controller' => 'Consultorios', 'action' => 'add_cons']); ?>';">
-                                <span class="glyphicon glyphicon-plus fs11 mr5"></span>Add
+                                <span class="glyphicon glyphicon-plus fs11 mr5"></span>Adicionar
                             </button>
                         </div>
                     </div>

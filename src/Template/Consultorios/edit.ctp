@@ -76,8 +76,15 @@
             </div>
         </div>
     </div>
-    <?= $this->element('menuder/admin') ?>
+    
 </section>
+
+
+
+
+
+
+
 <?php
 $lat = -16.49;
 $lng = -68.12;
@@ -133,3 +140,9 @@ if (!empty($consultorio->lng)) {
   google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
+
+<?php
+echo $this->Html->script([
+  'cambiaColorForm',
+    ]);
+?>
