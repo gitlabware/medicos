@@ -16,7 +16,7 @@
             <h6 class="subheader"><?= __('Medico') ?></h6>
             <p><?= $consultorio->has('medico') ? $this->Html->link($consultorio->medico->nombre, ['controller' => 'Medicos', 'action' => 'view', $consultorio->medico->id]) : '' ?></p>
             <h6 class="subheader"><?= __('Nombre') ?></h6>
-            <p><?= h($consultorio->nombre) ?></p>
+            <p><?= h($consultorio->nombress) ?></p>
             <h6 class="subheader"><?= __('Direccion') ?></h6>
             <p><?= h($consultorio->direccion) ?></p>
             <h6 class="subheader"><?= __('Telefonos') ?></h6>

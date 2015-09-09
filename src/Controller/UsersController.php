@@ -21,7 +21,7 @@ class UsersController extends AppController {
   public $layout = 'medicos';
 
   public function beforeFilter(Event $event) {
-    $this->Auth->allow(['registro','prueba','buscador']);
+    $this->Auth->allow(['registro', 'prueba', 'buscador']);
   }
 
   public function index() {
@@ -152,29 +152,37 @@ class UsersController extends AppController {
       $dato_u['password'] = $this->request->data['password'];
       $dato_u['role'] = 'Medico';
       $user = $this->Users->patchEntity($user, $dato_u);
-      $resultado = $this->Users->save($user);
+
       //debug($resultado);exit;
-      if (!empty($resultado) && $resultado != FALSE) {
+      if (empty($user->errors())) {
+        $resultado = $this->Users->save($user);
+        if (!empty($resultado) && $resultado != FALSE) {
+          $this->request->data['user_id'] = $resultado->id;
+          $medico = $medicos->patchEntity($medico, $this->request->data);
 
-        $this->request->data['user_id'] = $resultado->id;
-        $medico = $medicos->patchEntity($medico, $this->request->data);
-
-        if ($medicos->save($medico)) {
-          $this->request->data = $dato_u;
-          $user = $this->Auth->identify();
-          if ($user) {
-            $this->Auth->setUser($user);
-            $this->Flash->msgbueno(__('Se ha registrado correctamente!!'));
-            return $this->redirect(['controller' => 'Medicos', 'action' => 'perfil']);
+          if (empty($medico->errors())) {
+            if ($medicos->save($medico)) {
+              $this->request->data = $dato_u;
+              $user = $this->Auth->identify();
+              if ($user) {
+                $this->Auth->setUser($user);
+                $this->Flash->msgbueno(__('Se ha registrado correctamente!!'));
+                return $this->redirect(['controller' => 'Medicos', 'action' => 'perfil']);
+              } else {
+                $this->Flash->msgerror(__('No se pudo Iniciar sesion!!!'));
+              }
+            } else {
+              $this->Users->delete($user);
+              $this->Flash->msgerror(__('No se pudo registrarse intente nuevamente!!'));
+            }
           } else {
-            $this->Flash->msgerror(__('No se pudo Iniciar sesion!!!'));
+            $this->Flash->msgerror(current(current($medico->errors())));
           }
         } else {
-          $this->Users->delete($user);
           $this->Flash->msgerror(__('No se pudo registrarse intente nuevamente!!'));
         }
       } else {
-        $this->Flash->msgerror(__('No se pudo registrarse intente nuevamente!!'));
+        $this->Flash->msgerror(current(current($user->errors())));
       }
     }
 
@@ -182,10 +190,10 @@ class UsersController extends AppController {
     $listaesp = $especialidades->find('list', ['keyField' => 'id', 'valueField' => 'nombre']);
     $this->set(compact('listaesp', 'medico'));
   }
-  
-  public function buscador(){
+
+  public function buscador() {
     $this->layout = 'login';
-    if(!empty($this->request->data)){
+    if (!empty($this->request->data)) {
       debug($this->request->data);
       exit;
     }

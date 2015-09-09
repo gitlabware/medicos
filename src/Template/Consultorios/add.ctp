@@ -59,7 +59,7 @@
                                         </thead>
                                         <tbody>
                                             <tr class="success">
-                                                <td class="text-center">Lunes</td>
+                                                <td class="text-center">Lunessss</td>
                                                 <td class="text-center">Martes</td>
                                                 <td class="text-center">Miercoles</td>
                                                 <td class="text-center">Jueves</td>

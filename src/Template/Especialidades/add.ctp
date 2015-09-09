@@ -6,43 +6,32 @@
             <div class="admin-form">
                 <div class="panel heading-border">
                     <div class="panel-body bg-light">
-                        <?= $this->Form->create($user) ?>
+                        <?= $this->Form->create($especialidad) ?>
                         <div class="section-divider mb40">
-                            <span>Formulario de Usuario</span>
+                            <span>Formulario de Especialidad</span>
                         </div>
                         <!-- Basic Inputs -->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="section">
                                     <label class="field">
-                                        <?php echo $this->Form->text('username', ['placeholder' => 'Usuario', 'class' => 'gui-input']); ?>
+                                        <?php echo $this->Form->text('nombre', ['placeholder' => 'Nombre de la Especialidad', 'class' => 'gui-input']); ?>
                                     </label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="section">
                                     <label class="field">
-                                        <?php echo $this->Form->password('password', ['placeholder' => 'Contrasena', 'class' => 'gui-input']); ?>
+                                        <?php echo $this->Form->text('descripcion', ['placeholder' => 'descripcion', 'class' => 'gui-input']); ?>
                                     </label>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="section">
-                                    <label class="field">
-                                        <label class="field select">
-                                            <?php echo $this->Form->select('role', ['Administrador' => 'Administrador','Medico' => 'Medico'], ['empty' => 'Seleccione el Rol']); ?>
-                                            <i class="arrow"></i>
-                                        </label>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <!-- end .form-body section -->
                         <div class="panel-footer text-right">
                             <button type="submit" class="button btn-primary"> Registrar </button>
-                            <button type="reset" class="button"> Cancel </button>
+                            <button type="reset" class="button " onclick="window.location.href = '<?php echo $this->Url->build(['action'=>'index'])?>'"> Cancel </button>
                         </div>
                         <!-- end .form-footer section -->
                         <?= $this->Form->end() ?>
