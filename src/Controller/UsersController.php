@@ -21,7 +21,7 @@ class UsersController extends AppController {
   public $layout = 'medicos';
 
   public function beforeFilter(Event $event) {
-    $this->Auth->allow(['registro','prueba']);
+    $this->Auth->allow(['registro','prueba','buscador']);
   }
 
   public function index() {
@@ -182,15 +182,13 @@ class UsersController extends AppController {
     $listaesp = $especialidades->find('list', ['keyField' => 'id', 'valueField' => 'nombre']);
     $this->set(compact('listaesp', 'medico'));
   }
-
-  public function prueba() {
-    $user = $this->Users->newEntity();
-    $dato_u['username'] = '555888';
-    $dato_u['password'] = 456;
-    $dato_u['role'] = 'Medico';
-    $user = $this->Users->patchEntity($user, $dato_u);
-    debug($user);
-    exit;
+  
+  public function buscador(){
+    $this->layout = 'login';
+    if(!empty($this->request->data)){
+      debug($this->request->data);
+      exit;
+    }
   }
 
 }
