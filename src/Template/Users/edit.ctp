@@ -32,7 +32,7 @@
                                 <div class="section">
                                     <label class="field">
                                         <label class="field select">
-                                            <?php echo $this->Form->select('role', ['Administrador' => 'Administrador','Medico' => 'Medico'], ['empty' => 'Seleccione el Rol']); ?>
+                                            <?php echo $this->Form->select('role', ['Administrador' => 'Administrador', 'Medico' => 'Medico'], ['empty' => 'Seleccione el Rol']); ?>
                                             <i class="arrow"></i>
                                         </label>
                                     </label>
@@ -51,5 +51,11 @@
             </div>
         </div>
     </div>
-    
+    <?php
+    echo $this->Html->script([
+        'cambiaColorForm',
+        'vendor/plugins/jquerymask/jquery.maskedinput.min',
+        'inicalendario'], ['block' => 'scriptjs']);
+    ?>
+
 </section>

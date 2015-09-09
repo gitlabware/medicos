@@ -98,7 +98,7 @@
         </div>
         <div class="section">
             <label for="firstname" class="field prepend-icon">
-                <?php echo $this->Form->select('especialidade_id', $listaesp, ['class' => 'select2-single form-control', 'empty' => 'Seleccione la Especialidad']); ?>
+                <?php echo $this->Form->select('especialidade_id', $listaesp, ['class' => 'select2-single form-control', 'empty' => 'Seleccione la Especialidad','required']); ?>
             </label>
         </div>
         <div class="section row">

@@ -67,36 +67,36 @@
                                                 <td class="text-center">Sabado</td>
                                             </tr>
                                             <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">&nbsp;  </td>
                                                 <td class="text-center">&nbsp;</td>
                                                 <td class="text-center">&nbsp;</td>
-                                                <td class="text-center"> &nbsp; </td>
-                                                <td class="text-center"> &nbsp; </td>
-                                                <td class="text-center"> &nbsp; </td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
                                             </tr>
                                             <tr class="editablec" contenteditable="true">
-                                                <td class="text-center"> &nbsp; </td>
-                                                <td class="text-center"> &nbsp; </td>
-                                                <td class="text-center"> &nbsp; </td>
-                                                <td class="text-center">&nbsp;  </td>
-                                                <td class="text-center"> &nbsp; </td>
-                                                <td class="text-center"> &nbsp; </td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
                                             </tr>
                                             <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">&nbsp;  </td>
-                                                <td class="text-center">&nbsp;  </td>
-                                                <td class="text-center">&nbsp;  </td>
-                                                <td class="text-center">&nbsp;  </td>
-                                                <td class="text-center">&nbsp;  </td>
-                                                <td class="text-center"> &nbsp; </td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
                                             </tr>
                                             <tr class="editablec" contenteditable="true">
-                                                <td class="text-center">&nbsp;  </td>
-                                                <td class="text-center">&nbsp;  </td>
-                                                <td class="text-center">&nbsp;  </td>
-                                                <td class="text-center">&nbsp;  </td>
-                                                <td class="text-center"> &nbsp; </td>
-                                                <td class="text-center">&nbsp;  </td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
                                             </tr>
                                         </tbody>
                                     </table>

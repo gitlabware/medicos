@@ -4,7 +4,7 @@
     <div class="tray tray-center">
         <div class="mw1000 center-block">
             <div class="admin-form">
-                <div class="panel heading-border">
+                <div class="panel heading-border panel-primary">
                     <div class="panel-body bg-light">
                         <?= $this->Form->create($user) ?>
                         <div class="section-divider mb40">
@@ -32,7 +32,7 @@
                                 <div class="section">
                                     <label class="field">
                                         <label class="field select">
-                                            <?php echo $this->Form->select('role', ['Administrador' => 'Administrador','Medico' => 'Medico'], ['empty' => 'Seleccione el Rol']); ?>
+                                            <?php echo $this->Form->select('role', ['Administrador' => 'Administrador', 'Medico' => 'Medico'], ['empty' => 'Seleccione el Rol']); ?>
                                             <i class="arrow"></i>
                                         </label>
                                     </label>
@@ -51,5 +51,12 @@
             </div>
         </div>
     </div>
-    
+
+    <?php
+    echo $this->Html->script([
+        'cambiaColorForm',
+        'vendor/plugins/jquerymask/jquery.maskedinput.min',
+        'inicalendario'], ['block' => 'scriptjs']);
+    ?>
+
 </section>

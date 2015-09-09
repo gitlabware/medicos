@@ -70,43 +70,49 @@
             </div>
         </div>
     </div>
-    
+
 </section>
+<?php
+echo $this->Html->script([
+    'cambiaColorForm',
+    'vendor/plugins/jquerymask/jquery.maskedinput.min',
+    'inicalendario'], ['block' => 'scriptjs']);
+?>
 
 
 <script type="text/javascript">
-  var map;
+    var map;
 
-  function initialize() {
-      var mapOptions = {
-          zoom: 14,
-          center: new google.maps.LatLng(-16.49, -68.12),
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          scrollwheel: false
-      };
-      map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
+    function initialize() {
+        var mapOptions = {
+            zoom: 14,
+            center: new google.maps.LatLng(-16.49, -68.12),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            scrollwheel: false
+        };
+        map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
-      var pos = new google.maps.LatLng(-16.49, -68.12);
+        var pos = new google.maps.LatLng(-16.49, -68.12);
 
-      var marker = new google.maps.Marker({
-          position: pos,
-          map: map,
-          title: "Arrastrar para mover",
-          animation: google.maps.Animation.BOUNCE,
-          draggable: true
-      });
+        var marker = new google.maps.Marker({
+            position: pos,
+            map: map,
+            title: "Arrastrar para mover",
+            animation: google.maps.Animation.BOUNCE,
+            draggable: true
+        });
 
-      function funcionArrastra() {
-          var lat = marker.getPosition().lat();
-          var lng = marker.getPosition().lng();
-          //console.log(lat + '-' + lng);
-          $('#frmlat').val(lat);
-          $('#frmlng').val(lng);
-      }
+        function funcionArrastra() {
+            var lat = marker.getPosition().lat();
+            var lng = marker.getPosition().lng();
+            //console.log(lat + '-' + lng);
+            $('#frmlat').val(lat);
+            $('#frmlng').val(lng);
+        }
 
-      google.maps.event.addListener(marker, 'drag', funcionArrastra);
-      marker.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
-  }
-  google.maps.event.addDomListener(window, 'load', initialize);
+        google.maps.event.addListener(marker, 'drag', funcionArrastra);
+        marker.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>

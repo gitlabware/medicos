@@ -81,6 +81,12 @@
     </div>
     
 </section>
+<?php
+echo $this->Html->script([
+  'cambiaColorForm',
+  'vendor/plugins/jquerymask/jquery.maskedinput.min',
+  'inicalendario'], ['block' => 'scriptjs']);
+?>
 
 
 <script type="text/javascript">

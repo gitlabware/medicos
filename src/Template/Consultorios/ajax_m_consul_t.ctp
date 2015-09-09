@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="col-md-12">
-        <div id="mapa-m<?php echo $consultorio->id ?>" style="width: 90%; height: 300px;;">
+        <div id="mapa-m<?php echo $consultorio->id ?>" style="width: 100%; height: 300px;;">
 
         </div>
     </div>

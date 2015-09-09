@@ -6,7 +6,7 @@
             <div class="admin-form">
                 <div class="panel heading-border">
                     <div class="panel-body bg-light">
-                        <?= $this->Form->create($consultorio,['id' => 'form-consultorio']) ?>
+                        <?= $this->Form->create($consultorio, ['id' => 'form-consultorio']) ?>
                         <?php echo $this->Form->hidden('medico_id', ['value' => $idMedico]); ?>
                         <div class="section-divider mb40">
                             <span><?php echo "Formulario Consultorio - " . $medico->nombre ?></span>
@@ -15,8 +15,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="section">
-                                    <label class="field">
+                                    <label for="firstname" class="field prepend-icon">
                                         <?php echo $this->Form->text('nombre', ['placeholder' => 'Nombre Consultorio', 'class' => 'gui-input']); ?>
+                                        <label for="email" class="field-icon">
+                                            <i class="fa fa-home"></i>
+                                        </label>
                                     </label>
                                 </div>
                             </div>
@@ -24,15 +27,21 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="section">
-                                    <label class="field">
+                                    <label for="firstname" class="field prepend-icon">
                                         <?php echo $this->Form->text('direccion', ['placeholder' => 'Direccion', 'class' => 'gui-input']); ?>
+                                        <label for="email" class="field-icon">
+                                            <i class="fa fa-retweet"></i>
+                                        </label>
                                     </label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="section">
-                                    <label class="field">
+                                    <label for="firstname" class="field prepend-icon">
                                         <?php echo $this->Form->text('telefonos', ['placeholder' => 'Telefonos', 'class' => 'gui-input']); ?>
+                                        <label for="email" class="field-icon">
+                                            <i class="fa fa-phone"></i>
+                                        </label>
                                     </label>
                                 </div>
                             </div>
@@ -40,8 +49,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="section">
-                                    <label class="field">
+                                    <label for="firstname" class="field prepend-icon">
                                         <?php echo $this->Form->textarea('descripcion', ['placeholder' => 'Descripcion', 'class' => 'gui-textarea']); ?>
+                                        <label for="email" class="field-icon">
+                                            <i class="fa fa-list-alt"></i>
+                                        </label>
                                     </label>
                                 </div>
                             </div>
@@ -127,52 +139,52 @@
             </div>
         </div>
     </div>
-   
+
 </section>
 
 <script type="text/javascript">
-  $("#form-consultorio").submit(function (event) {
-      $('#tabla-horarios-t tr').attr('contenteditable', false);
-      $('#idcampo-horarios').val($('#tabla-horarios').html());
-  });
+    $("#form-consultorio").submit(function (event) {
+        $('#tabla-horarios-t tr').attr('contenteditable', false);
+        $('#idcampo-horarios').val($('#tabla-horarios').html());
+    });
 
-  var map;
+    var map;
 
-  function initialize() {
-      var mapOptions = {
-          zoom: 14,
-          center: new google.maps.LatLng(-16.49, -68.12),
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          scrollwheel: false
-      };
-      map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
+    function initialize() {
+        var mapOptions = {
+            zoom: 14,
+            center: new google.maps.LatLng(-16.49, -68.12),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            scrollwheel: false
+        };
+        map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
-      var pos = new google.maps.LatLng(-16.49, -68.12);
+        var pos = new google.maps.LatLng(-16.49, -68.12);
 
-      var marker = new google.maps.Marker({
-          position: pos,
-          map: map,
-          title: "Arrastrar para mover",
-          animation: google.maps.Animation.BOUNCE,
-          draggable: true
-      });
+        var marker = new google.maps.Marker({
+            position: pos,
+            map: map,
+            title: "Arrastrar para mover",
+            animation: google.maps.Animation.BOUNCE,
+            draggable: true
+        });
 
-      function funcionArrastra() {
-          var lat = marker.getPosition().lat();
-          var lng = marker.getPosition().lng();
-          //console.log(lat + '-' + lng);
-          $('#frmlat').val(lat);
-          $('#frmlng').val(lng);
-      }
+        function funcionArrastra() {
+            var lat = marker.getPosition().lat();
+            var lng = marker.getPosition().lng();
+            //console.log(lat + '-' + lng);
+            $('#frmlat').val(lat);
+            $('#frmlng').val(lng);
+        }
 
-      google.maps.event.addListener(marker, 'drag', funcionArrastra);
-      marker.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
-  }
-  google.maps.event.addDomListener(window, 'load', initialize);
+        google.maps.event.addListener(marker, 'drag', funcionArrastra);
+        marker.setIcon('https://dl.dropboxusercontent.com/u/20056281/Iconos/male-2.png');
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
 <?php
 echo $this->Html->script([
-  'cambiaColorForm',
-    ]);
+    'cambiaColorForm',
+]);
 ?>
