@@ -60,14 +60,12 @@
                                 <td style="font-weight: bold;">Telefonos</td>
                                 <td><?= $medico->telefonos ?></td>
                             </tr>
+                            
                             <tr>
                                 <td style="font-weight: bold;">Direccion</td>
                                 <td><?= $medico->direccion ?></td>
                             </tr>
-                            <tr>
-                                <td style="font-weight: bold;">Telefonos</td>
-                                <td><?= $medico->telefonos ?></td>
-                            </tr>
+                            
                             <tr>
                                 <td style="font-weight: bold;">C.I.</td>
                                 <td><?= $medico->ci ?></td>
@@ -108,7 +106,7 @@
                       }
                       ?>
                       <li class="<?= $tactive ?>">
-                          <a href="#tab<?= ($key + 1) ?>" data-toggle="tab" onclick="$('#tab<?= ($key + 1) ?>').load('<?= $this->Url->build(['controller' => 'Consultorios', 'action' => 'ajax_m_consul_t', $con->id]); ?>');"><?= $con->nombre ?></a>
+                          <a href="#tab<?= ($key + 1) ?>" data-toggle="tab" onclick="$('#tab<?= ($key + 1) ?>').load('<?= $this->Url->build(['controller' => 'Consultorios', 'action' => 'ajax_m_consul_t2', $con->id]); ?>');"><?= $con->nombre ?></a>
                       </li>
 
                     <?php endforeach; ?>
@@ -127,7 +125,7 @@
                       </div>
                       <script>
   <?php if ($key == 0): ?>
-                          $('#tab<?= ($key + 1) ?>').load('<?= $this->Url->build(['controller' => 'Consultorios', 'action' => 'ajax_m_consul_t', $con->id]); ?>');
+                          $('#tab<?= ($key + 1) ?>').load('<?= $this->Url->build(['controller' => 'Consultorios', 'action' => 'ajax_m_consul_t2', $con->id]); ?>');
   <?php endif; ?>
                       </script>
                     <?php endforeach; ?>

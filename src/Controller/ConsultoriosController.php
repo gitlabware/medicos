@@ -125,6 +125,12 @@ class ConsultoriosController extends AppController {
     //debug($consultorio);exit;
     $this->set(compact('consultorio', 'idConsultorio'));
   }
+  public function ajax_m_consul_t2($idConsultorio = null) {
+    $this->layout = 'ajax';
+    $consultorio = $this->Consultorios->get($idConsultorio);
+    //debug($consultorio);exit;
+    $this->set(compact('consultorio', 'idConsultorio'));
+  }
 
   public function edit_cons($idConsultorio = null) {
     $consultorio = $this->Consultorios->get($idConsultorio, [
