@@ -194,8 +194,8 @@ class UsersController extends AppController {
   public function buscador() {
     $this->layout = 'login';
     if (!empty($this->request->data)) {
-      debug($this->request->data);
-      exit;
+      /*debug($this->request->data);
+      exit;*/
     }
   }
 
