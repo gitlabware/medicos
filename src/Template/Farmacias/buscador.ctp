@@ -22,13 +22,13 @@
         <div style="max-width: 1150px;">
             <div class="row">
                 <div class="panel user-group-widget">
-                    <div class="panel-menu">
-                        <?= $this->Form->create(NULL, ['action' => 'ajax_b_medicos', 'id' => 'ajaxform']); ?>
+                    <div class="panel-farnu">
+                        <?= $this->Form->create(NULL, ['action' => 'ajax_b_farmacias', 'id' => 'ajaxform']); ?>
                         <div class="input-group ">
                             <span class="input-group-addon">
                                 <i class="fa fa-search"></i>
                             </span>
-                            <?= $this->Form->text('dato', ['class' => 'form-control', 'placeholder' => 'Buscar Medico....', 'id' => 'campo-medico']) ?>
+                            <?= $this->Form->text('dato', ['class' => 'form-control', 'placeholder' => 'Buscar Farmacia....', 'id' => 'campo-farmacia']) ?>
                         </div>
                         <?= $this->Form->end(); ?>
                     </div>
@@ -40,40 +40,19 @@
                                 </div>
                                 <div id="c-actual">
                                     <?php $drow = FALSE; ?>
-                                    <?php foreach ($medicos as $key => $me): ?>
+                                    <?php foreach ($farmacias as $key => $far): ?>
                                         <?php if (($key % 2) == 0): ?>
                                             <?php $drow = TRUE; ?>
                                             <div class="row">
                                             <?php endif; ?>
                                             <div class="col-md-6">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <?php if ($me->sexo == 'Masculino'): ?>
-
-                                                            <?php if (empty($me->url)): ?>
-                                                                <img class="media-object mw150" src="<?php echo $this->request->webroot; ?>img/iconos/doctor-icono.jpg" alt="..." height="134" width="134">
-                                                            <?php else: ?>
-                                                                <img class="media-object mw150" src="<?php echo $this->request->webroot; ?>/perfiles/<?= $me->url; ?>" alt="..." height="134" width="134">
-                                                            <?php endif; ?>
-                                                        <?php else: ?>
-                                                            <?php if (empty($me->url)): ?>
-                                                                <img class="media-object mw150" src="<?php echo $this->request->webroot; ?>img/iconos/doctora-icono.jpg" alt="..." height="134" width="134">
-                                                            <?php else: ?>
-                                                                <img class="media-object mw150" src="<?php echo $this->request->webroot; ?>/perfiles/<?= $me->url; ?>" alt="..." height="134" width="134">
-                                                            <?php endif; ?>
-                                                        <?php endif; ?>
-
-
-            <!--  <img src="<?php echo $this->request->webroot . 'perfiles/' . $me->url; ?>" width="134px" height="134px" class="user-avatar"> -->
-                                                        <div class="caption">
-                                                            <h5>&nbsp;<?= $me->especialidade->nombre ?></h5>
-                                                        </div>
-                                                    </div>
+                                                <div class="row">                                                 
                                                     <div class="col-md-8">
-                                                        <a href="<?= $this->Url->build(['action' => 'vperfil', $me->id]) ?>" class="text-system"><h3><?= $me->nombre ?></h3></a>
-                                                        <b>Telefonos: </b><?= $me->telefonos ?><br>
-                                                        <b>E-mail: </b> <?= $me->mail ?><br>
-                                                        <b>Sexo: </b> <?= $me->sexo ?>
+                                                        <a href="<?= $this->Url->build(['action' => 'vperfil', $far->id]) ?>" class="text-system"><h3><?= $far->nombre ?></h3></a>
+                                                        <b>Nombre: </b> <?= $far->nombre ?></br>
+                                                        <b>Telefonos: </b><?= $far->telefonos ?><br>
+                                                        <b>Direccion: </b> <?= $far->direccion ?><br>
+                                                        
                                                     </div>
                                                 </div>
 
@@ -102,8 +81,8 @@
     <!-- end: .tray-center -->
 </section>
 <script>
-    $("#campo-medico").keyup(function () {
-        if ($("#campo-medico").val() != '') {
+    $("#campo-farmacia").keyup(function () {
+        if ($("#campo-farmacia").val() != '') {
             $('#c-actual').hide();
             $('#c-ajax').show();
             var postData = $("#ajaxform").serializeArray();

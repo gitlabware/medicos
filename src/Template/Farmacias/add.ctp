@@ -15,7 +15,7 @@
                             <div class="col-md-12">
                                 <div class="section">
                                     <label class="field">
-                                        <?php echo $this->Form->text('nombre', ['placeholder' => 'Nombre del centro medico', 'class' => 'gui-input']); ?>
+                                        <?php echo $this->Form->text('nombre', ['placeholder' => 'Nombre de la Farmacia', 'class' => 'gui-input']); ?>
                                     </label>
                                 </div>
                             </div>
@@ -24,14 +24,14 @@
                             <div class="col-md-6">
                                 <div class="section">
                                     <label class="field">
-                                        <?php echo $this->Form->text('direccion', ['placeholder' => 'Direccion del centro medico', 'class' => 'gui-input']); ?>
+                                        <?php echo $this->Form->text('direccion', ['placeholder' => 'Direccion de la Farmacia', 'class' => 'gui-input']); ?>
                                     </label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="section">
                                     <label class="field">
-                                        <?php echo $this->Form->text('telefonos', ['placeholder' => 'Telefonos del centro medico', 'class' => 'gui-input']); ?>
+                                        <?php echo $this->Form->text('telefonos', ['placeholder' => 'Telefonos de la Farmacia', 'class' => 'gui-input']); ?>
                                     </label>
                                 </div>
                             </div>

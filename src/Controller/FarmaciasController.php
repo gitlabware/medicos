@@ -107,5 +107,20 @@ class FarmaciasController extends AppController {
     }
     return $this->redirect(['action' => 'index']);
   }
+  public function buscador() {
+    $farmacias = $this->Farmacias->find()->toArray();
+    //debug($medicos);exit;
+    $this->set(compact('farmacias'));
+  }
+  public function ajax_b_farmacias() {
+    $this->layout = 'ajax';
+    $dato = $this->request->data['dato'];
+    $farmacias = $this->Farmacias->find()      
+      ->where([
+        'Farmacias.nombre LIKE' => "%".$dato."%"
+      ]);
+    //  ->toArray();
+    $this->set(compact('farmacias'));
+  }
 
 }
