@@ -34,9 +34,9 @@ class CentrosController extends AppController {
    * @throws \Cake\Network\Exception\NotFoundException When record not found.
    */
   public function view($id = null) {
-    $centro = $this->Centros->get($id, [
-      'contain' => ['Servicios', 'Centros']
-    ]);
+   $centro = $this->Centros->get($id, [
+    'contain' => ['Servicios', 'Centros']
+  ]);
     $this->set('centro', $centro);
     $this->set('_serialize', ['centro']);
   }
@@ -120,5 +120,20 @@ class CentrosController extends AppController {
     exit;
     $this->set(compact('centro', 'lservicios'));
   }
+  public function buscador() {
+    $centros = $this->Centros->find()->toArray();
+    //debug($medicos);exit;
+    $this->set(compact('centros'));
+  }
+  public function ajax_b_centros() {
+    $this->layout = 'ajax';
+    $dato = $this->request->data['dato'];
+    $centros = $this->Centros->find()      
+      ->where([
+        'Centros.nombre LIKE' => "%".$dato."%"
+      ]);
+    //  ->toArray();
+    $this->set(compact('centros'));
+  }  
 
 }

@@ -4,18 +4,16 @@
 
         <div class="page-tabs">
             <ul class="nav nav-tabs">
+                <li>
+                    <a href="<?= $this->Url->build(['controller'=>'Medicos','action' => 'buscador']) ?>" >Medicos</a>
+                </li>
                 <li class="active">
-                    <a href="widgets_tile.html">Medicos</a>
+                    <a href="<?= $this->Url->build(['action' => 'buscador']) ?>" >Farmacias</a>
                 </li>
                 <li>
-                    <a href="widgets_panel.html">Farmacias</a>
+                    <a href="<?= $this->Url->build(['controller' => 'Centros','action' => 'buscador']) ?>">Centros</a>
                 </li>
-                <li>
-                    <a href="widgets_scroller.html">Scroller Widgets</a>
-                </li>
-                <li>
-                    <a href="widgets_data.html">Admin Widgets</a>
-                </li>
+                
             </ul>
         </div>
 

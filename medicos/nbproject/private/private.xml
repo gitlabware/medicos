@@ -12,11 +12,7 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/medicos/src/Controller/FarmaciasController.php</file>
-            <file>file:/var/www/html/medicos/src/Template/Farmacias/ajax_b_farmacias.ctp</file>
-            <file>file:/var/www/html/medicos/src/Controller/MedicosController.php</file>
-            <file>file:/var/www/html/medicos/src/Template/Medicos/ajax_b_medicos.ctp</file>
-            <file>file:/var/www/html/medicos/src/Template/Farmacias/buscador.ctp</file>
+            <file>file:/var/www/html/medicos/src/Template/Medicos/buscador.ctp</file>
         </group>
     </open-files>
 </project-private>

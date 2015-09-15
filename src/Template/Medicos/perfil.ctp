@@ -50,7 +50,7 @@
                                 <div class="widget-menu pull-right mr10">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-xs btn-success" title="Editar" onclick="cargarmodal('<?= $this->Url->build(['action' => 'ajax_sociales', $medico->id, $so->id]) ?>');">
-                                            <span class="glyphicon glyphicon-edit fs11 mr5"></span>
+                                            <span class="glyphicon glyphicon-edit fs11 mr5"></span>Editar
                                     </div>
                                 </div>
                             </li>
