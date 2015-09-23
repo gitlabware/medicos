@@ -230,7 +230,7 @@
             items: {
                 src: '#mimodal'
             },
-            // overflowY: 'hidden', // 
+            // overflowY: 'hiddenn', // 
             callbacks: {
                 beforeOpen: function (e) {
                     this.st.mainClass = 'mfp-zoomIn';

@@ -51,9 +51,9 @@
                 </div>
                 <?php
                 if ($this->request->session()->read('Auth.User.role') == 'Administrador') {
-                  echo $this->element('menu/admin');
+                    echo $this->element('menu/admin');
                 } elseif ($this->request->session()->read('Auth.User.role') == 'Medico') {
-                  echo $this->element('menu/medicos');
+                    echo $this->element('menu/medicos');
                 }
                 ?>
 
@@ -63,9 +63,9 @@
             <!-- Start: Sidebar -->
             <?php
             if ($this->request->session()->read('Auth.User.role') == 'Administrador') {
-              echo $this->element('sidebar/admin');
+                echo $this->element('sidebar/admin');
             } elseif ($this->request->session()->read('Auth.User.role') == 'Medico') {
-              echo $this->element('sidebar/medico');
+                echo $this->element('sidebar/medico');
             }
             ?>
 
@@ -79,8 +79,8 @@
                 </header>
                 <!-- End: Topbar -->
                 <script>
-                  var tipo_notif = null;
-                  var texto_noyif = null;
+                    var tipo_notif = null;
+                    var texto_noyif = null;
                 </script>
                 <!-- Begin: Content -->
                 <?= $this->Flash->render() ?>
@@ -137,142 +137,188 @@
         <script src="<?php echo $this->request->webroot; ?>js/utility/utility.js"></script>
         <script src="<?php echo $this->request->webroot; ?>js/demo/demo.js"></script>
         <script src="<?php echo $this->request->webroot; ?>js/main.js"></script>
+
+        <script>
+                  
+        </script>
+
         <script type="text/javascript">
-                  jQuery(document).ready(function () {
+            jQuery(document).ready(function () {
 
-                      "use strict";
+                "use strict";
 
-                      // Init Theme Core    
-                      Core.init();
+                // Init Theme Core    
+                Core.init();
 
-                      // Init Demo JS    
-                      Demo.init();
+                // Init Demo JS    
+                Demo.init();
+                
+                 $('.admin-panels').adminpanel({
+                       grid: '.admin-grid',
+                       draggable: true,
+                       mobile: false,
+                       callback: function () {
+                           bootbox.confirm('<h3>A Custom Callback!</h3>', function () {
+                           });
+                       },
+                       onFinish: function () {
+                           $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
 
-                      if (tipo_notif && texto_noyif) {
-                          var Stacks = {
-                              stack_bar_top: {
-                                  "dir1": "down",
-                                  "dir2": "right",
-                                  "push": "top",
-                                  "spacing1": 0,
-                                  "spacing2": 0
-                              }
-                          }
-                          var noteShadow = "false";
-                          var noteStack = "stack_bar_top";
-                          var noteOpacity = "1";
+                           // Init Demo settings 
+                           $('#p0 .panel-control-color').click();
 
-                          // Create new Notification
-                          new PNotify({
-                              title: tipo_notif,
-                              text: texto_noyif,
-                              shadow: noteShadow,
-                              opacity: noteOpacity,
-                              addclass: noteStack,
-                              type: noteStyle,
-                              stack: Stacks[noteStack],
-                              width: "100%",
-                              delay: 2000
-                          });
-                      }
+                           // Init Demo settings 
+                           $('#p1 .panel-control-title').click();
 
-                      $('.tabla-dato').dataTable({
-                          "aoColumnDefs": [{
-                                  'bSortable': false,
-                                  'aTargets': [-1]
-                              }],
-                          "oLanguage": {
-                              "oPaginate": {
-                                  "sPrevious": "Anterior",
-                                  "sNext": "Siguiente"
-                              },
-                              "sSearch": "Buscar",
-                              "sLengthMenu": "Mostrar _MENU_ registros"
-                          },
-                          "iDisplayLength": 5,
-                          "aLengthMenu": [
-                              [5, 10, 25, 50, -1],
-                              [5, 10, 25, 50, "Todos"]
-                          ],
-                          "sDom": '<"dt-panelmenu clearfix"lfr>t<"dt-panelfooter clearfix"ip>'
-                      });
+                           // Create an example admin panel filter
+                           $('#admin-panel-filter a').on('click', function () {
+                               var This = $(this);
+                               var Value = This.attr('data-filter');
 
-                  });
+                               // Toggle any elements whos name matches
+                               // that of the buttons attr value
+                               $('.admin-filter-panels').find($(Value)).each(function (i, e) {
+                                   if (This.hasClass('active')) {
+                                       $(this).slideDown('fast').removeClass('panel-filtered');
+                                   } else {
+                                       $(this).slideUp().addClass('panel-filtered');
+                                   }
+                               });
+                               This.toggleClass('active');
+                           });
 
-                  function cargarmodal(urll) {
+                       },
+                       onSave: function () {
+                           $(window).trigger('resize');
+                       }
+                   });
+                
 
-                      jQuery("#spin-cargando-mod").show();
-                      jQuery("#divmodal").hide();
-                      $.magnificPopup.open({
-                          removalDelay: 500, //delay removal by X to allow out-animation,
-                          items: {
-                              src: '#mimodal'
-                          },
-                          // overflowY: 'hidden', // 
-                          callbacks: {
-                              beforeOpen: function (e) {
-                                  this.st.mainClass = 'mfp-zoomIn';
-                              }
-                          },
-                          midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
-                      });
-                      jQuery("#divmodal").load(urll, function (responseText, textStatus, req) {
-                          if (textStatus == "error")
-                          {
-                              alert("error!!!");
-                          }
-                          else {
-                              jQuery("#spin-cargando-mod").hide(500);
-                              jQuery("#divmodal").show();
-                          }
-                      });
+                if (tipo_notif && texto_noyif) {
+                    var Stacks = {
+                        stack_bar_top: {
+                            "dir1": "down",
+                            "dir2": "right",
+                            "push": "top",
+                            "spacing1": 0,
+                            "spacing2": 0
+                        }
+                    }
+                    var noteShadow = "false";
+                    var noteStack = "stack_bar_top";
+                    var noteOpacity = "1";
+
+                    // Create new Notification
+                    new PNotify({
+                        title: tipo_notif,
+                        text: texto_noyif,
+                        shadow: noteShadow,
+                        opacity: noteOpacity,
+                        addclass: noteStack,
+                        type: noteStyle,
+                        stack: Stacks[noteStack],
+                        width: "100%",
+                        delay: 2000
+                    });
+                }
+
+                $('.tabla-dato').dataTable({
+                    "aoColumnDefs": [{
+                            'bSortable': false,
+                            'aTargets': [-1]
+                        }],
+                    "oLanguage": {
+                        "oPaginate": {
+                            "sPrevious": "Anterior",
+                            "sNext": "Siguiente"
+                        },
+                        "sSearch": "Buscar",
+                        "sLengthMenu": "Mostrar _MENU_ registros"
+                    },
+                    "iDisplayLength": 5,
+                    "aLengthMenu": [
+                        [5, 10, 25, 50, -1],
+                        [5, 10, 25, 50, "Todos"]
+                    ],
+                    "sDom": '<"dt-panelmenu clearfix"lfr>t<"dt-panelfooter clearfix"ip>'
+                });
+
+            });
+
+            function cargarmodal(urll) {
+
+                jQuery("#spin-cargando-mod").show();
+                jQuery("#divmodal").hide();
+                $.magnificPopup.open({
+                    removalDelay: 500, //delay removal by X to allow out-animation,
+                    items: {
+                        src: '#mimodal'
+                    },
+                    // overflowY: 'hidden', // 
+                    callbacks: {
+                        beforeOpen: function (e) {
+                            this.st.mainClass = 'mfp-zoomIn';
+                        }
+                    },
+                    midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+                });
+                jQuery("#divmodal").load(urll, function (responseText, textStatus, req) {
+                    if (textStatus == "error")
+                    {
+                        alert("error!!!");
+                    }
+                    else {
+                        jQuery("#spin-cargando-mod").hide(500);
+                        jQuery("#divmodal").show();
+                    }
+                });
 
 
-                  }
+            }
 
 
-                  if ($('#skin-toolbox').length) {
-                      $('#skin-toolbox .panel-heading').on('click', function () {
-                          $('#skin-toolbox').toggleClass('toolbox-open');
-                      });
-                      // Disable text selection
-                      $('#skin-toolbox .panel-heading').disableSelection();
+            if ($('#skin-toolbox').length) {
+                $('#skin-toolbox .panel-heading').on('click', function () {
+                    $('#skin-toolbox').toggleClass('toolbox-open');
+                });
+                // Disable text selection
+                $('#skin-toolbox .panel-heading').disableSelection();
 
-                      // Cache component elements
-                      var Body = $('body');
-                      var Breadcrumbs = $('#topbar');
-                      var Sidebar = $('#sidebar_left');
-                      var Header = $('.navbar');
-                      var Branding = Header.children('.navbar-branding');
+                // Cache component elements
+                var Body = $('body');
+                var Breadcrumbs = $('#topbar');
+                var Sidebar = $('#sidebar_left');
+                var Header = $('.navbar');
+                var Branding = Header.children('.navbar-branding');
 
-                      // Possible Component Skins
-                      var headerSkins = "bg-primary bg-success bg-info bg-warning bg-danger bg-alert bg-system bg-dark";
-                      var sidebarSkins = "sidebar-light light dark";
+                // Possible Component Skins
+                var headerSkins = "bg-primary bg-success bg-info bg-warning bg-danger bg-alert bg-system bg-dark";
+                var sidebarSkins = "sidebar-light light dark";
 
-                      // Theme Settings
-                      var settingsObj = {
-                          // 'headerTone': true,
-                          'headerSkin': '',
-                          'sidebarSkin': 'sidebar-default',
-                          'headerState': 'navbar-fixed-top',
-                          'sidebarState': 'affix',
-                          'sidebarAlign': '',
-                          'breadcrumbState': 'relative',
-                          'breadcrumbHidden': 'visible',
-                      };
+                // Theme Settings
+                var settingsObj = {
+                    // 'headerTone': true,
+                    'headerSkin': '',
+                    'sidebarSkin': 'sidebar-default',
+                    'headerState': 'navbar-fixed-top',
+                    'sidebarState': 'affix',
+                    'sidebarAlign': '',
+                    'breadcrumbState': 'relative',
+                    'breadcrumbHidden': 'visible',
+                };
 
-                      // Local Storage Theme Key
-                      var themeKey = 'admin-settings1';
+                // Local Storage Theme Key
+                var themeKey = 'admin-settings1';
 
-                      // Local Storage Theme Get
-                      var themeGet = localStorage.getItem(themeKey);
+                // Local Storage Theme Get
+                var themeGet = localStorage.getItem(themeKey);
 
-                      // Set new key if one doesn't exist
-                      if (themeGet === null) {
-                          localStorage.setItem(themeKey, JSON.stringify(settingsObj));
-                          themeGet = localStorage.getItem(themeKey);
-                      }
-                  }
+                // Set new key if one doesn't exist
+                if (themeGet === null) {
+                    localStorage.setItem(themeKey, JSON.stringify(settingsObj));
+                    themeGet = localStorage.getItem(themeKey);
+                }
+            }
         </script>
 
         <!-- END: PAGE SCRIPTS -->
