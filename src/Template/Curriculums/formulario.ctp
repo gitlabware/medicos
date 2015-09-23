@@ -60,88 +60,85 @@
                             </div>
                         </div>
                     </div>
-                </div>     
-                
 
-                
-                
-                
-                <!----complementaria----->
-                <div class="admin-form">
-                    <?= $this->Form->create($curriculum) ?>
-                    <div class="panel-body bg-light">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="section">
-                                    <button type="button" id="acorde2" class="btn btn-rounded btn-primary btn-block">Formacion Complementaria</button>
-                                </div>
-                            </div>
-                        </div>  
-                        <div id="acor2" style="display: none;">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="section">
-                                        <label class="field">
-                                            <?php echo $this->Form->text('nomcurso', ['placeholder' => 'Nombre del Curso', 'class' => 'gui-input']); ?>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="section">
-                                        <label class="field">
-                                            <?php echo $this->Form->text('cent_est', ['placeholder' => 'Centro de Estudio', 'class' => 'gui-input']); ?>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="section">
-                                        <label class="field">
-                                            <?php echo $this->Form->date('fech_ini', ['placeholder' => 'fecha inicio', 'class' => 'gui-input']); ?>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="section">
-                                        <label class="field">
-                                            <?php echo $this->Form->date('fech_fin', ['placeholder' => 'fecha fin', 'class' => 'gui-input']); ?>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="section">
-                                        <label class="field">
-                                            <?php echo $this->Form->text('horas', ['placeholder' => 'Horas', 'class' => 'gui-input']); ?>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>   
+                    <div class="panel sort-disable mb50"  data-panel-color="false" data-panel-fullscreen="false" data-panel-remove="false" data-panel-title="false" data-panel-fullscreen="false">
+                        <div class="panel-heading">
+                            <span class="panel-icon">
+                                <i class="fa fa-minus"></i>
+                            </span>
+                            <span class="panel-title">Formacion Complementaria</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="admin-form">
+                                <?= $this->Form->create($curriculum) ?>
+                                <div class="panel-body bg-light">
+                                    <div id="acor2">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="section">
+                                                    <label class="field">
+                                                        <?php echo $this->Form->text('nomcurso', ['placeholder' => 'Nombre del Curso', 'class' => 'gui-input']); ?>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="section">
+                                                    <label class="field">
+                                                        <?php echo $this->Form->text('cent_est', ['placeholder' => 'Centro de Estudio', 'class' => 'gui-input']); ?>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="section">
+                                                    <label class="field">
+                                                        <?php echo $this->Form->date('fech_ini', ['placeholder' => 'fecha inicio', 'class' => 'gui-input']); ?>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="section">
+                                                    <label class="field">
+                                                        <?php echo $this->Form->date('fech_fin', ['placeholder' => 'fecha fin', 'class' => 'gui-input']); ?>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="section">
+                                                    <label class="field">
+                                                        <?php echo $this->Form->text('horas', ['placeholder' => 'Horas', 'class' => 'gui-input']); ?>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>   
 
-                            <div class="panel-footer text-right">
-                                <button type="submit" class="button btn-primary"> Guardar </button>
-                                <button type="reset" class="button"> Cancel </button>
+                                        <div class="panel-footer text-right">
+                                            <button type="submit" class="button btn-primary"> Guardar </button>
+                                            <button type="reset" class="button"> Cancel </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?= $this->Form->end() ?>
                             </div>
                         </div>
                     </div>
-                    <?= $this->Form->end() ?>
-                </div>
-
-                <!-- EXPERIENCIA PROFESIONAL-->
-
-                <div class="admin-form">
+                    
+                    
+                    <div class="panel sort-disable mb50"  data-panel-color="false" data-panel-fullscreen="false" data-panel-remove="false" data-panel-title="false" data-panel-fullscreen="false">
+                        <div class="panel-heading">
+                            <span class="panel-icon">
+                                <i class="fa fa-minus"></i>
+                            </span>
+                            <span class="panel-title">Experiencia Profesional</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="admin-form">
                     <?= $this->Form->create($curriculum) ?>
-                    <div class="panel-body bg-light">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="section">
-                                    <button type="button" id="acorde3" class="btn btn-rounded btn-primary btn-block">Experiencia Profesional</button>
-                                </div>
-                            </div>
-                        </div>  
-                        <div id="acor3" style="display: none;">
+                    <div class="panel-body bg-light"> 
+                        <div id="acor3">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="section">
@@ -193,197 +190,194 @@
                     </div>
                     <?= $this->Form->end() ?>
                 </div>
-
-
-
-
-
-
-
+                        </div>
+                    </div>
+                    
+                </div>    
 
 
 
             </div>
             <!--------------------------------------->
-            <div class="col-md-6">
-                <div class="admin-form">
+            <?php if (!empty($verformulario)): ?>
+              <div class="col-md-6">
+                  <div class="admin-form">
 
-                    <div class="panel-body bg-light">
+                      <div class="panel-body bg-light">
 
-                        <div class="section-divider mb40">
+                          <div class="section-divider mb40">
 
-                            <span>Formacion Academica</span>
-                        </div>
-                        <!-- Basic Inputs -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="section">
-                                    <label class="field">
+                              <span>Formacion Academica</span>
+                          </div>
+                          <!-- Basic Inputs -->
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="section">
+                                      <label class="field">
 
-                                        <?php echo $verformulario->titulobt ?>
+                                          <?php echo $verformulario->titulobt ?>
 
+                                      </label>
+                                  </div>
+                              </div>
 
-                                    </label>
-                                </div>
-                            </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="section">
+                                      <label class="field">
 
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="section">
-                                    <label class="field">
+                                          <?php echo $verformulario->anoini; ?>                                            
+                                      </label>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="section">
+                                      <label class="field">
+                                          <?php echo $verformulario->anofin; ?>
 
-                                        <?php echo $verformulario->anoini; ?>                                            
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="section">
-                                    <label class="field">
-                                        <?php echo $verformulario->anofin; ?>
-
-                                    </label>
-                                </div>
-                            </div>
-                        </div>   
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="section">
-                                    <label class="field">
-                                        <?php echo $verformulario->centroestu; ?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                </div>
-                <!--MUESTRA FORMACION COMPLEMENTARIA-->
-                <div class="admin-form"> 
-                    <div class="panel-body bg-light">
-                        <div class="section-divider mb40">
-                            <span>Formacion Complementaria</span>
-                        </div> 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="section">
-                                    <label class="field">
-                                        <?php echo $verformulario->nomcurso; ?>
-                                    </label>
-                                </div>                        
-
-                            </div>                                
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="section">
-                                    <label class="field">
-                                        <?php echo $verformulario->cent_est; ?>
-                                    </label>
-                                </div>                        
-
-                            </div>                                
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="section">
-                                    <label class="field">
-                                        <?php echo $verformulario->fech_ini; ?>
-                                    </label>
-                                </div>                        
-
-                            </div>  
-                            <div class="col-md-5">
-                                <div class="section">
-                                    <label class="field">
-                                        <?php echo $verformulario->fech_fin; ?>
-                                    </label>
-                                </div>                     
-
-                            </div> 
-                            <div class="col-md-2">
-                                <div class="section">
-                                    <label class="field">
-                                        <?php echo $verformulario->horas; ?>
-                                    </label>
-                                </div>                        
-
-                            </div> 
-                        </div>                 
-                    </div>
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>   
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="section">
+                                      <label class="field">
+                                          <?php echo $verformulario->centroestu; ?>
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>
 
 
-                </div>
-                <!--MUESETRA EXPERIENCIA PROFESIONAL-->
-                <div class="admin-form"> 
-                    <div class="panel-body bg-light">
-                        <div class="section-divider mb40">
-                            <span>Experiencia profesional</span>
-                        </div> 
+                      </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="section">
-                                    <div class="field">
-                                        <label class="field">
-                                            <?php echo $verformulario->puestocupado; ?>
-                                        </label>                                        
-                                    </div>                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="section">
-                                    <div class="field">
-                                        <label class="field">
-                                            <?php echo $verformulario->nom_empre; ?>
-                                        </label>
-                                    </div>                                                                                 
-                                </div>                                    
-                            </div>
-                        </div>
+                  </div>
+                  <!--MUESTRA FORMACION COMPLEMENTARIA-->
+                  <div class="admin-form"> 
+                      <div class="panel-body bg-light">
+                          <div class="section-divider mb40">
+                              <span>Formacion Complementaria</span>
+                          </div> 
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="section">
+                                      <label class="field">
+                                          <?php echo $verformulario->nomcurso; ?>
+                                      </label>
+                                  </div>                        
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="section">
-                                    <div class="field">
-                                        <label class="field">
-                                            <?php echo $verformulario->fechaini ?>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="section">
-                                    <div class="field">
-                                        <label class="field">
-                                            <?php echo $verformulario->fechafin ?>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="section">
-                                    <div class="field">
-                                        <label class="field">
-                                            <?php echo $verformulario->descrip ?>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>                           
+                              </div>                                
+                          </div>
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="section">
+                                      <label class="field">
+                                          <?php echo $verformulario->cent_est; ?>
+                                      </label>
+                                  </div>                        
 
-                        </div>
+                              </div>                                
+                          </div>
 
-                    </div>
-                </div>
-            </div>
+                          <div class="row">
+                              <div class="col-md-5">
+                                  <div class="section">
+                                      <label class="field">
+                                          <?php echo $verformulario->fech_ini; ?>
+                                      </label>
+                                  </div>                        
 
+                              </div>  
+                              <div class="col-md-5">
+                                  <div class="section">
+                                      <label class="field">
+                                          <?php echo $verformulario->fech_fin; ?>
+                                      </label>
+                                  </div>                     
+
+                              </div> 
+                              <div class="col-md-2">
+                                  <div class="section">
+                                      <label class="field">
+                                          <?php echo $verformulario->horas; ?>
+                                      </label>
+                                  </div>                        
+
+                              </div> 
+                          </div>                 
+                      </div>
+
+
+                  </div>
+                  <!--MUESETRA EXPERIENCIA PROFESIONAL-->
+                  <div class="admin-form"> 
+                      <div class="panel-body bg-light">
+                          <div class="section-divider mb40">
+                              <span>Experiencia profesional</span>
+                          </div> 
+
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="section">
+                                      <div class="field">
+                                          <label class="field">
+                                              <?php echo $verformulario->puestocupado; ?>
+                                          </label>                                        
+                                      </div>                                    
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="section">
+                                      <div class="field">
+                                          <label class="field">
+                                              <?php echo $verformulario->nom_empre; ?>
+                                          </label>
+                                      </div>                                                                                 
+                                  </div>                                    
+                              </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="section">
+                                      <div class="field">
+                                          <label class="field">
+                                              <?php echo $verformulario->fechaini ?>
+                                          </label>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="section">
+                                      <div class="field">
+                                          <label class="field">
+                                              <?php echo $verformulario->fechafin ?>
+                                          </label>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="section">
+                                      <div class="field">
+                                          <label class="field">
+                                              <?php echo $verformulario->descrip ?>
+                                          </label>
+                                      </div>
+                                  </div>
+                              </div>                           
+
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+            <?php endif; ?>
 
         </div>
         <section class="round-border">
@@ -394,21 +388,21 @@
 
 <script>
 
-    $(document).ready(function () {
-        $('#acorde1').on('click', function () {
-            $('#acor1').toggle('active');
-        });
-    });
-    $(document).ready(function () {
-        $('#acorde2').on('click', function () {
-            $('#acor2').toggle('500');
-        });
-    });
-    $(document).ready(function () {
-        $('#acorde3').on('click', function () {
-            $('#acor3').toggle('500');
-        });
-    });
+  $(document).ready(function () {
+      $('#acorde1').on('click', function () {
+          $('#acor1').toggle('active');
+      });
+  });
+  $(document).ready(function () {
+      $('#acorde2').on('click', function () {
+          $('#acor2').toggle('500');
+      });
+  });
+  $(document).ready(function () {
+      $('#acorde3').on('click', function () {
+          $('#acor3').toggle('500');
+      });
+  });
 
 </script>
 
