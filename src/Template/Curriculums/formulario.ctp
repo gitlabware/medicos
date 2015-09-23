@@ -61,14 +61,14 @@
                         </div>
                     </div>
 
-                    <div class="panel sort-disable mb50"  data-panel-color="false" data-panel-fullscreen="false" data-panel-remove="false" data-panel-title="false" data-panel-fullscreen="false">
+                    <div class="panel sort-disable mb50 panel-collapsed"  data-panel-color="false" data-panel-fullscreen="false" data-panel-remove="false" data-panel-title="false" data-panel-fullscreen="false">
                         <div class="panel-heading">
                             <span class="panel-icon">
                                 <i class="fa fa-minus"></i>
                             </span>
                             <span class="panel-title">Formacion Complementaria</span>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="display: none;">
                             <div class="admin-form">
                                 <?= $this->Form->create($curriculum) ?>
                                 <div class="panel-body bg-light">
@@ -127,14 +127,14 @@
                     </div>
                     
                     
-                    <div class="panel sort-disable mb50"  data-panel-color="false" data-panel-fullscreen="false" data-panel-remove="false" data-panel-title="false" data-panel-fullscreen="false">
+                    <div class="panel sort-disable mb50 panel-collapsed"  data-panel-color="false" data-panel-fullscreen="false" data-panel-remove="false" data-panel-title="false" data-panel-fullscreen="false">
                         <div class="panel-heading">
                             <span class="panel-icon">
                                 <i class="fa fa-minus"></i>
                             </span>
                             <span class="panel-title">Experiencia Profesional</span>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="display: none;">
                             <div class="admin-form">
                     <?= $this->Form->create($curriculum) ?>
                     <div class="panel-body bg-light"> 
