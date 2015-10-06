@@ -1,0 +1,1 @@
+$('#daterangepicker1').daterangepicker();

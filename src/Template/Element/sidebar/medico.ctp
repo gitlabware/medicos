@@ -33,6 +33,12 @@
                     <span class="sidebar-title">Medicos</span>
                 </a>
             </li>
+            <li>
+                <a href="<?= $this->Url->build(['controller' => 'Curriculums','action' => 'formulario']);?>">
+                    <span class="fa fa-list"></span>
+                    <span class="sidebar-title">Mi Curriclum</span>
+                </a>
+            </li>
         </ul>
         <!-- End: Sidebar Menu -->
 

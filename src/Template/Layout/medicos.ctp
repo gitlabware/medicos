@@ -117,7 +117,7 @@
         <script src="<?php echo $this->request->webroot; ?>js/jquery_ui/jquery-ui.min.js"></script>
 
         <script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/pnotify/pnotify.js"></script>
-
+        
         <!-- Datatables -->
         <script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/datatables/media/js/jquery.dataTables.js"></script>
 

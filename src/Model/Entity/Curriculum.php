@@ -15,22 +15,15 @@ class Curriculum extends Entity
      * @var array
      */
     protected $_accessible = [
-        'titulobt' => true,
-        'anoini' => true,
-        'anofin' => true,
-        'centroestu' => true,
-        'puestocupado' => true,
-        'nom_empre' => true,
-        'fechaini' => true,
-        'fechafin' => true,
-        'descrip' => true,
-        'nomcurso' => true,
+        'titulacion' => true,
+        'fecha_ini' => true,
+        'fecha_fin' => true,
+        'centro' => true,
+        'puesto' => true,
+        'empresa' => true,
+        'descripcion' => true,
         'horas' => true,
-        'tipo' => true,
         'medico_id' => true,
-        'cent_est' => true,
-        'fech_fin' => true,
-        'fech_ini' => true,
         'medico' => true,
     ];
 }

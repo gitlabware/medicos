@@ -121,7 +121,18 @@
 
                 </div>
             </div>
-
+            <div class="panel sort-disable mb50">
+                <div class="panel-heading">
+                    <span class="panel-title"> Informacion academica/profesional</span>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-success col-md-12" onclick="cargarmodal('<?= $this->Url->build(['controller' => 'Curriculums','action'=> 'curriculum_acad']); ?>');"><i class="fa fa-plus"></i> Add Formacion Academica</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!--<div class="col-md-8">
             <div class="panel sort-disable mb50">
