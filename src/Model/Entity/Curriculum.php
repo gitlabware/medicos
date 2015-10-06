@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
@@ -6,8 +7,7 @@ use Cake\ORM\Entity;
 /**
  * Curriculum Entity.
  */
-class Curriculum extends Entity
-{
+class Curriculum extends Entity {
 
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -33,4 +33,34 @@ class Curriculum extends Entity
         'fech_ini' => true,
         'medico' => true,
     ];
+
+    protected function _getFechIni($fecha) {
+        if (!empty($fecha)) {
+            return $fecha->i18nFormat('YYYY-MM-dd');
+        } else {
+            return $fecha;
+        }
+    }
+    protected function _getFechFin($fecha) {
+        if (!empty($fecha)) {
+            return $fecha->i18nFormat('YYYY-MM-dd');
+        } else {
+            return $fecha;
+        }
+    }
+     protected function _getFechaini($fecha) {
+        if (!empty($fecha)) {
+            return $fecha->i18nFormat('YYYY-MM-dd');
+        } else {
+            return $fecha;
+        }
+    }
+     protected function _getFechafin($fecha) {
+        if (!empty($fecha)) {
+            return $fecha->i18nFormat('YYYY-MM-dd');
+        } else {
+            return $fecha;
+        }
+    }
+
 }
