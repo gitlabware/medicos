@@ -69,7 +69,7 @@
                             <tr>
                                 <td style="font-weight: bold;">Telefonos</td>
                                 <td><?= $medico->telefonos ?></td>
-                            </tr>
+                            </tr>                           
 
                             <tr>
                                 <td style="font-weight: bold;">Direccion</td>
@@ -88,8 +88,44 @@
                     </table>
                 </div>
             </div>
+            
+            
+        <div class="row">
+        <div class="col-md-12">
+            <li class="dd-item" data-id="11">
+                <div class="dd-handle"><h4>Formacion academica</h4></div>
+                        <div class="dd-content">
+                          <div class="media br-t mt5 pt10">
+                            <a class="media-left hidden" href="#">
+                              <img data-src="holder.js/46x42" alt="holder-img">
+                            </a>
+                            <div class="media-body">
+                              <h5 class="media-heading">Titulacion Obtenida </h5>                              
+                              <p class="text-muted mb5">
+                                  <span class="fa fa-paperclip pr10"></span><?=  $curriculums[0]['titulacion']; ?></p>
+                              <h5 class="media-heading">Centro Estudio </h5>                              
+                              <p class="text-muted mb5">
+                                  <span class="fa fa-paperclip pr10"></span><?=  $curriculums[0]['centro']; ?></p>
+                              <h5 class="media-heading">ayo inicio </h5>                              
+                              <p class="text-muted mb5">
+                                  <span class="fa fa-paperclip pr10"></span><?=  $curriculums[0]['fecha_ini']; ?></p>
+                              <h5 class="media-heading">ayo fin </h5>                              
+                              <p class="text-muted mb5">
+                                  <span class="fa fa-paperclip pr10"></span><?=  $curriculums[0]['fecha_fin']; ?></p>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ol>
+            
+        </div>
 
         </div>
+        
+        
+        
+    </div>
         <!--<div class="col-md-8">
             <div class="panel sort-disable mb50">
                 <div class="panel-heading">

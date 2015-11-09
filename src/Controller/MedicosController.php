@@ -147,25 +147,30 @@ class MedicosController extends AppController {
 
   public function perfil() {
     $medico = $this->get_medico();
-    /* debug($medico);
-      exit; */
+    
+    $curriculum = TableRegistry::get('Curriculums');
+    $curriculums = $curriculum->find('all')->where(['medico_id'=>$medico->id])->toArray();
+  //debug($curriculums->toArray());
+    //  exit; 
     $sociales = TableRegistry::get('Sociales');
     $lsociales = $sociales->find('all');
     $consultorios = TableRegistry::get('Consultorios');
     $lconsultorios = $consultorios->find()->select(['id', 'nombre'])->where(['medico_id' => $medico->id]);
     //debug($lconsultorios->toArray());exit;
-    $this->set(compact('medico', 'lsociales', 'lconsultorios'));
+    $this->set(compact('medico', 'lsociales', 'lconsultorios','curriculums'));
   }
 
   public function vperfil($idMedico = NULL) {
     
     $medico = $this->Medicos->find()->contain(['Especialidades'])->where(['Medicos.id' => $idMedico])->first();
+    $curriculum = TableRegistry::get('Curriculums');
+    $curriculums = $curriculum->find('all')->where(['medico_id'=>$medico->id])->toArray();
     $sociales = TableRegistry::get('Medicosociales');
     $lsociales = $sociales->find()->contain(['Sociales'])->where(['medico_id' => $idMedico]);
     $consultorios = TableRegistry::get('Consultorios');
     $lconsultorios = $consultorios->find()->select(['id', 'nombre'])->where(['medico_id' => $medico->id]);
-    //debug($lconsultorios->toArray());exit;
-    $this->set(compact('medico', 'lsociales', 'lconsultorios'));
+    debug($curriculums);exit;
+    $this->set(compact('medico', 'lsociales', 'lconsultorios','curriculums'));
   }
 
   public function get_medico() {

@@ -1,7 +1,7 @@
 <?php
 use Phinx\Migration\AbstractMigration;
 
-class CreateCurriculums extends AbstractMigration
+class CreateCurriculums2 extends AbstractMigration
 {
     /**
      * Change Method.
@@ -13,63 +13,47 @@ class CreateCurriculums extends AbstractMigration
     public function change()
     {
         $table = $this->table('curriculums');
-        $table->addColumn('titulobt', 'string', [
+        $table->addColumn('titulacion', 'string', [
             'default' => null,
             'limit' => 255,
             'null' => true,
         ]);
-        $table->addColumn('anoini', 'string', [
-            'default' => null,
-            'limit' => 4,
-            'null' => true,
-        ]);
-        $table->addColumn('anofin', 'string', [
-            'default' => null,
-            'limit' => 4,
-            'null' => true,
-        ]);
-        $table->addColumn('centroestu', 'string', [
-            'default' => null,
-            'limit' => 255,
-            'null' => true,
-        ]);
-        $table->addColumn('puestocupado', 'string', [
-            'default' => null,
-            'limit' => 255,
-            'null' => true,
-        ]);
-        $table->addColumn('nom_empre', 'string', [
-            'default' => null,
-            'limit' => 255,
-            'null' => true,
-        ]);
-        $table->addColumn('fechaini', 'date', [
+        $table->addColumn('fecha_ini', 'date', [
             'default' => null,
             'null' => true,
         ]);
-        $table->addColumn('fechafin', 'date', [
+        $table->addColumn('fecha_fin', 'date', [
             'default' => null,
             'null' => true,
         ]);
-        $table->addColumn('descrip', 'text', [
+        $table->addColumn('centro', 'string', [
             'default' => null,
-            'limit' => 255,
+            'limit' => 180,
             'null' => true,
         ]);
-        $table->addColumn('nomcurso', 'string', [
+        $table->addColumn('puesto', 'string', [
             'default' => null,
-            'limit' => 255,
+            'limit' => 160,
             'null' => true,
         ]);
-        $table->addColumn('horas', 'string', [
+        $table->addColumn('empresa', 'string', [
             'default' => null,
-            'limit' => 3,
+            'limit' => 200,
             'null' => true,
         ]);
-        $table->addColumn('tipo', 'string', [
+        $table->addColumn('descripcion', 'text', [
             'default' => null,
-            'limit' => 3,
             'null' => true,
+        ]);
+        $table->addColumn('horas', 'integer', [
+            'default' => null,
+            'limit' => 11,
+            'null' => true,
+        ]);
+        $table->addColumn('medico_id', 'integer', [
+            'default' => null,
+            'limit' => 11,
+            'null' => FALSE,
         ]);
         $table->addColumn('created', 'datetime', [
             'default' => null,

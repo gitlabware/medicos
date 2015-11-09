@@ -18,7 +18,6 @@ class CurriculumsController extends AppController {
      * @return void
      */
     public $layout = 'medicos';
-    
 
     public function index() {
         
@@ -27,18 +26,18 @@ class CurriculumsController extends AppController {
     public function formulario() {
         $idMedico = $this->get_id_medico();
         $curriculum = $this->Curriculums->find()->where(['medico_id' => $idMedico])->first();
-        if(empty($curriculum)){
+        if (empty($curriculum)) {
             $curriculum = $this->Curriculums->newEntity();
         }
         if (!empty($this->request->data)) {
-            
+
             $this->request->data['medico_id'] = $idMedico;
-         //   debug($this->request->data);
+            //   debug($this->request->data);
             //exit;
             $curriculum = $this->Curriculums->patchEntity($curriculum, $this->request->data);
-               //debug($curriculum);
-               //debug($this->request->data);
-               // exit;
+            //debug($curriculum);
+            //debug($this->request->data);
+            // exit;
             if ($this->Curriculums->save($curriculum)) {
 
 
@@ -53,10 +52,10 @@ class CurriculumsController extends AppController {
         //$curriculums = $this->Curriculums->find('all')->contain(['Origens']);
         //debug($farmacias->toArray());exit;
         //$this->set(compact('curriculums'));
-        $verformulario = $this-> Curriculums->find()->where(['medico_id'=>$idMedico])->first();
-        $this->set(compact('curriculum','verformulario'));
-       // debug($verformulario);
-     //   exit;
+        $verformulario = $this->Curriculums->find()->where(['medico_id' => $idMedico])->first();
+        $this->set(compact('curriculum', 'verformulario'));
+        // debug($verformulario);
+        //   exit;
     }
 
     /**
@@ -140,6 +139,66 @@ class CurriculumsController extends AppController {
         $medicos = TableRegistry::get('Medicos');
         $idUsuario = $this->request->session()->read('Auth.User.id');
         return $medicos->find()->where(['user_id' => $idUsuario])->first()->id;
+    }
+
+    public function registro() {
+
+        $curriculum = $this->Curriculums->newEntity();
+        // $this->request->data
+        
+      //  debug($curriculum);
+       // debug($this->request->data);exit;
+        if (!empty($this->request->data['fecha_ini']['year'])) {
+            $this->request->data['fecha_ini'] = $this->request->data['fecha_ini']['year'] . '-01-01';
+            $this->request->data['fecha_fin'] = $this->request->data['fecha_fin']['year'] . '-01-01';
+        }
+        $this->request->data['medico_id']=$this->get_id_medico();
+
+        $curriculum = $this->Curriculums->patchEntity($curriculum, $this->request->data);
+
+        if (!empty($curriculum->errors())) {
+            $this->Flash->msgerror(current(current($curriculum->errors())));
+        } else {
+            if ($this->Curriculums->save($curriculum)) {
+                $this->Flash->msgbueno(__('Se ha registrado correctamente!!'));
+            } else {
+                $this->Flash->msgerror(__('No se ha podido registrar intente nuevamente!!'));
+            }
+        }
+        return $this->redirect(['action' => 'perfil', "controller" => 'Medicos']);
+    }
+
+    public function curriculum_acad($idCurriculum = null) {
+        $this->layout = 'ajax';
+        if (!empty($idCurriculum)) {
+            $curriculum = $this->Curriculums->get($idCurriculum);
+        } else {
+            $curriculum = $this->Curriculums->newEntity();
+        }
+
+        $this->set(compact('curriculum'));
+    }
+
+    public function curriculum_expe($idCurriculum = null) {
+        $this->layout = 'ajax';
+        if (!empty($idCurriculum)) {
+            $curriculum = $this->Curriculums->get($idCurriculum);
+        } else {
+            $curriculum = $this->Curriculums->newEntity();
+        }
+
+        $this->set(compact('curriculum'));
+    }
+
+    public function curriculum_comple($idCurriculum = null) {
+        $this->layout = 'ajax';
+        if (!empty($idCurriculum)) {
+            $curriculum = $this->Curriculums->get($idCurriculum);
+        } else {
+            $curriculum = $this->Curriculums->newEntity();
+        }
+
+        $this->set(compact('curriculum'));
     }
 
 }

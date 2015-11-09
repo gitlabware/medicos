@@ -46,53 +46,31 @@ class CurriculumsTable extends Table
             ->allowEmpty('id', 'create');
             
         $validator
-            ->allowEmpty('titulobt');
+            ->allowEmpty('titulacion');
             
         $validator
-            ->allowEmpty('anoini');
+            ->add('fecha_ini', 'valid', ['rule' => 'date'])
+            ->allowEmpty('fecha_ini');
             
         $validator
-            ->allowEmpty('anofin');
+            ->add('fecha_fin', 'valid', ['rule' => 'date'])
+            ->allowEmpty('fecha_fin');
             
         $validator
-            ->allowEmpty('centroestu');
+            ->allowEmpty('centro');
             
         $validator
-            ->allowEmpty('puestocupado');
+            ->allowEmpty('puesto');
             
         $validator
-            ->allowEmpty('nom_empre');
+            ->allowEmpty('empresa');
             
         $validator
-            ->add('fechaini', 'valid', ['rule' => 'date'])
-            ->allowEmpty('fechaini');
+            ->allowEmpty('descripcion');
             
         $validator
-            ->add('fechafin', 'valid', ['rule' => 'date'])
-            ->allowEmpty('fechafin');
-            
-        $validator
-            ->allowEmpty('descrip');
-            
-        $validator
-            ->allowEmpty('nomcurso');
-            
-        $validator
+            ->add('horas', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('horas');
-            
-        $validator
-            ->allowEmpty('tipo');
-            
-        $validator
-            ->allowEmpty('cent_est');
-            
-        $validator
-            ->add('fech_fin', 'valid', ['rule' => 'date'])
-            ->allowEmpty('fech_fin');
-            
-        $validator
-            ->add('fech_ini', 'valid', ['rule' => 'date'])
-            ->allowEmpty('fech_ini');
 
         return $validator;
     }

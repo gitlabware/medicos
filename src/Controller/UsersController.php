@@ -22,6 +22,7 @@ class UsersController extends AppController {
 
   public function beforeFilter(Event $event) {
     $this->Auth->allow(['registro', 'prueba', 'buscador']);
+    
   }
 
   public function index() {
@@ -153,13 +154,13 @@ class UsersController extends AppController {
       $dato_u['role'] = 'Medico';
       $user = $this->Users->patchEntity($user, $dato_u);
 
-      //debug($resultado);exit;
+      //debug($this->request->data);
       if (empty($user->errors())) {
         $resultado = $this->Users->save($user);
         if (!empty($resultado) && $resultado != FALSE) {
           $this->request->data['user_id'] = $resultado->id;
           $medico = $medicos->patchEntity($medico, $this->request->data);
-
+          //debug($medico);exit;
           if (empty($medico->errors())) {
             if ($medicos->save($medico)) {
               $this->request->data = $dato_u;

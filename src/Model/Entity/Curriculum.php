@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
@@ -7,7 +6,8 @@ use Cake\ORM\Entity;
 /**
  * Curriculum Entity.
  */
-class Curriculum extends Entity {
+class Curriculum extends Entity
+{
 
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -15,52 +15,29 @@ class Curriculum extends Entity {
      * @var array
      */
     protected $_accessible = [
-        'titulobt' => true,
-        'anoini' => true,
-        'anofin' => true,
-        'centroestu' => true,
-        'puestocupado' => true,
-        'nom_empre' => true,
-        'fechaini' => true,
-        'fechafin' => true,
-        'descrip' => true,
-        'nomcurso' => true,
+        'titulacion' => true,
+        'fecha_ini' => true,
+        'fecha_fin' => true,
+        'centro' => true,
+        'puesto' => true,
+        'empresa' => true,
+        'descripcion' => true,
         'horas' => true,
-        'tipo' => true,
         'medico_id' => true,
-        'cent_est' => true,
-        'fech_fin' => true,
-        'fech_ini' => true,
         'medico' => true,
     ];
-
-    protected function _getFechIni($fecha) {
-        if (!empty($fecha)) {
-            return $fecha->i18nFormat('YYYY-MM-dd');
-        } else {
-            return $fecha;
-        }
+    protected function _getFechaFin($fecha_fin) {
+    if (!empty($fecha_fin)) {
+      return $fecha_fin->i18nFormat('YYYY-MM-dd');
+    } else {
+      return $fecha_fin;
     }
-    protected function _getFechFin($fecha) {
-        if (!empty($fecha)) {
-            return $fecha->i18nFormat('YYYY-MM-dd');
-        } else {
-            return $fecha;
-        }
+  }
+   protected function _getFechaIni($fecha) {
+    if (!empty($fecha)) {
+      return $fecha->i18nFormat('YYYY-MM-dd');
+    } else {
+      return $fecha;
     }
-     protected function _getFechaini($fecha) {
-        if (!empty($fecha)) {
-            return $fecha->i18nFormat('YYYY-MM-dd');
-        } else {
-            return $fecha;
-        }
-    }
-     protected function _getFechafin($fecha) {
-        if (!empty($fecha)) {
-            return $fecha->i18nFormat('YYYY-MM-dd');
-        } else {
-            return $fecha;
-        }
-    }
-
+  }
 }
