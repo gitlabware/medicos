@@ -40,7 +40,7 @@
 </div>
 <!-- end .form-footer section -->
 <?= $this->Form->end(); ?>
-<script src="<?php echo $this->request->webroot; ?>vendor/plugins/datepicker/js/bootstrap-datetimepicker.js"></script>
+<script src="<?php echo $this->request->webroot; ?>js/vendor/plugins/datepicker/js/bootstrap-datetimepicker.js"></script>
 <script>
 $('#daterangepicker1').daterangepicker();
 </script>
