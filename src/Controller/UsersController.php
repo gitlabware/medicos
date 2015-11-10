@@ -22,6 +22,7 @@ class UsersController extends AppController {
 
   public function beforeFilter(Event $event) {
     $this->Auth->allow(['registro', 'prueba', 'buscador']);
+    
   }
 
   public function index() {

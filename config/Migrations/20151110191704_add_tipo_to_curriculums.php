@@ -1,7 +1,7 @@
 <?php
 use Phinx\Migration\AbstractMigration;
 
-class RemoveFecIniFromCurriculums extends AbstractMigration
+class AddTipoToCurriculums extends AbstractMigration
 {
     /**
      * Change Method.
@@ -13,7 +13,11 @@ class RemoveFecIniFromCurriculums extends AbstractMigration
     public function change()
     {
         $table = $this->table('curriculums');
-        $table->removeColumn('Fech_ini');
+        $table->addColumn('tipo', 'string', [
+            'default' => null,
+            'limit' => 70,
+            'null' => false,
+        ]);
         $table->update();
     }
 }

@@ -138,9 +138,6 @@
         <script src="<?php echo $this->request->webroot; ?>js/demo/demo.js"></script>
         <script src="<?php echo $this->request->webroot; ?>js/main.js"></script>
 
-        <script>
-                  
-        </script>
 
         <script type="text/javascript">
             jQuery(document).ready(function () {
@@ -152,47 +149,9 @@
 
                 // Init Demo JS    
                 Demo.init();
+
                 
-                 $('.admin-panels').adminpanel({
-                       grid: '.admin-grid',
-                       draggable: true,
-                       mobile: false,
-                       callback: function () {
-                           bootbox.confirm('<h3>A Custom Callback!</h3>', function () {
-                           });
-                       },
-                       onFinish: function () {
-                           $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
 
-                           // Init Demo settings 
-                           $('#p0 .panel-control-color').click();
-
-                           // Init Demo settings 
-                           $('#p1 .panel-control-title').click();
-
-                           // Create an example admin panel filter
-                           $('#admin-panel-filter a').on('click', function () {
-                               var This = $(this);
-                               var Value = This.attr('data-filter');
-
-                               // Toggle any elements whos name matches
-                               // that of the buttons attr value
-                               $('.admin-filter-panels').find($(Value)).each(function (i, e) {
-                                   if (This.hasClass('active')) {
-                                       $(this).slideDown('fast').removeClass('panel-filtered');
-                                   } else {
-                                       $(this).slideUp().addClass('panel-filtered');
-                                   }
-                               });
-                               This.toggleClass('active');
-                           });
-
-                       },
-                       onSave: function () {
-                           $(window).trigger('resize');
-                       }
-                   });
-                
 
                 if (tipo_notif && texto_noyif) {
                     var Stacks = {

@@ -147,30 +147,41 @@ class MedicosController extends AppController {
 
   public function perfil() {
     $medico = $this->get_medico();
-    /* debug($medico);
-      exit; */
+
+    $curriculum = TableRegistry::get('Curriculums');
+    $curriculums = $curriculum->find('all')->where(['medico_id' => $medico->id])->toArray();
+    //debug($curriculums->toArray());
+    //  exit; 
     $sociales = TableRegistry::get('Sociales');
     $lsociales = $sociales->find('all');
     $consultorios = TableRegistry::get('Consultorios');
     $lconsultorios = $consultorios->find()->select(['id', 'nombre'])->where(['medico_id' => $medico->id]);
-    //debug($lconsultorios->toArray());exit;
-    $this->set(compact('medico', 'lsociales', 'lconsultorios'));
+    //debug($curriculums);exit;
+    $this->set(compact('medico', 'lsociales', 'lconsultorios', 'curriculums'));
   }
 
   public function vperfil($idMedico = NULL) {
-    
+
     $medico = $this->Medicos->find()->contain(['Especialidades'])->where(['Medicos.id' => $idMedico])->first();
+    $curriculum = TableRegistry::get('Curriculums');
+    $curriculums = $curriculum->find('all')->where(['medico_id' => $medico->id]);
     $sociales = TableRegistry::get('Medicosociales');
     $lsociales = $sociales->find()->contain(['Sociales'])->where(['medico_id' => $idMedico]);
     $consultorios = TableRegistry::get('Consultorios');
     $lconsultorios = $consultorios->find()->select(['id', 'nombre'])->where(['medico_id' => $medico->id]);
-    //debug($lconsultorios->toArray());exit;
-    $this->set(compact('medico', 'lsociales', 'lconsultorios'));
+    //debug($curriculums);exit;
+    $this->set(compact('medico', 'lsociales', 'lconsultorios', 'curriculums'));
   }
 
   public function get_medico() {
     $idUsuario = $this->request->session()->read('Auth.User.id');
     return $this->Medicos->find()->contain(['Especialidades'])->where(['user_id' => $idUsuario])->first();
+  }
+
+  public function get_medico_res() {
+    $medico = $this->get_medico();
+    $this->response->body($medico);
+    return $this->response;
   }
 
   public function editar_perfil() {
@@ -324,7 +335,7 @@ class MedicosController extends AppController {
     $medicos = $this->Medicos->find()
       ->contain(['Especialidades'])
       ->where([
-        'Medicos.nombre LIKE' => "%".$dato."%"
+        'Medicos.nombre LIKE' => "%" . $dato . "%"
       ])
       ->toArray();
     $this->set(compact('medicos'));

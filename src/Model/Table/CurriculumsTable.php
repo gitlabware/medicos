@@ -67,6 +67,9 @@ class CurriculumsTable extends Table
             
         $validator
             ->allowEmpty('descripcion');
+        
+        $validator
+            ->notEmpty('tipo');
             
         $validator
             ->add('horas', 'valid', ['rule' => 'numeric'])

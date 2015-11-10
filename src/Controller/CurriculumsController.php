@@ -141,15 +141,73 @@ class CurriculumsController extends AppController {
     return $medicos->find()->where(['user_id' => $idUsuario])->first()->id;
   }
 
-  public function curriculum_acad($idCurriculum = null) {
-    $this->layout = 'ajax';
-    if(!empty($idCurriculum)){
+  public function registro($idCurriculum = null) {
+    if (!empty($idCurriculum)) {
       $curriculum = $this->Curriculums->get($idCurriculum);
-    }else{
+    } else {
       $curriculum = $this->Curriculums->newEntity();
     }
-    
+    if (!empty($this->request->data['fecha_ini']['year'])) {
+      $this->request->data['fecha_ini'] = $this->request->data['fecha_ini']['year'] . '-01-01';
+      $this->request->data['fecha_fin'] = $this->request->data['fecha_fin']['year'] . '-01-01';
+    }
+    $this->request->data['medico_id'] = $this->get_id_medico();
+
+    $curriculum = $this->Curriculums->patchEntity($curriculum, $this->request->data);
+
+    if (!empty($curriculum->errors())) {
+      $this->Flash->msgerror(current(current($curriculum->errors())));
+    } else {
+      if ($this->Curriculums->save($curriculum)) {
+        $this->Flash->msgbueno(__('Se ha registrado correctamente!!'));
+      } else {
+        $this->Flash->msgerror(__('No se ha podido registrar intente nuevamente!!'));
+      }
+    }
+    return $this->redirect(['action' => 'perfil', "controller" => 'Medicos']);
+  }
+
+  public function curriculum_acad($idCurriculum = null) {
+    $this->layout = 'ajax';
+    if (!empty($idCurriculum)) {
+      $curriculum = $this->Curriculums->get($idCurriculum);
+    } else {
+      $curriculum = $this->Curriculums->newEntity();
+    }
+
     $this->set(compact('curriculum'));
+  }
+
+  public function curriculum_expe($idCurriculum = null) {
+    $this->layout = 'ajax';
+    if (!empty($idCurriculum)) {
+      $curriculum = $this->Curriculums->get($idCurriculum);
+    } else {
+      $curriculum = $this->Curriculums->newEntity();
+    }
+
+    $this->set(compact('curriculum'));
+  }
+
+  public function curriculum_comple($idCurriculum = null) {
+    $this->layout = 'ajax';
+    if (!empty($idCurriculum)) {
+      $curriculum = $this->Curriculums->get($idCurriculum);
+    } else {
+      $curriculum = $this->Curriculums->newEntity();
+    }
+
+    $this->set(compact('curriculum'));
+  }
+  
+  public function eliminar($idCurriculum = null){
+    $curriculum = $this->Curriculums->get($idCurriculum);
+    if($this->Curriculums->delete($curriculum)){
+      $this->Flash->msgbueno('Se ha eliminado del curriculum correctamente!!');
+    }else{
+      $this->Curriculums->msgerror('No se ha podido eliminar del curriculum. Intente nuevamente!!');
+    }
+    $this->redirect($this->referer());
   }
 
 }
