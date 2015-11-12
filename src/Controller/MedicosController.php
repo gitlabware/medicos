@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Text;
+use Cake\Event\Event;
 
 /**
  * Medicos Controller
@@ -14,6 +15,10 @@ use Cake\Utility\Text;
 class MedicosController extends AppController {
 
   public $layout = 'medicos';
+
+  public function beforeFilter(Event $event) {
+    $this->Auth->allow(['buscador']);
+  }
 
   /**
    * Index method
@@ -324,6 +329,10 @@ class MedicosController extends AppController {
   }
 
   public function buscador() {
+    //debug($this->request->data);exit;
+    if (!empty($this->request->data['tipo'])) {
+      $this->layout = 'publico';
+    }
     $medicos = $this->Medicos->find()->contain(['Especialidades'])->toArray();
     //debug($medicos);exit;
     $this->set(compact('medicos'));
@@ -340,5 +349,7 @@ class MedicosController extends AppController {
       ->toArray();
     $this->set(compact('medicos'));
   }
+
+  
 
 }

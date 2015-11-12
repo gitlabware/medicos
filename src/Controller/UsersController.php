@@ -22,7 +22,6 @@ class UsersController extends AppController {
 
   public function beforeFilter(Event $event) {
     $this->Auth->allow(['registro', 'prueba', 'buscador']);
-    
   }
 
   public function index() {
@@ -195,9 +194,35 @@ class UsersController extends AppController {
   public function buscador() {
     $this->layout = 'login';
     if (!empty($this->request->data)) {
-      /*debug($this->request->data);
-      exit;*/
+
+      debug($this->request->data);
+      exit;
     }
+  }
+
+  public function mipaginador() {
+    $condiciones1 = [];
+    $condiciones2 = [];
+    if(!empty($this->request->data['busqueda'])){
+      $frase = $this->request->data['busqueda'];
+      //debug($this->request->data['busqueda']);exit;
+      $condiciones1['Users.username LIKE'] = "%$frase%";
+      $condiciones2['Medicos.nombre LIKE'] = "%$frase%";
+    }
+    $usuarios = $this->Users->find()->select(['mifrase' => 'Users.username','t'])->where($condiciones1);
+    $medicos = TableRegistry::get('Medicos');
+    $farmacias = TableRegistry::get('Farmacias');
+    $centros = TableRegistry::get('Centros');
+    $l_medicos = $medicos->find();
+    $l_medicos = $l_medicos->select(['mifrase' => 'Medicos.nombre','role' => $l_medicos->func()->concat([''])])->where($condiciones2);
+    
+    $this->paginate = [
+      'limit' => 3
+    ];
+    
+    $usuarios->unionAll($l_medicos);
+    //debug($usuarios->toArray());exit;
+    $this->set('usuarios', $this->paginate($usuarios));
   }
 
 }

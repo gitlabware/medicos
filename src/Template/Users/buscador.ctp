@@ -3,7 +3,7 @@
 </div>
 <div class="row mb15 table-layout">
     <div class="col-xs-6 va-m pln">
-        <a href="dashboard.html" title="Return to Dashboard">
+        <a href="javascript:" title="Return to Dashboard">
             <img src="<?php echo $this->request->webroot; ?>img/logos/logo_white.png" title="AdminDesigns Logo" class="img-responsive w250">
         </a>
     </div>
@@ -47,7 +47,24 @@
     <!-- end .form-header section -->
 
 </div>
-
-
-
 <?= $this->Form->end(); ?>
+
+<script>
+$('#ajaxform').submit(function(e){
+  //alert($('input[name=tipo]:checked', '#ajaxform').val());
+  if($('input[name=tipo]:checked', '#ajaxform').val() == 'Medico'){
+    $('#ajaxform').attr('action','<?= $this->Url->build(['controller' => 'Medicos','action' => 'buscador']);?>');
+    $('#ajaxform').submit();
+  }
+  if($('input[name=tipo]:checked', '#ajaxform').val() == 'Centro'){
+    $('#ajaxform').attr('action','<?= $this->Url->build(['controller' => 'Centros','action' => 'buscador']);?>');
+    $('#ajaxform').submit();
+  }
+  if($('input[name=tipo]:checked', '#ajaxform').val() == 'Farmacia'){
+    $('#ajaxform').attr('action','<?= $this->Url->build(['controller' => 'Farmacias','action' => 'buscador']);?>');
+    $('#ajaxform').submit();
+  }
+  e.preventDefault();
+  
+});
+</script>

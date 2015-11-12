@@ -36,38 +36,29 @@
 
     </head>
 
-    <body class="search-results-page">
-        <?php echo $this->element('barra/chat') ?>
+    <body class="error-page sb-l-o sb-r-c">
+        <?php //echo $this->element('barra/chat') ?>
         <!-- Start: Main -->
         <div id="main">
-
             <!-- Start: Header -->
             <header class="navbar navbar-fixed-top bg-system">
                 <div class="navbar-branding">
-                    <a class="navbar-brand" href="dashboard.html">
+                    <a class="navbar-brand" href="javascript:">
                         <b>Medicos</b>CAE
                     </a>
                     <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
                 </div>
                 <?php
-                if ($this->request->session()->read('Auth.User.role') == 'Administrador') {
+                /*if ($this->request->session()->read('Auth.User.role') == 'Administrador') {
                     echo $this->element('menu/admin');
                 } elseif ($this->request->session()->read('Auth.User.role') == 'Medico') {
                     echo $this->element('menu/medicos');
-                }
+                }*/
                 ?>
-
             </header>
             <!-- End: Header -->
-
+            <?php echo $this->element('sidebar/publico');?>
             <!-- Start: Sidebar -->
-            <?php
-            if ($this->request->session()->read('Auth.User.role') == 'Administrador') {
-                echo $this->element('sidebar/admin');
-            } elseif ($this->request->session()->read('Auth.User.role') == 'Medico') {
-                echo $this->element('sidebar/medico');
-            }
-            ?>
 
             <!-- Start: Content-Wrapper -->
             <section id="content_wrapper">
