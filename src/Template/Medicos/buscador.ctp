@@ -99,6 +99,8 @@
     </div>
     <!-- end: .tray-center -->
 </section>
+
+
 <script>
     $("#campo-medico").keyup(function () {
         if ($("#campo-medico").val() != '') {

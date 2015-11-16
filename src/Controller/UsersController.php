@@ -201,28 +201,105 @@ class UsersController extends AppController {
   }
 
   public function mipaginador() {
-    $condiciones1 = [];
+    //$condiciones1 = [];
     $condiciones2 = [];
-    if(!empty($this->request->data['busqueda'])){
+    $condiciones3 = [];
+    $condiciones4 = [];
+    //debug($this->request->data);exit;
+    if (!empty($this->request->data['busqueda'])) {
       $frase = $this->request->data['busqueda'];
       //debug($this->request->data['busqueda']);exit;
-      $condiciones1['Users.username LIKE'] = "%$frase%";
+      //$condiciones1['Users.username LIKE'] = "%$frase%";
       $condiciones2['Medicos.nombre LIKE'] = "%$frase%";
+      $condiciones3['Farmacias.nombre LIKE'] = "%$frase%";
+      $condiciones4['Centros.nombre LIKE'] = "%$frase%";
     }
-    $usuarios = $this->Users->find()->select(['mifrase' => 'Users.username','t'])->where($condiciones1);
+    $distancia = [];
+    $distancia[""] = '';
+    //debug($distancia);exit;
+    if (isset($this->request->data['lat']) && isset($this->request->data['lgt']) && $this->request->data['lat'] != '' && $this->request->data['lgt'] != '') {
+      /* debug($this->request->data);
+        exit; */
+      $R = 6378137;
+      $p1_lat = $this->request->data['lat'];
+      $p1_long = $this->request->data['lgt'];
+      $dLat = "RADIANS($p1_lat - lat)";
+      $dLong = "RADIANS($p1_long - lng)";
+      $a = "(SIN($dLat/2) * SIN($dLat/2) + COS(RADIANS($p1_lat)) * COS(RADIANS(lat)) * SIN($dLong/2) * SIN($dLong/2))";
+      $c = "(2 * ATAN2(SQRT($a),SQRT(1-$a)))";
+      $d = "$R * $c";
+      $distancia["$d"] = 'literal';
+    }
+    //$usuarios = $this->Users->find()->select(['mifrase' => 'Users.username','t'])->where($condiciones1);
     $medicos = TableRegistry::get('Medicos');
     $farmacias = TableRegistry::get('Farmacias');
     $centros = TableRegistry::get('Centros');
+    $consultorios = TableRegistry::get('Consultorios');
     $l_medicos = $medicos->find();
-    $l_medicos = $l_medicos->select(['mifrase' => 'Medicos.nombre','role' => $l_medicos->func()->concat([''])])->where($condiciones2);
-    
+    $l_farmacias = $farmacias->find();
+    $l_centros = $centros->find();
+    $l_consultorios = $consultorios->find();
+
+    $l_consultorios = $l_consultorios->contain(['Medicos', 'Medicos' => ['Especialidades']])->select([
+        'id' => 'Medicos.id',
+        'nombre' => 'Medicos.nombre',
+        'especialidad' => 'Especialidades.nombre',
+        'sexo' => 'Medicos.sexo',
+        'imagen' => 'Medicos.url',
+        'mail' => 'Medicos.mail',
+        'direccion' => 'Consultorios.direccion',
+        'Medicos.telefonos',
+        'tipo' => $l_medicos->func()->concat(['Medicos']),
+        'distancia' => $l_farmacias->func()->concat([''])
+      ])->where($condiciones2);
+    //debug($l_consultorios->toArray());exit;
+    $l_medicos = $l_medicos->contain(['Especialidades','Consultorios' => ['Medicos']])->select([
+        'id' => 'Medicos.id',
+        'nombre' => 'Medicos.nombre',
+        'especialidad' => 'Especialidades.nombre',
+        'sexo' => 'Medicos.sexo',
+        'imagen' => 'Medicos.url',
+        'mail' => 'Medicos.mail',
+        'direccion' => $l_medicos->func()->concat(['']),
+        'Medicos.telefonos',
+        'tipo' => $l_medicos->func()->concat(['Medicos']),
+        'distancia' => $l_farmacias->func()->concat([''])
+      ])->where($condiciones2);
+   //debug($l_medicos->toArray());exit;
+    $l_farmacias = $l_farmacias->select([
+        'id',
+        'nombre' => 'Farmacias.nombre',
+        'especialidad' => $l_farmacias->func()->concat(['']),
+        'sexo' => $l_farmacias->func()->concat(['']),
+        'imagen' => $l_farmacias->func()->concat(['']),
+        'mail' => $l_farmacias->func()->concat(['']),
+        'Farmacias.direccion',
+        'Farmacias.telefonos',
+        'tipo' => $l_farmacias->func()->concat(['Farmacias']),
+        'distancia' => $l_farmacias->func()->concat($distancia)
+      ])->where($condiciones3);
+    $l_centros = $l_centros->select([
+        'id',
+        'nombre' => 'Centros.nombre',
+        'especialidad' => $l_centros->func()->concat(['']),
+        'sexo' => $l_centros->func()->concat(['']),
+        'imagen' => $l_centros->func()->concat(['']),
+        'mail' => $l_centros->func()->concat(['']),
+        'Centros.direccion',
+        'Centros.telefonos',
+        'tipo' => $l_centros->func()->concat(['Centros']),
+        'distancia' => $l_farmacias->func()->concat([''])
+      ])->where($condiciones4);
+
     $this->paginate = [
       'limit' => 3
     ];
-    
-    $usuarios->unionAll($l_medicos);
-    //debug($usuarios->toArray());exit;
-    $this->set('usuarios', $this->paginate($usuarios));
+    $l_medicos->unionAll($l_farmacias);
+    $l_medicos->unionAll($l_centros);
+    $l_medicos->unionAll($l_consultorios);
+    //$l_medicos = $l_medicos->find();
+    //debug($l_medicos->toArray());exit;
+    $this->set('l_medicos', $this->paginate($l_medicos));
   }
 
 }

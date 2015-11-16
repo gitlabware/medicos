@@ -303,7 +303,6 @@ class MedicosController extends AppController {
   }
 
   public function ajax_carga_i() {
-
     /* debug($this->request->data['imagen_aux']);
       exit; */
     $this->layout = 'ajax';
